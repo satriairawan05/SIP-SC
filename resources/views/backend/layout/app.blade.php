@@ -86,7 +86,8 @@
                     <ul class="nav-right">
                         <li class="user-profile header-notification">
                             <a href="#!" class="waves-effect waves-light">
-                                <img src="assets/images/avatar-blank.jpg" class="img-radius" alt="User-Profile-Image">
+                                <img src="{{ asset('assets/images/avatar-blank.jpg') }}" class="img-radius"
+                                    alt="User-Profile-Image">
                                 <span>{{ auth()->user()->name }}</span>
                                 <i class="ti-angle-down"></i>
                             </a>

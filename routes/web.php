@@ -28,7 +28,5 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-    Route::prefix('home')->group(function () {
-        //
-    });
+    Route::resource('role', \App\Http\Controllers\Backend\GroupController::class);
 });

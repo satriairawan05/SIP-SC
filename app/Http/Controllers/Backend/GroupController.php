@@ -13,7 +13,7 @@ class GroupController extends Controller
     /**
      * Constructor for LoginController.
      */
-    public function __construct(private $name = ['Role', 'Permission', 'Role Permission'])
+    public function __construct(private $name = 'Role Permission')
     {
         //
     }
@@ -23,7 +23,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.setting.role.index', [
+            'name' => $this->name
+        ]);
     }
 
     /**
@@ -31,7 +33,9 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.setting.role.create', [
+            'name' => $this->name
+        ]);
     }
 
     /**
@@ -55,7 +59,9 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        return view('backend.setting.role.edit', [
+            'name' => $this->name
+        ]);
     }
 
     /**

@@ -3,7 +3,8 @@
     <div class="pcoded-inner-navbar main-menu">
         <div class="">
             <div class="main-menu-header">
-                <img class="img-80 img-radius" src="assets/images/avatar-blank.jpg" alt="User-Profile-Image">
+                <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-blank.jpg') }}"
+                    alt="User-Profile-Image">
                 <div class="user-details">
                     <span id="more-details">{{ auth()->user()->name }}<i class="fa fa-caret-down"></i></span>
                 </div>
@@ -76,7 +77,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="waves-effect waves-dark">
+                <a href="{{ route('role.index') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-settings"></i><b>RL</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.setting.role">Role</span>
                     <span class="pcoded-mcaret"></span>
