@@ -26,8 +26,8 @@
         </div>
         <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Layout</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="active">
-                <a href="#" class="waves-effect waves-dark">
+            <li class="{{ Request::is('home') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                     <span class="pcoded-mcaret"></span>
@@ -76,7 +76,7 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li>
+            <li class="{{ Request::is('home/role*') ? 'active' : '' }}">
                 <a href="{{ route('role.index') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-settings"></i><b>RL</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.setting.role">Role</span>
