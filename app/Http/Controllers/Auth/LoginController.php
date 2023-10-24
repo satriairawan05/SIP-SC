@@ -10,7 +10,7 @@ class LoginController extends Controller
     /**
      * Constructor for LoginController.
      */
-    public function __construct(public $validated = null, public $name = "")
+    public function __construct(private $validated = null, private $name = "")
     {
         $this->middleware('guest')->except('logout');
     }
@@ -60,6 +60,6 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('home-page');
+        return $this->loggedOut($request) ?: redirect('login');
     }
 }

@@ -18,15 +18,15 @@ Route::get('/', function () {
 });
 
 // Login & Logout
-Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login_store');
+Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login_store');
 
 Route::middleware('auth')->group(function () {
     Route::get('home', fn () => view('backend.home', [
         'name' => 'Dashboard'
     ]))->name('dashboard');
 
-    Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
     Route::prefix('home')->group(function () {
         //

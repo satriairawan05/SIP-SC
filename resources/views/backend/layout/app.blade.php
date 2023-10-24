@@ -63,7 +63,7 @@
                         <i class="ti-menu"></i>
                     </a>
                     <a href="#" class="mt-sm-2 text-center">
-                        {{-- <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" /> --}}
+                        <!-- <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" /> -->
                         <b>SIP - SC</b>
                     </a>
                     <a class="mobile-options waves-effect waves-light">
@@ -87,7 +87,7 @@
                         <li class="user-profile header-notification">
                             <a href="#!" class="waves-effect waves-light">
                                 <img src="assets/images/avatar-blank.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>Dina Minarti</span>
+                                <span>{{ auth()->user()->name }}</span>
                                 <i class="ti-angle-down"></i>
                             </a>
                             <ul class="show-notification profile-notification">
@@ -123,7 +123,16 @@
                     <!-- Page-header start -->
                     <div class="page-header">
                         <div class="page-block">
-                            @yield('bradcrumb')
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="page-header-title">
+                                        <h5 class="m-b-10">Dashboard</h5>
+                                        <p class="m-b-0">Sistem Informasi Pengajuan Surat Cuti Berbasis
+                                            Web</p>
+                                    </div>
+                                </div>
+                                @yield('bradcrumb')
+                            </div>
                         </div>
                     </div>
                     <!-- Page-header end -->

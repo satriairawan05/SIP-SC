@@ -1,11 +1,11 @@
 <nav class="pcoded-navbar">
-    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+    <div class="sidebar_toggle"><a href="{{ route('dashboard') }}"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
         <div class="">
             <div class="main-menu-header">
                 <img class="img-80 img-radius" src="assets/images/avatar-blank.jpg" alt="User-Profile-Image">
                 <div class="user-details">
-                    <span id="more-details">Dina Minarti<i class="fa fa-caret-down"></i></span>
+                    <span id="more-details">{{ auth()->user()->name }}<i class="fa fa-caret-down"></i></span>
                 </div>
             </div>
 
@@ -13,7 +13,7 @@
                 <ul>
                     <li class="more-details">
                         <a href="#"><i class="ti-user"></i>View Profile</a>
-                        <a href="#!"><i class="ti-settings"></i>Settings</a>
+                        <a href="#"><i class="ti-settings"></i>Settings</a>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-light"><i
