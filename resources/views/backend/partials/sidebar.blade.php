@@ -17,7 +17,7 @@
                         <a href="#"><i class="ti-settings"></i>Settings</a>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button type="submit" class="btn btn-light"><i
+                            <button type="submit" class="btn btn-light border-0 bg-transparent"><i
                                     class="ti-layout-sidebar-left"></i>Logout</button>
                         </form>
                     </li>
