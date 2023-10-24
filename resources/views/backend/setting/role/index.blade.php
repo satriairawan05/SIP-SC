@@ -16,8 +16,39 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('role.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
                 <div class="card-body">
-
+                    <table class="table-bordered table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($group as $g)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $g->group_name }}</td>
+                                    <td>
+                                        <a href="{{ route('role.edit', $g->group_id) }}" class="btn btn-sm btn-warning"><i
+                                                class="fa fa-edit"></i></a>
+                                        <form action="{{ route('role.destroy', $g->group_id) }}" method="post"
+                                            class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -105,7 +105,7 @@
                                 <li class="waves-effect waves-light">
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-light btn-sm">
+                                        <button type="submit" class="btn btn-light btn-sm border-0 bg-transparent">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </button>
                                     </form>

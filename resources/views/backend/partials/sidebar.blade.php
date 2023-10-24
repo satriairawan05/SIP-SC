@@ -17,14 +17,14 @@
                         <a href="#"><i class="ti-settings"></i>Settings</a>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button type="submit" class="btn btn-light"><i
+                            <button type="submit" class="btn btn-light border-0 bg-transparent"><i
                                     class="ti-layout-sidebar-left"></i>Logout</button>
                         </form>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Layout</div>
+        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Home</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="{{ Request::is('home') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}" class="waves-effect waves-dark">
@@ -33,10 +33,13 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+        </ul>
+        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Registration</div>
+        <ul class="pcoded-item pcoded-left-item">
             <li>
                 <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-envelope"></i><b>SC</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti.create">Create Surat Cuti</span>
+                    <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti.create">Surat Cuti</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
