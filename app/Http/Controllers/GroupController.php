@@ -1,23 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
-use App\Models\Page;
 use App\Models\Group;
-use App\Models\GroupPage;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {
-    /**
-     * Constructor for LoginController.
-     */
-    public function __construct(private $name = ['Role', 'Permission', 'Role Permission'])
-    {
-        //
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -61,7 +50,7 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Group $group, Page $page, GroupPage $groupPage)
+    public function update(Request $request, Group $group)
     {
         //
     }
