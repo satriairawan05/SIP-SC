@@ -24,7 +24,8 @@ class GroupController extends Controller
     public function index()
     {
         return view('backend.setting.role.index', [
-            'name' => $this->name
+            'name' => $this->name,
+            'group' => Group::all()
         ]);
     }
 
