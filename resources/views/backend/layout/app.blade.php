@@ -84,6 +84,9 @@
                         </li>
                     </ul>
                     <ul class="nav-right">
+                        <li>
+                            <div class="mt-1" style="margin-top: 2px;"><i class="ti-time text-white"></i>&nbsp;<span id="waktu" class="text-white"></span></div>
+                        </li>
                         <li class="user-profile header-notification">
                             <a href="#!" class="waves-effect waves-light">
                                 <img src="{{ asset('assets/images/avatar-blank.jpg') }}" class="img-radius"

@@ -28,6 +28,7 @@
     <!-- custom js -->
     <script type="text/javascript" src="{{ asset('assets/pages/dashboard/custom-dashboard.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/script.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('assets/js/time.min.js') }}"></script>
     </body>
 
     </html>
