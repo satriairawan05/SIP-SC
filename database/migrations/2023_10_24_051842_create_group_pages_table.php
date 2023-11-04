@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('group_pages', function (Blueprint $table) {
             $table->increments('gp_id');
-            $table->foreignId('group_id')->nullable();
-            $table->foreignId('page_id')->nullable();
+            $table->foreignId('group_id')->constrained()->nullable();
+            $table->foreignId('page_id')->constrained()->nullable();
             $table->string('access')->nullable();
             $table->timestamps();
         });
