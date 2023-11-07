@@ -74,6 +74,13 @@
             </li>
             <li>
                 <a href="#" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-desktop"></i><b>DPT</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.setting.departemen">Departemen</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-stamp"></i><b>AP</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.setting.approval">Approval</span>
                     <span class="pcoded-mcaret"></span>
