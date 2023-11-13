@@ -1,7 +1,3 @@
-@php
-
-@endphp
-
 <nav class="pcoded-navbar">
     <div class="sidebar_toggle"><a href="{{ route('dashboard') }}"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
@@ -40,33 +36,26 @@
         </ul>
         <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Registration</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="{{ Request::is('surat_cuti*') ? 'active' : '' }}">
-                <a href="{{ route('surat_cuti.create') }}" class="waves-effect waves-dark">
+            <li>
+                <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-envelope"></i><b>SC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti.create">Surat Cuti</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
         </ul>
-        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Bank File
+        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Features
         </div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="{{ Request::is('surat_cuti*') ? 'active' : '' }}">
-                <a href="{{ route('surat_cuti.index') }}" class="waves-effect waves-dark">
+            <li>
+                <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-envelope"></i><b>SC</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti">Surat Cuti</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li class="{{ Request::is('cuti*') ? 'active' : '' }}">
-                <a href="{{ route('cuti.index') }}" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-agenda"></i><b>CT</b></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti">Cuti</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li class="{{ Request::is('archive*') ? 'active' : '' }}">
-                <a href="{{ route('archive') }}" class="waves-effect waves-dark">
+            <li>
+                <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-folder"></i><b>Ar</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.form.archive">Archive</span>
                     <span class="pcoded-mcaret"></span>
@@ -76,28 +65,28 @@
         <div class="pcoded-navigation-label" data-i18n="nav.category.setting">Setting
         </div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="{{ Request::is('user*') ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}" class="waves-effect waves-dark">
+            <li>
+                <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-user"></i><b>US</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.setting.user">Users</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li class="{{ Request::is('departemen*') ? 'active' : '' }}">
-                <a href="{{ route('departemen.index') }}" class="waves-effect waves-dark">
+            <li>
+                <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-desktop"></i><b>DPT</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.setting.departemen">Departemen</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li class="{{ Request::is('approval*') ? 'active' : '' }}">
-                <a href="{{ route('approval.index') }}" class="waves-effect waves-dark">
+            <li>
+                <a href="#" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-stamp"></i><b>AP</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.setting.approval">Approval</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li class="{{ Request::is('role*') ? 'active' : '' }}">
+            <li class="{{ Request::is('home/role*') ? 'active' : '' }}">
                 <a href="{{ route('role.index') }}" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-settings"></i><b>RL</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.setting.role">Role</span>
