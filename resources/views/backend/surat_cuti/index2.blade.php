@@ -6,10 +6,10 @@
             <li class="breadcrumb-item">
                 <a href="{{ route('dashboard') }}"> <i class="fa fa-home"></i> </a>
             </li>
-            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">{{ $name }}</a>
+            <li class="breadcrumb-item"><a href="{{ route('surat_cuti.index') }}">{{ $name }}</a>
             </li>
-            <li class="breadcrumb-item">Edit
-            </li>
+            {{-- <li class="breadcrumb-item text-uppercase">DEPARTEMEN {!! $departemen->departemen_name !!}
+            </li> --}}
         </ul>
     </div>
 @endsection

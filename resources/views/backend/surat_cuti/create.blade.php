@@ -6,9 +6,9 @@
             <li class="breadcrumb-item">
                 <a href="{{ route('dashboard') }}"> <i class="fa fa-home"></i> </a>
             </li>
-            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">{{ $name }}</a>
+            <li class="breadcrumb-item"><a href="{{ route('surat_cuti.index') }}">{{ $name }}</a>
             </li>
-            <li class="breadcrumb-item">Edit
+            <li class="breadcrumb-item">Create
             </li>
         </ul>
     </div>

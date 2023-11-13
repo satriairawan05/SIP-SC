@@ -12,10 +12,120 @@ class PageSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1
+        // Surat Cuti
         \App\Models\Page::create([
-            'page_name' => 'Dashboard',
+            'page_name' => 'Surat Cuti',
+            'action' => 'Create',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Surat Cuti',
+            'action' => 'Approval',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Surat Cuti',
             'action' => 'Read',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Surat Cuti',
+            'action' => 'Update',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Surat Cuti',
+            'action' => 'Delete',
+        ]);
+
+        // Cuti
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
+            'action' => 'Create',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
+            'action' => 'Read',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
+            'action' => 'Update',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
+            'action' => 'Delete',
+        ]);
+
+        // Archive
+        \App\Models\Page::create([
+            'page_name' => 'Archive',
+            'action' => 'Read',
+        ]);
+
+        // Account
+        \App\Models\Page::create([
+            'page_name' => 'User',
+            'action' => 'Create',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'User',
+            'action' => 'Read',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'User',
+            'action' => 'Update',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'User',
+            'action' => 'Delete',
+        ]);
+
+        // Departemen
+        \App\Models\Page::create([
+            'page_name' => 'Departemen',
+            'action' => 'Create',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Departemen',
+            'action' => 'Read',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Departemen',
+            'action' => 'Update',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Departemen',
+            'action' => 'Delete',
+        ]);
+
+        // Approval
+        \App\Models\Page::create([
+            'page_name' => 'Approval',
+            'action' => 'Create',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Approval',
+            'action' => 'Read',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Approval',
+            'action' => 'Update',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Approval',
+            'action' => 'Delete',
         ]);
     }
 }

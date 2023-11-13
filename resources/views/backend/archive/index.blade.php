@@ -6,9 +6,7 @@
             <li class="breadcrumb-item">
                 <a href="{{ route('dashboard') }}"> <i class="fa fa-home"></i> </a>
             </li>
-            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">{{ $name }}</a>
-            </li>
-            <li class="breadcrumb-item">Edit
+            <li class="breadcrumb-item"><a href="{{ route('archive') }}">{{ $name }}</a>
             </li>
         </ul>
     </div>
@@ -19,7 +17,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
+                    <div class="list-group">
+                        @foreach ($departemen as $d)
+                            <a href="?departemen_id={!! $d->departemen_id !!}"
+                                class="list-group-item list-group-item-action">{{ $d->departemen_name }}</a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

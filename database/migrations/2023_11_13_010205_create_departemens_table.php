@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group_pages', function (Blueprint $table) {
-            $table->increments('gp_id');
-            $table->foreignId('group_id')->nullable();
-            $table->foreignId('page_id')->nullable();
-            $table->string('access')->nullable();
+        Schema::create('departemens', function (Blueprint $table) {
+            $table->increments('departemen_id');
+            $table->string('departemen_name');
+            $table->string('departemen_alias');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_pages');
+        Schema::dropIfExists('departemens');
     }
 };
