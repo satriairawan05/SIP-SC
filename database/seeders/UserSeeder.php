@@ -14,11 +14,13 @@ class UserSeeder extends Seeder
     {
         \App\Models\User::create([
             'name' => 'Super Admin',
-            'email' => 'super.admin@sip-sc.com',
+            'email' => 'super.admin@coalindo.com',
             'email_verified_at' => now(),
             'password' => bcrypt('admin123'),
             'remember_token' => \Illuminate\Support\Str::random(10),
-            'group_id' => 1
+            'group_id' => 1,
+            'departemen_id' => null,
+            'jabatan' => 'Admin Head Office'
         ]);
 
         \App\Models\User::factory(9)->create();

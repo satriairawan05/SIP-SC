@@ -6,9 +6,7 @@
             <li class="breadcrumb-item">
                 <a href="{{ route('dashboard') }}"> <i class="fa fa-home"></i> </a>
             </li>
-            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">{{ $name }}</a>
-            </li>
-            <li class="breadcrumb-item">Edit
+            <li class="breadcrumb-item"><a href="#">{{ $name }}</a>
             </li>
         </ul>
     </div>
@@ -18,6 +16,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('cuti.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
                 <div class="card-body">
 
                 </div>

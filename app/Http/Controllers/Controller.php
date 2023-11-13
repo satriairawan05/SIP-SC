@@ -15,7 +15,6 @@ class Controller extends BaseController
         return \App\Models\User::leftJoin('group_pages', 'users.group_id', '=', 'group_pages.group_id')
             ->leftJoin('groups', 'users.group_id', '=', 'groups.group_id')
             ->leftJoin('pages', 'group_pages.page_id', '=', 'pages.page_id')
-            // ->where('group_pages.access', '=', 1)
             ->where('pages.page_name', '=', $pageName)
             ->where('group_pages.group_id', '=', $userGroup)
             ->select(['group_pages.access', 'pages.action'])

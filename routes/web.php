@@ -22,13 +22,32 @@ Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'showLog
 Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login_store');
 
 Route::middleware('auth')->group(function () {
+    // Home
     Route::get('home', fn () => view('backend.home', [
         'name' => 'Dashboard'
     ]))->name('dashboard');
 
+    // Logout
     Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-    Route::prefix('home')->group(function () {
-        Route::resource('role', \App\Http\Controllers\Backend\GroupController::class);
-    });
+    // Archive
+    Route::get('archive', \App\Http\Controllers\Backend\ArchiveController::class)->name('archive');
+
+    // Approval
+    Route::resource('approval', \App\Http\Controllers\Backend\ApprovalController::class);
+
+    // Cuti
+    Route::resource('cuti', \App\Http\Controllers\Backend\CutiController::class);
+
+    // Departemen
+    Route::resource('departemen', \App\Http\Controllers\Backend\DepartemenController::class);
+
+    // Role
+    Route::resource('role', \App\Http\Controllers\Backend\GroupController::class);
+
+    // Surat Cuti
+    Route::resource('surat_cuti', \App\Http\Controllers\Backend\SuratCutiController::class);
+
+    // User
+    Route::resource('user', \App\Http\Controllers\Backend\UserController::class);
 });

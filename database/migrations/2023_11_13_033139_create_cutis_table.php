@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group_pages', function (Blueprint $table) {
-            $table->increments('gp_id');
-            $table->foreignId('group_id')->nullable();
-            $table->foreignId('page_id')->nullable();
-            $table->string('access')->nullable();
+        Schema::create('cutis', function (Blueprint $table) {
+            $table->increments('cuti_id');
+            $table->string('cuti_jenis')->nullable();
+            $table->string('cuti_jumlah')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_pages');
+        Schema::dropIfExists('cutis');
     }
 };
