@@ -38,27 +38,6 @@ class PageSeeder extends Seeder
             'action' => 'Delete',
         ]);
 
-        // Cuti
-        \App\Models\Page::create([
-            'page_name' => 'Cuti',
-            'action' => 'Create',
-        ]);
-
-        \App\Models\Page::create([
-            'page_name' => 'Cuti',
-            'action' => 'Read',
-        ]);
-
-        \App\Models\Page::create([
-            'page_name' => 'Cuti',
-            'action' => 'Update',
-        ]);
-
-        \App\Models\Page::create([
-            'page_name' => 'Cuti',
-            'action' => 'Delete',
-        ]);
-
         // Archive
         \App\Models\Page::create([
             'page_name' => 'Archive',
@@ -83,6 +62,27 @@ class PageSeeder extends Seeder
 
         \App\Models\Page::create([
             'page_name' => 'User',
+            'action' => 'Delete',
+        ]);
+
+        // Cuti
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
+            'action' => 'Create',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
+            'action' => 'Read',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
+            'action' => 'Update',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Cuti',
             'action' => 'Delete',
         ]);
 

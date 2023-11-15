@@ -20,8 +20,8 @@
                 <div class="card-block">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h4 class="text-c-blue">200</h4>
-                            <h6 class="text-muted m-b-0">Total Surat Curi</h6>
+                            <h4 class="text-c-blue">{{ $suratCuti }}</h4>
+                            <h6 class="text-muted m-b-0">Total Surat Cuti</h6>
                         </div>
                         <div class="col-4 text-right">
                             <i class="fa fa-file-archive-o f-28"></i>
@@ -35,7 +35,7 @@
                 <div class="card-block">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h4 class="text-c-red">120</h4>
+                            <h4 class="text-c-red">{{ $waitSC }}</h4>
                             <h6 class="text-muted m-b-0">Surat Cuti Menunggu Persetujuan</h6>
                         </div>
                         <div class="col-4 text-right">
@@ -50,7 +50,7 @@
                 <div class="card-block">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h4 class="text-c-green">80</h4>
+                            <h4 class="text-c-green">{{ $accSC }}</h4>
                             <h6 class="text-muted m-b-0">Surat Cuti yang Disetujui</h6>
                         </div>
                         <div class="col-4 text-right">
@@ -65,7 +65,7 @@
                 <div class="card-block">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h4 class="text-c-blue">500</h4>
+                            <h4 class="text-c-blue">{{ $users }}</h4>
                             <h6 class="text-muted m-b-0">Total Users</h6>
                         </div>
                         <div class="col-4 text-right">

@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <div class="row mb-3">
                             <div class="col-2">
-                                <p for="name">Role Name <span class="text-danger">*</span> </p>
+                                <label for="name">Role Name <span class="text-danger">*</span> </label>
                             </div>
                             <div class="col-10">
                                 <input type="text"

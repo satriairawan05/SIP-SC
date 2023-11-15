@@ -24,20 +24,22 @@ class ApprovalController extends Controller
         $userRole = $this->get_access($this->name, auth()->user()->group_id);
 
         foreach ($userRole as $r) {
-            if ($r->action == 'Create') {
-                $this->create = $r->access;
-            }
+            if ($r->page_name == $this->name) {
+                if ($r->action == 'Create') {
+                    $this->create = $r->access;
+                }
 
-            if ($r->action == 'Read') {
-                $this->read = $r->access;
-            }
+                if ($r->action == 'Read') {
+                    $this->read = $r->access;
+                }
 
-            if ($r->action == 'Update') {
-                $this->update = $r->access;
-            }
+                if ($r->action == 'Update') {
+                    $this->update = $r->access;
+                }
 
-            if ($r->action == 'Delete') {
-                $this->delete = $r->access;
+                if ($r->action == 'Delete') {
+                    $this->delete = $r->access;
+                }
             }
         }
     }
@@ -53,12 +55,14 @@ class ApprovalController extends Controller
                 if (!request()->input('departemen_id')) {
                     return view('backend.setting.approval.index', [
                         'name' => $this->name,
-                        'departemen' => \App\Models\Departemen::all()
+                        'departemen' => \App\Models\Departemen::all(),
+                        'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 } else {
                     return view('backend.setting.approval.index2', [
                         'name' => $this->name,
                         'departemen' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->first(),
+                        'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 }
             } catch (\Illuminate\Database\QueryException $e) {

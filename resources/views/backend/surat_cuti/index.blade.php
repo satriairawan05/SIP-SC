@@ -1,5 +1,36 @@
 @extends('backend.layout.app')
 
+@php
+    $create = 0;
+    $read = 0;
+    $approval = 0;
+    $update = 0;
+    $delete = 0;
+
+    foreach ($pages as $r) {
+        if ($r->action == 'Create') {
+            $create = $r->access;
+        }
+
+        if ($r->action == 'Read') {
+            $read = $r->access;
+        }
+
+        if ($r->action == 'Approval') {
+            $approval = $r->access;
+        }
+
+        if ($r->action == 'Update') {
+            $update = $r->access;
+        }
+
+        if ($r->action == 'Delete') {
+            $delete = $r->access;
+        }
+    }
+@endphp
+
+
 @section('bradcrumb')
     <div class="col-md-4">
         <ul class="breadcrumb-title">

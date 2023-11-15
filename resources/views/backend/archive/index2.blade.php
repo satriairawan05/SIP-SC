@@ -31,8 +31,8 @@
                     @foreach($surat as $s)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>Tanggal Surat</td>
-                            <td>Nomor Surat</td>
+                            <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
+                            <td>{{ $s->sc_no_surat }}</td>
                         </tr>
                     @endforeach
                     </tbody>

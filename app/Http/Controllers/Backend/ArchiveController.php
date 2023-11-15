@@ -23,8 +23,10 @@ class ArchiveController extends Controller
         $userRole = $this->get_access($this->name, auth()->user()->group_id);
 
         foreach ($userRole as $r) {
-            if ($r->action == 'Read') {
-                $this->read = $r->access;
+            if ($r->page_name == $this->name) {
+                if ($r->action == 'Read') {
+                    $this->read = $r->access;
+                }
             }
         }
     }
@@ -40,13 +42,15 @@ class ArchiveController extends Controller
                 if (!$request->input('departemen_id')) {
                     return view('backend.archive.index', [
                         'name' => $this->name,
-                        'departemen' => \App\Models\Departemen::all()
+                        'departemen' => \App\Models\Departemen::all(),
+                        'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 } else {
                     return view('backend.archive.index2', [
                         'name' => $this->name,
                         'departemen' => \App\Models\Departemen::where('departemen_id', $request->input('departemen_id'))->first(),
-                        'surat' => \App\Models\SuratCuti::where('departemen_id', $request->input('departemen_id'))->whereNotNull('sc_no_surat')->get()
+                        'surat' => \App\Models\SuratCuti::where('departemen_id', $request->input('departemen_id'))->whereNotNull('sc_no_surat')->get(),
+                        'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 }
             } catch (\Illuminate\Database\QueryException $e) {

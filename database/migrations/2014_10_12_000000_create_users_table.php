@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->string('group_id')->nullable();
             $table->string('departemen_id')->nullable();
+            $table->date('tgl_masuk')->nullable();
+            $table->string('lokasi_kerja')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

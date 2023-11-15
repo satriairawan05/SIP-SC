@@ -23,5 +23,8 @@ class AppServiceProvider extends ServiceProvider
         // Locale
         setlocale(LC_TIME, 'id_ID');
         \Carbon\Carbon::setLocale('id');
+
+        // Pagination
+        \Illuminate\Pagination\Paginator::useBootstrapFour();
     }
 }

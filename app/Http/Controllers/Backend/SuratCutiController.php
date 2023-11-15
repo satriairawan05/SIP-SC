@@ -24,24 +24,26 @@ class SuratCutiController extends Controller
         $userRole = $this->get_access($this->name, auth()->user()->group_id);
 
         foreach ($userRole as $r) {
-            if ($r->action == 'Create') {
-                $this->create = $r->access;
-            }
+            if ($r->page_name == $this->name) {
+                if ($r->action == 'Create') {
+                    $this->create = $r->access;
+                }
 
-            if ($r->action == 'Read') {
-                $this->read = $r->access;
-            }
+                if ($r->action == 'Read') {
+                    $this->read = $r->access;
+                }
 
-            if ($r->action == 'Approval') {
-                $this->approval = $r->access;
-            }
+                if ($r->action == 'Approval') {
+                    $this->approval = $r->access;
+                }
 
-            if ($r->action == 'Update') {
-                $this->update = $r->access;
-            }
+                if ($r->action == 'Update') {
+                    $this->update = $r->access;
+                }
 
-            if ($r->action == 'Delete') {
-                $this->delete = $r->access;
+                if ($r->action == 'Delete') {
+                    $this->delete = $r->access;
+            }
             }
         }
     }
@@ -54,7 +56,11 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->read == 1) {
             try {
-                //
+                return view('backend.surat_cuti.index',[
+                    'name' => $this->name,
+                    'cuti' => SuratCuti::all(),
+                    'pages' => $this->get_access($this->name, auth()->user()->group_id),
+                ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

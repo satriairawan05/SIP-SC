@@ -24,7 +24,11 @@ Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'
 Route::middleware('auth')->group(function () {
     // Home
     Route::get('home', fn () => view('backend.home', [
-        'name' => 'Dashboard'
+        'name' => 'Dashboard',
+        'users' => \App\Models\User::count(),
+        'suratCuti' => \App\Models\SuratCuti::count(),
+        'waitSC' => \App\Models\SuratCuti::whereNull('sc_no_surat')->count(),
+        'accSC' => \App\Models\SuratCuti::whereNotNull('sc_no_surat')->count()
     ]))->name('dashboard');
 
     // Logout

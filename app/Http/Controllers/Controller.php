@@ -17,7 +17,7 @@ class Controller extends BaseController
             ->leftJoin('pages', 'group_pages.page_id', '=', 'pages.page_id')
             ->where('pages.page_name', '=', $pageName)
             ->where('group_pages.group_id', '=', $userGroup)
-            ->select(['group_pages.access', 'pages.action'])
+            ->select(['group_pages.access', 'pages.page_name', 'pages.action'])
             ->get();
     }
 }

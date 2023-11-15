@@ -38,12 +38,15 @@
                                     <td>
                                         <a href="{{ route('role.edit', $g->group_id) }}" class="btn btn-sm btn-warning"><i
                                                 class="fa fa-edit"></i></a>
-                                        <form action="{{ route('role.destroy', $g->group_id) }}" method="post"
-                                            class="d-inline">
-                                            @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </form>
+                                        @if (!auth()->user()->group_id == 1)
+                                            <form action="{{ route('role.destroy', $g->group_id) }}" method="post"
+                                                class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

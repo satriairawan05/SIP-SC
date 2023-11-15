@@ -15,20 +15,62 @@
     <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }} "></script>
     <!-- Chart js -->
     <script type="text/javascript" src="{{ asset('assets/js/chart.js/Chart.js') }}"></script>
-    <!-- amchart js -->
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/gauge.js') }}"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/serial.js') }}"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/light.js') }}"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/pie.min.js') }}"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
     <!-- menu js -->
     <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
     <script src="{{ asset('assets/js/vertical-layout.min.js') }} "></script>
     <!-- custom js -->
-    <script type="text/javascript" src="{{ asset('assets/pages/dashboard/custom-dashboard.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/script.js') }} "></script>
     <script type="text/javascript" src="{{ asset('assets/js/time.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="{{ asset('assets/js/sweetalert2/sweetaler2.min.js') }}"></script>
+    @if (session('success'))
+        <script type="text/javascript">
+            let timerInterval;
+            Swal.fire({
+                title: "Success!",
+                text: "{{ session('success') }}",
+                timer: 5000,
+                icon: 'success',
+                timerProgressBar: true,
+                confirmButtonText: 'Oke',
+                didOpen: () => {
+                    timerInterval = setInterval(() => {}, 100)
+                },
+                willClose: () => {
+
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+
+                }
+            });
+        </script>
+    @endif
+    @if (session('failed'))
+        <script type="text/javascript">
+            let timerInterval;
+            Swal.fire({
+                title: "Fail!",
+                text: "{{ session('failed') }}",
+                timer: 500000,
+                icon: 'error',
+                timerProgressBar: true,
+                confirmButtonText: 'Oke',
+                didOpen: () => {
+                    timerInterval = setInterval(() => {}, 100)
+                },
+                willClose: () => {
+
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+
+                }
+            });
+        </script>
+    @endif
     </body>
 
     </html>

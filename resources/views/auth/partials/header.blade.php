@@ -33,6 +33,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/font-awesome/css/font-awesome.min.css') }}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <style type="text/css">
+        #showHidePassword {
+            position: relative;
+        }
+
+        #togglePassword,
+        #togglePasswordConfirm {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body themebg-pattern="theme1">

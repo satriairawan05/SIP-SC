@@ -32,7 +32,9 @@
                                 <label class="float-label">Your Email Address</label>
                             </div>
                             <div class="form-group form-primary">
-                                <input type="password" name="password" class="form-control" required="">
+                                <input type="password" id="password" name="password" class="form-control" required="">
+                                <a href="javascript:;" id="togglePassword" class="bg-transparent"><i
+                                        class="ti ti-lock"></i></a>
                                 <span class="form-bar"></span>
                                 <label class="float-label">Password</label>
                             </div>
@@ -74,4 +76,25 @@
         </div>
         <!-- end of row -->
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#togglePassword i').click(function(event) {
+                event.preventDefault();
+                const passwordInput = $('#password');
+                const togglePassword = $('#togglePassword i');
+
+                if (passwordInput.attr('type') === 'text') {
+                    passwordInput.attr('type', 'password');
+                    togglePassword.removeClass('ti-unlock').addClass('ti-lock');
+                } else if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    togglePassword.removeClass('ti-lock').addClass('ti-unlock');
+                }
+            });
+        });
+    </script>
 @endsection

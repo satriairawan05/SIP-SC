@@ -1,5 +1,30 @@
 @extends('backend.layout.app')
 
+@php
+    $create = 0;
+    $read = 0;
+    $update = 0;
+    $delete = 0;
+
+    foreach ($pages as $r) {
+        if ($r->action == 'Create') {
+            $create = $r->access;
+        }
+
+        if ($r->action == 'Read') {
+            $read = $r->access;
+        }
+
+        if ($r->action == 'Update') {
+            $update = $r->access;
+        }
+
+        if ($r->action == 'Delete') {
+            $delete = $r->access;
+        }
+    }
+@endphp
+
 @section('bradcrumb')
     <div class="col-md-4">
         <ul class="breadcrumb-title">
@@ -16,42 +41,60 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-end">
-                        <a href="{{ route('user.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
+                @if ($create == 1)
+                    <div class="card-header">
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ route('user.create') }}" class="btn btn-sm btn-success"><i
+                                    class="fa fa-plus"></i></a>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <table class="table-bordered table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning"><i
-                                                class="fa fa-edit"></i></a>
-                                        <form action="{{ route('user.destroy', $user->id) }}" method="post"
-                                            class="d-inline">
-                                            @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                @endif
+                @if ($read == 1)
+                    <div class="card-body">
+                        <table class="table-bordered table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Jabatan</th>
+                                    <th>Departemen</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                    @php
+                                        $iterationNumber = ($users->currentPage() - 1) * $users->perPage() + $loop->iteration;
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $iterationNumber }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->jabatan }}</td>
+                                        <td>{{ $user->departemen_name ?? 'User ini belum memiliki Departemen' }}</td>
+                                        <td>
+                                            @if ($update == 1)
+                                                <a href="{{ route('user.edit', $user->id) }}"
+                                                    class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                            @endif
+                                            @if ($delete == 1)
+                                                <form action="{{ route('user.destroy', $user->id) }}" method="post"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-sm btn-danger"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $users->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

@@ -24,20 +24,22 @@ class DepartemenController extends Controller
         $userRole = $this->get_access($this->name, auth()->user()->group_id);
 
         foreach ($userRole as $r) {
-            if ($r->action == 'Create') {
-                $this->create = $r->access;
-            }
+            if ($r->page_name == $this->name) {
+                if ($r->action == 'Create') {
+                    $this->create = $r->access;
+                }
 
-            if ($r->action == 'Read') {
-                $this->read = $r->access;
-            }
+                if ($r->action == 'Read') {
+                    $this->read = $r->access;
+                }
 
-            if ($r->action == 'Update') {
-                $this->update = $r->access;
-            }
+                if ($r->action == 'Update') {
+                    $this->update = $r->access;
+                }
 
-            if ($r->action == 'Delete') {
-                $this->delete = $r->access;
+                if ($r->action == 'Delete') {
+                    $this->delete = $r->access;
+                }
             }
         }
     }
@@ -50,7 +52,11 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->read == 1) {
             try {
-                //
+                return view('backend.setting.departemen.index',[
+                    'name' => $this->name,
+                    'departemen' => Departemen::paginate(10),
+                    'pages' => $this->get_access($this->name, auth()->user()->group_id)
+                ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -67,7 +73,9 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                //
+                return view('backend.setting.departemen.create',[
+                    'name' => $this->name
+                ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -84,7 +92,12 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                //
+                Departemen::creeate([
+                    'departemen_name' => $request->input('departemen_name'),
+                    'departemen_alias' => $request->input('departemen_alias'),
+                ]);
+
+                return redirect()->to(route('departemen.index'))->with('success','Added successfully!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -109,7 +122,10 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                //
+                return view('backend.setting.departemen.edit',[
+                    'name' => $this->name,
+                    'departemen' => $departemen->find(request()->segment(2))
+                ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -126,7 +142,13 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                //
+                $data = $departemen->find(request()->segment(2));
+                Departemen::where('departemen_id', $data->departemen_id)->update([
+                    'departemen_name' => $request->input('departemen_name'),
+                    'departemen_alias' => $request->input('departemen_alias'),
+                ]);
+
+                return redirect()->to(route('departemen.index'))->with('success','Updated successfully!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -143,7 +165,10 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->delete == 1) {
             try {
-                //
+                $data = $departemen->find(request()->segment(2));
+                Departemen::destroy($data->departemen_id);
+
+                return redirect()->back()->with('success','Deleted successfully!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

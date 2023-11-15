@@ -23,6 +23,6 @@ class UserSeeder extends Seeder
             'jabatan' => 'Admin Head Office'
         ]);
 
-        \App\Models\User::factory(9)->create();
+        \App\Models\User::factory(49)->create();
     }
 }

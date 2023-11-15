@@ -17,10 +17,15 @@ return new class extends Migration
             $table->foreignId('pt_id')->nullable();
             $table->foreignId('departemen_id')->nullable();
             $table->foreignId('cuti_id')->nullable();
-            $table->date('sc_tgl_surat')->nullable();
-            $table->date('sc_tgl_surat_rev')->nullable();
             $table->string('sc_no_surat')->nullable();
             $table->string('sc_no_surat_old')->nullable();
+            $table->date('sc_tgl_surat')->nullable();
+            $table->date('sc_tgl_surat_rev')->nullable();
+            $table->date('sc_tgl_ambil_start')->nullable();
+            $table->date('sc_tgl_ambil_end')->nullable();
+            $table->date('sc_tgl_kembali')->nullable();
+            $table->string('sc_approved_step')->nullable();
+            $table->string('sc_remark')->nullable();
             $table->string('sc_print_count')->nullable();
             $table->timestamps();
         });

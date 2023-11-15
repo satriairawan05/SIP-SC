@@ -25,20 +25,22 @@ class UserController extends Controller
         $userRole = $this->get_access($this->name, auth()->user()->group_id);
 
         foreach ($userRole as $r) {
-            if ($r->action == 'Create') {
-                $this->create = $r->access;
-            }
+            if ($r->page_name == $this->name) {
+                if ($r->action == 'Create') {
+                    $this->create = $r->access;
+                }
 
-            if ($r->action == 'Read') {
-                $this->read = $r->access;
-            }
+                if ($r->action == 'Read') {
+                    $this->read = $r->access;
+                }
 
-            if ($r->action == 'Update') {
-                $this->update = $r->access;
-            }
+                if ($r->action == 'Update') {
+                    $this->update = $r->access;
+                }
 
-            if ($r->action == 'Delete') {
-                $this->delete = $r->access;
+                if ($r->action == 'Delete') {
+                    $this->delete = $r->access;
+                }
             }
         }
     }
@@ -49,17 +51,18 @@ class UserController extends Controller
     public function index()
     {
         $this->get_access_page();
-        if ($this->read == 1) {
+        if ($this->create == 1) {
             try {
                 if (auth()->user()->group_id == 1) {
-                    $user = User::all();
+                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->paginate(15);
                 } else {
-                    $user = User::where('id', auth()->user()->id)->get();
+                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->where('users.id', auth()->user()->id)->paginate(15);
                 }
 
                 return view('backend.setting.account.index', [
                     'name' => $this->name,
-                    'users' => $user
+                    'users' => $user,
+                    'pages' => $this->get_access($this->name, auth()->user()->group_id)
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
@@ -78,7 +81,8 @@ class UserController extends Controller
         if ($this->create == 1) {
             try {
                 return view('backend.setting.account.create', [
-                    'name' => $this->name
+                    'name' => $this->name,
+                    'departemen' => \App\Models\Departemen::all()
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
@@ -107,6 +111,8 @@ class UserController extends Controller
                         'name' => $request->input('name'),
                         'email' => $request->input('email'),
                         'password' => bcrypt($request->input('password')),
+                        'jabatan' => $request->input('jabatan'),
+                        'departemen_id' => $request->input('departemen_id'),
                     ]);
 
                     return redirect('user')->with('success', 'Added Account Successfully');
@@ -141,7 +147,8 @@ class UserController extends Controller
                 if ($this->update == 1) {
                     return view('backend.setting.account.edit', [
                         'name' => $this->name,
-                        'user' => $user
+                        'user' => $user,
+                        'departemen' => \App\Models\Departemen::all()
                     ]);
                 } else {
                     return redirect()->back()->with('failed', 'You not Have Authority!');
@@ -173,6 +180,8 @@ class UserController extends Controller
                         'name' => $request->input('name'),
                         'email' => $request->input('email'),
                         'password' => bcrypt($request->input('password')),
+                        'jabatan' => $request->input('jabatan'),
+                        'departemen_id' => $request->input('departemen_id'),
                     ]);
 
                     return redirect('user')->with('success', 'Updated Account Successfully');
@@ -195,14 +204,10 @@ class UserController extends Controller
         $this->get_access_page();
         if ($this->delete == 1) {
             try {
-                $this->get_access_page();
-                if ($this->delete == 1) {
-                    User::destroy($user->id);
+                $data = $user->find(request()->segment(2));
+                User::destroy($data->id);
 
-                    return redirect('user')->with('success', 'Deleted Account Successfully');
-                } else {
-                    return redirect()->back()->with('failed', 'You not Have Authority!');
-                }
+                return redirect('user')->with('success', 'Deleted Account Successfully');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
