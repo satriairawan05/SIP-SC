@@ -51,7 +51,7 @@ class UserController extends Controller
     public function index()
     {
         $this->get_access_page();
-        if ($this->create == 1) {
+        if ($this->read == 1) {
             try {
                 if (auth()->user()->group_id == 1) {
                     $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->get();
