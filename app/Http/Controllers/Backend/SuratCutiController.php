@@ -43,7 +43,7 @@ class SuratCutiController extends Controller
 
                 if ($r->action == 'Delete') {
                     $this->delete = $r->access;
-            }
+                }
             }
         }
     }
@@ -56,7 +56,7 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->read == 1) {
             try {
-                return view('backend.surat_cuti.index',[
+                return view('backend.surat_cuti.index', [
                     'name' => $this->name,
                     'cuti' => SuratCuti::all(),
                     'pages' => $this->get_access($this->name, auth()->user()->group_id),
@@ -77,7 +77,9 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                //
+                return view('backend.surat_cuti.create',[
+                    'name' => $this->name
+                ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -119,7 +121,9 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                //
+                return view('backend.surat_cuti.edit',[
+                    'name' => $this->name
+                ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

@@ -25,6 +25,7 @@
                             <th>#</th>
                             <th>Tanggal Surat</th>
                             <th>Nomor Surat</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,9 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
                             <td>{{ $s->sc_no_surat }}</td>
+                            <td>
+                                <a href="{{ route('surat_cuti.show',$s->sc_id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

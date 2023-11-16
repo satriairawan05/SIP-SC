@@ -20,7 +20,15 @@
                     <div class="list-group">
                         @foreach ($departemen as $d)
                             <a href="?departemen_id={!! $d->departemen_id !!}"
-                                class="list-group-item list-group-item-action">{{ $d->departemen_name }}</a>
+                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">{{ $d->departemen_name }} <span
+                                    class=" badge rounded-pill @if ($scCount == 0) bg-secondary @else bg-primary @endif">
+                                    @if($scCount == 0)
+                                        No Data
+                                    @else
+                                    {{ $scCount }}
+                                    @endif
+                                </span>
+                            </a>
                         @endforeach
                     </div>
                 </div>

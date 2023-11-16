@@ -54,9 +54,9 @@ class UserController extends Controller
         if ($this->create == 1) {
             try {
                 if (auth()->user()->group_id == 1) {
-                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->paginate(15);
+                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->get();
                 } else {
-                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->where('users.id', auth()->user()->id)->paginate(15);
+                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->where('users.id', auth()->user()->id)->get();
                 }
 
                 return view('backend.setting.account.index', [

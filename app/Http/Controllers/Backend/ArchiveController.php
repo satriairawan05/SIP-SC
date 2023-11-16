@@ -40,9 +40,16 @@ class ArchiveController extends Controller
         if ($this->read == 1) {
             try {
                 if (!$request->input('departemen_id')) {
+                    $departemen = \App\Models\Departemen::all();
+
+                    foreach($departemen as $d){
+                        $scCount = \App\Models\SuratCuti::where('departemen_id', $d->departemen_id)->whereNotNull('sc_no_surat')->count();
+                    }
+
                     return view('backend.archive.index', [
                         'name' => $this->name,
-                        'departemen' => \App\Models\Departemen::all(),
+                        'departemen' => $departemen,
+                        'scCount' => $scCount,
                         'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 } else {

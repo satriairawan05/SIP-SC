@@ -62,6 +62,9 @@ class ApprovalController extends Controller
                     return view('backend.setting.approval.index2', [
                         'name' => $this->name,
                         'departemen' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->first(),
+                        'approval' => Approval::where('departemen_id', request()->input('departemen_id'))->get(),
+                        'departemens' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->get(),
+                        'users' => \App\Models\User::where('departemen_id', request()->input('departemen_id'))->get(),
                         'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 }

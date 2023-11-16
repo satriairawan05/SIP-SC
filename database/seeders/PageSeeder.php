@@ -20,11 +20,6 @@ class PageSeeder extends Seeder
 
         \App\Models\Page::create([
             'page_name' => 'Surat Cuti',
-            'action' => 'Approval',
-        ]);
-
-        \App\Models\Page::create([
-            'page_name' => 'Surat Cuti',
             'action' => 'Read',
         ]);
 
@@ -36,6 +31,11 @@ class PageSeeder extends Seeder
         \App\Models\Page::create([
             'page_name' => 'Surat Cuti',
             'action' => 'Delete',
+        ]);
+
+        \App\Models\Page::create([
+            'page_name' => 'Surat Cuti',
+            'action' => 'Approval',
         ]);
 
         // Archive

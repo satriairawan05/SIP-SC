@@ -8,24 +8,26 @@
     $delete = 0;
 
     foreach ($pages as $r) {
-        if ($r->action == 'Create') {
-            $create = $r->access;
-        }
+        if($r->page_name == 'Surat Cuti'){
+            if ($r->action == 'Create') {
+                $create = $r->access;
+            }
 
-        if ($r->action == 'Read') {
-            $read = $r->access;
-        }
+            if ($r->action == 'Read') {
+                $read = $r->access;
+            }
 
-        if ($r->action == 'Approval') {
-            $approval = $r->access;
-        }
+            if ($r->action == 'Approval') {
+                $approval = $r->access;
+            }
 
-        if ($r->action == 'Update') {
-            $update = $r->access;
-        }
+            if ($r->action == 'Update') {
+                $update = $r->access;
+            }
 
-        if ($r->action == 'Delete') {
-            $delete = $r->access;
+            if ($r->action == 'Delete') {
+                $delete = $r->access;
+            }
         }
     }
 @endphp

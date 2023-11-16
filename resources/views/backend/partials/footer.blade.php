@@ -18,6 +18,7 @@
     <!-- menu js -->
     <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
     <script src="{{ asset('assets/js/vertical-layout.min.js') }} "></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <!-- custom js -->
     <script type="text/javascript" src="{{ asset('assets/js/script.js') }} "></script>
     <script type="text/javascript" src="{{ asset('assets/js/time.min.js') }}"></script>

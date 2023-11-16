@@ -98,7 +98,7 @@
             @if ($scCreate == 1)
                 <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Registration</div>
                 <ul class="pcoded-item pcoded-left-item">
-                    <li class="{{ Request::is('surat_cuti*') ? 'active' : '' }}">
+                    <li class="{{ Request::is('surat_cuti/create') ? 'active' : '' }}">
                         <a href="{{ route('surat_cuti.create') }}" class="waves-effect waves-dark">
                             <span class="pcoded-micon"><i class="ti-envelope"></i><b>SC</b></span>
                             <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti.create">Surat Cuti</span>
@@ -107,30 +107,28 @@
                     </li>
                 </ul>
             @endif
-            @if ($scRead || $scArchive)
-                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Bank File
-                </div>
-                <ul class="pcoded-item pcoded-left-item">
-                    @if ($scRead)
-                        <li class="{{ Request::is('surat_cuti*') ? 'active' : '' }}">
-                            <a href="{{ route('surat_cuti.index') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="ti-envelope"></i><b>SC</b></span>
-                                <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti">Surat Cuti</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                    @endif
-                    @if ($scArchive == 1)
-                        <li class="{{ Request::is('archive*') ? 'active' : '' }}">
-                            <a href="{{ route('archive') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="ti-folder"></i><b>Ar</b></span>
-                                <span class="pcoded-mtext" data-i18n="nav.form.archive">Archive</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                    @endif
-                </ul>
-            @endif
+            <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Bank File
+            </div>
+            <ul class="pcoded-item pcoded-left-item">
+                @if ($scRead)
+                    <li class="{{ Request::is('surat_cuti*') ? 'active' : '' }}">
+                        <a href="{{ route('surat_cuti.index') }}" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="ti-envelope"></i><b>SC</b></span>
+                            <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti">Surat Cuti</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                @endif
+                @if ($scArchive == 1)
+                    <li class="{{ Request::is('archive*') ? 'active' : '' }}">
+                        <a href="{{ route('archive') }}" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="ti-folder"></i><b>Ar</b></span>
+                            <span class="pcoded-mtext" data-i18n="nav.form.archive">Archive</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                @endif
+            </ul>
             <div class="pcoded-navigation-label" data-i18n="nav.category.setting">Setting
             </div>
             <ul class="pcoded-item pcoded-left-item">

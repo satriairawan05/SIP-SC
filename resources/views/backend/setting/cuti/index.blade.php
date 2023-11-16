@@ -7,20 +7,22 @@
     $delete = 0;
 
     foreach ($pages as $r) {
-        if ($r->action == 'Create') {
-            $create = $r->access;
-        }
+        if($r->page_name == 'Cuti'){
+            if ($r->action == 'Create') {
+                $create = $r->access;
+            }
 
-        if ($r->action == 'Read') {
-            $read = $r->access;
-        }
+            if ($r->action == 'Read') {
+                $read = $r->access;
+            }
 
-        if ($r->action == 'Update') {
-            $update = $r->access;
-        }
+            if ($r->action == 'Update') {
+                $update = $r->access;
+            }
 
-        if ($r->action == 'Delete') {
-            $delete = $r->access;
+            if ($r->action == 'Delete') {
+                $delete = $r->access;
+            }
         }
     }
 @endphp
@@ -65,9 +67,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $c->cuti_jenis }}</td>
-                                    <td>{{ $c->cuti_jumlah }}</td>
+                                    <td>{{ $c->cuti_jumlah . ' Hari' }}</td>
                                     <td>
-                                    @if($edit == 1)
+                                    @if($update == 1)
                                         <a href="{{ route('cuti.edit', $c->cuti_id) }}" class="btn btn-sm btn-warning"><i
                                                 class="fa fa-edit"></i></a>
                                     @endif

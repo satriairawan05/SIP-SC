@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
 </head>

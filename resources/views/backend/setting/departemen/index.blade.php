@@ -7,20 +7,22 @@
     $delete = 0;
 
     foreach ($pages as $r) {
-        if ($r->action == 'Create') {
-            $create = $r->access;
-        }
+        if($r->page_name == 'Departemen'){
+            if ($r->action == 'Create') {
+                $create = $r->access;
+            }
 
-        if ($r->action == 'Read') {
-            $read = $r->access;
-        }
+            if ($r->action == 'Read') {
+                $read = $r->access;
+            }
 
-        if ($r->action == 'Update') {
-            $update = $r->access;
-        }
+            if ($r->action == 'Update') {
+                $update = $r->access;
+            }
 
-        if ($r->action == 'Delete') {
-            $delete = $r->access;
+            if ($r->action == 'Delete') {
+                $delete = $r->access;
+            }
         }
     }
 @endphp
@@ -70,7 +72,7 @@
                                         <td>{{ $d->departemen_name }}</td>
                                         <td>{{ $d->departemen_alias }}</td>
                                         <td>
-                                            @if ($edit == 1)
+                                            @if ($update == 1)
                                                 <a href="{{ route('departemen.edit', $d->departemen_id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                             @endif

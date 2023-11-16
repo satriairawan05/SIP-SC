@@ -7,20 +7,22 @@
     $delete = 0;
 
     foreach ($pages as $r) {
-        if ($r->action == 'Create') {
-            $create = $r->access;
-        }
+        if ($r->page_name == 'User') {
+            if ($r->action == 'Create') {
+                $create = $r->access;
+            }
 
-        if ($r->action == 'Read') {
-            $read = $r->access;
-        }
+            if ($r->action == 'Read') {
+                $read = $r->access;
+            }
 
-        if ($r->action == 'Update') {
-            $update = $r->access;
-        }
+            if ($r->action == 'Update') {
+                $update = $r->access;
+            }
 
-        if ($r->action == 'Delete') {
-            $delete = $r->access;
+            if ($r->action == 'Delete') {
+                $delete = $r->access;
+            }
         }
     }
 @endphp
@@ -51,7 +53,7 @@
                 @endif
                 @if ($read == 1)
                     <div class="card-body">
-                        <table class="table-bordered table">
+                        <table class="table-bordered table" id="myTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -65,10 +67,10 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     @php
-                                        $iterationNumber = ($users->currentPage() - 1) * $users->perPage() + $loop->iteration;
+                                        // $iterationNumber = ($users->currentPage() - 1) * $users->perPage() + $loop->iteration;
                                     @endphp
                                     <tr>
-                                        <td>{{ $iterationNumber }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->jabatan }}</td>
@@ -92,10 +94,18 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $users->links() }}
                     </div>
                 @endif
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 @endsection
