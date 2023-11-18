@@ -61,6 +61,8 @@
                                     <th>Email</th>
                                     <th>Jabatan</th>
                                     <th>Departemen</th>
+                                    <th>Lokasi Kerja</th>
+                                    <th>Tanggal Masuk</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -75,12 +77,14 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->jabatan }}</td>
                                         <td>{{ $user->departemen_name ?? 'User ini belum memiliki Departemen' }}</td>
+                                        <td>{{ $user->lokasi_kerja ?? '' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($user->tgl_masuk)->isoFormat('D MMMM YYYY') ?? '' }}</td>
                                         <td>
                                             @if ($update == 1)
                                                 <a href="{{ route('user.edit', $user->id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                             @endif
-                                            @if ($delete == 1)
+                                            @if ($delete == 1 && $user->id != 1)
                                                 <form action="{{ route('user.destroy', $user->id) }}" method="post"
                                                     class="d-inline">
                                                     @csrf

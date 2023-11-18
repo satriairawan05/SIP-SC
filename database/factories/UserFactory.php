@@ -26,6 +26,8 @@ class UserFactory extends Factory
             'jabatan' => fake()->randomElement(['Staff Head Office', 'Staff Lapangan', 'Admin Head Office', 'Admin Lapangan', 'Manager', 'CEO', 'CTO', 'Komisaris III', 'Komisaris II', 'Komisaris I', 'Co-Founder', 'Founder']),
             'group_id' => mt_rand(2, 2),
             'departemen_id' => mt_rand(1, 14),
+            'lokasi_kerja' => fake()->randomElement(['Head Office Coalindo','RKBM KM 2','ADP']),
+            'tgl_masuk' => fake()->dateTime(now(),'Asia/Makassar')
         ];
     }
 

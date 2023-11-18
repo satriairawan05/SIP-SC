@@ -81,7 +81,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-6">
-                                    <label for="email">Jabatan <span class="text-danger">*</span>
+                                    <label for="jabatan">Jabatan <span class="text-danger">*</span>
                                     </label>
                                     <input type="text"
                                         class="form-control form-control-sm @error('jabatan')
@@ -107,6 +107,38 @@
                                             @endif
                                         @endforeach
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label for="lokasi_kerja">Lokasi Kerja <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text"
+                                        class="form-control form-control-sm @error('lokasi_kerja')
+                                    is-invalid
+                                @enderror"
+                                        id="lokasi_kerja" placeholder="Masukan Lokasi Kerja" value="{{ old('lokasi_kerja',$d->lokasi_kerja) }}"
+                                        name="lokasi_kerja" required>
+                                    @error('lokasi_kerja')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-6">
+                                    <label for="tgl_masuk">Tanggal Masuk <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date"
+                                        class="form-control form-control-sm @error('tgl_masuk')
+                                    is-invalid
+                                @enderror"
+                                        id="tgl_masuk" placeholder="Masukan Tanggal Masuk Kerja" value="{{ old('tgl_masuk',date('Y-M-d')) }}"
+                                        name="tgl_masuk" required>
+                                    @error('tgl_masuk')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">

@@ -20,7 +20,9 @@ class UserSeeder extends Seeder
             'remember_token' => \Illuminate\Support\Str::random(10),
             'group_id' => 1,
             'departemen_id' => null,
-            'jabatan' => 'Admin Head Office'
+            'jabatan' => 'Admin Head Office',
+            'lokasi_kerja' => 'Head Office Coalindo',
+            'tgl_masuk' => \Carbon\Carbon::now()
         ]);
 
         \App\Models\User::factory(49)->create();
