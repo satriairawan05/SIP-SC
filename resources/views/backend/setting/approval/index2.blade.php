@@ -65,6 +65,7 @@
                                         <td>
                                             <input type="number" name="app_ordinal" id="app_ordinal"
                                                 class="form-control form-control-sm"
+                                                placeholder="Masukan Ordinal ex: 1" min="1" max="4" step="1"
                                                 value="{{ old('app_ordinal', $app->app_ordinal) }}">
                                         </td>
                                         <td>
@@ -125,7 +126,7 @@
                                         <td>
                                             <select name="user_id" class="form-control form-control-sm userSelect" id="user_id">
                                                 @foreach ($users as $u)
-                                                    @if (old('user_id', $app->user_id) == $u->id)
+                                                    @if (old('user_id') == $u->id)
                                                         <option value="{{ $u->id }}" name="user_id" selected>
                                                             {{ $u->name }}</option>
                                                     @else
@@ -139,7 +140,7 @@
                                             <select name="departemen_id" class="form-control form-control-sm departemenSelect"
                                                 id="departemen_id">
                                                 @foreach ($departemens as $d)
-                                                    @if (old('departemen_id', $app->departemen_id) == $d->departemen_id)
+                                                    @if (old('departemen_id') == $d->departemen_id)
                                                         <option value="{{ $d->departemen_id }}" name="departemen_id"
                                                             selected>
                                                             {{ $d->departemen_name }}</option>
@@ -153,7 +154,8 @@
                                         <td>
                                             <input type="number" name="app_ordinal" id="app_ordinal"
                                                 class="form-control form-control-sm"
-                                                value="{{ old('app_ordinal', $app->app_ordinal) }}">
+                                                placeholder="Masukan Ordinal ex: 1" min="1" max="4" step="1"
+                                                value="{{ old('app_ordinal') }}">
                                         </td>
                                         <td>
                                             <button type="submit" class="btn btn-sm btn-success"><i

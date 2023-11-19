@@ -78,7 +78,11 @@ class SuratCutiController extends Controller
         if ($this->create == 1) {
             try {
                 return view('backend.surat_cuti.create',[
-                    'name' => $this->name
+                    'name' => $this->name,
+                    'cuti' => \App\Models\Cuti::all(),
+                    'departemen' => \App\Models\Departemen::all(),
+                    'pic' => \App\Models\User::whereNot('id',1)->get(),
+                    'pt' => \App\Models\User::whereNot('id',1)->get(),
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());

@@ -26,6 +26,8 @@ return new class extends Migration
             $table->date('sc_tgl_kembali')->nullable();
             $table->string('sc_jumlah_cuti')->nullable();
             $table->string('sc_approved_step')->nullable();
+            $table->string('sc_alamat_cuti')->nullable();
+            $table->string('sc_no_hp')->nullable();
             $table->string('sc_remark')->nullable();
             $table->string('sc_print_count')->nullable();
             $table->timestamps();
