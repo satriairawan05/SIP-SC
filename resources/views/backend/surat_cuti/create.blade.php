@@ -110,14 +110,14 @@
                                     @enderror
                                 </div>
                                 <div class="col-4">
-                                    <label for="sc_tgl_ambil">Tanggal Kembali Kerja <span class="text-danger">*</span>
+                                    <label for="sc_tgl_kembali">Tanggal Kembali Kerja <span class="text-danger">*</span>
                                     </label>
                                     <input type="date"
-                                        class="form-control form-control-sm @error('sc_tgl_ambil')
+                                        class="form-control form-control-sm @error('sc_tgl_kembali')
                                     is-invalid
                                 @enderror"
-                                        id="sc_tgl_ambil" value="{{ old('sc_tgl_ambil') }}" name="sc_tgl_ambil" required>
-                                    @error('sc_tgl_ambil')
+                                        id="sc_tgl_kembali" value="{{ old('sc_tgl_kembali') }}" name="sc_tgl_kembali" required>
+                                    @error('sc_tgl_kembali')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

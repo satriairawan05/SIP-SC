@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('surat_cutis', function (Blueprint $table) {
             $table->increments('sc_id');
             $table->foreignId('pic_id')->nullable();
-            $table->foreignId('pengganti_id')->nullable();
+            $table->foreignId('pt_id')->nullable();
             $table->foreignId('departemen_id')->nullable();
             $table->foreignId('cuti_id')->nullable();
             $table->string('sc_no_surat')->nullable();

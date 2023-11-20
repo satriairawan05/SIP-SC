@@ -56,11 +56,20 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->read == 1) {
             try {
-                return view('backend.surat_cuti.index', [
-                    'name' => $this->name,
-                    'cuti' => SuratCuti::all(),
-                    'pages' => $this->get_access($this->name, auth()->user()->group_id),
-                ]);
+                if (!request()->input('departemen_id')) {
+                    return view('backend.surat_cuti.index', [
+                        'name' => $this->name,
+                        'departemen' => \App\Models\Departemen::all(),
+                        'pages' => $this->get_access($this->name, auth()->user()->group_id),
+                    ]);
+                } else {
+                    return view('backend.surat_cuti.index2', [
+                        'name' => $this->name,
+                        'cuti' => SuratCuti::where('departemen_id', request()->input('departemen_id'))->get(),
+                        'departemen' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->first(),
+                        'pages' => $this->get_access($this->name, auth()->user()->group_id),
+                    ]);
+                }
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -77,12 +86,12 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                return view('backend.surat_cuti.create',[
+                return view('backend.surat_cuti.create', [
                     'name' => $this->name,
                     'cuti' => \App\Models\Cuti::all(),
                     'departemen' => \App\Models\Departemen::all(),
-                    'pic' => \App\Models\User::whereNot('id',1)->get(),
-                    'pt' => \App\Models\User::whereNot('id',1)->get(),
+                    'pic' => \App\Models\User::whereNot('id', 1)->get(),
+                    'pt' => \App\Models\User::whereNot('id', 1)->get(),
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
@@ -100,7 +109,21 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                //
+                SuratCuti::create([
+                    'pic_id' => $request->input('pic_id'),
+                    'pt_id' => $request->input('pt_id'),
+                    'cuti_id' => $request->input('cuti_id'),
+                    'departemen_id' => $request->input('departemen_id'),
+                    'sc_tgl_ambil_start' => $request->input('sc_tgl_ambil_start'),
+                    'sc_tgl_ambil_end' => $request->input('sc_tgl_ambil_end'),
+                    'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
+                    'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
+                    'sc_no_hp' => $request->input('sc_no_hp'),
+                    'sc_tgl_surat' => \Carbon\Carbon::now(),
+                    'sc_approved_step' => 1
+                ]);
+
+                return redirect()->to(route('surat_cuti.index'))->with('success', 'Added Succesfully!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -125,8 +148,13 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                return view('backend.surat_cuti.edit',[
-                    'name' => $this->name
+                return view('backend.surat_cuti.edit', [
+                    'name' => $this->name,
+                    'surat' => $suratCuti->find(request()->segment(2)),
+                    'cuti' => \App\Models\Cuti::all(),
+                    'departemen' => \App\Models\Departemen::all(),
+                    'pic' => \App\Models\User::whereNot('id', 1)->get(),
+                    'pt' => \App\Models\User::whereNot('id', 1)->get(),
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
@@ -144,7 +172,20 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                //
+                SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                    'pic_id' => $request->input('pic_id'),
+                    'pt_id' => $request->input('pt_id'),
+                    'cuti_id' => $request->input('cuti_id'),
+                    'departemen_id' => $request->input('departemen_id'),
+                    'sc_tgl_ambil_start' => $request->input('sc_tgl_ambil_start'),
+                    'sc_tgl_ambil_end' => $request->input('sc_tgl_ambil_end'),
+                    'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
+                    'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
+                    'sc_no_hp' => $request->input('sc_no_hp'),
+                    'sc_tgl_surat_rev' => \Carbon\Carbon::now()
+                ]);
+
+                return redirect()->to(route('surat_cuti.index'))->with('success', 'Updated Succesfully!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -178,7 +219,9 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->delete == 1) {
             try {
-                //
+                SuratCuti::destroy($suratCuti->sc_id);
+
+                return redirect()->back()->with('success', 'deleted Succesfully!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

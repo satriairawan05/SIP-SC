@@ -1,37 +1,16 @@
 @extends('backend.layout.app')
 
 @php
-    $create = 0;
     $read = 0;
-    $approval = 0;
-    $update = 0;
-    $delete = 0;
 
     foreach ($pages as $r) {
-        if($r->page_name == 'Surat Cuti'){
-            if ($r->action == 'Create') {
-                $create = $r->access;
-            }
-
+        if ($r->page_name == 'Surat Cuti') {
             if ($r->action == 'Read') {
                 $read = $r->access;
-            }
-
-            if ($r->action == 'Approval') {
-                $approval = $r->access;
-            }
-
-            if ($r->action == 'Update') {
-                $update = $r->access;
-            }
-
-            if ($r->action == 'Delete') {
-                $delete = $r->access;
             }
         }
     }
 @endphp
-
 
 @section('bradcrumb')
     <div class="col-md-4">
@@ -50,12 +29,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    {{-- <div class="list-group">
-                        @foreach ($departemen as $d)
-                            <a href="?departemen_id={!! $d->departemen_id !!}"
-                                class="list-group-item list-group-item-action">{{ $d->departemen_name }}</a>
-                        @endforeach
-                    </div> --}}
+                    @if ($read == 1)
+                        <div class="list-group">
+                            @foreach ($departemen as $d)
+                                <a href="?departemen_id={!! $d->departemen_id !!}"
+                                    class="list-group-item list-group-item-action">{{ $d->departemen_name }}</a>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
