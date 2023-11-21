@@ -51,31 +51,81 @@
             width: 100%;
         }
 
+        .verikal-center {
+            border-left: 2px solid black;
+            height: 100px;
+            width: 2px;
+        }
+
+        .verikal-center-mini {
+            border-left: 2px solid black;
+            height: 25px;
+            width: 2px;
+        }
+
+        .horizontal-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .horizontal-center::before,
+        .horizontal-center::after {
+            content: "";
+            flex-grow: 1;
+            height: 2px;
+            background-color: black;
+            margin: 0 10px;
+        }
+
         @media print {
             @page {
                 size: A4 portrait;
                 margin: 0;
                 border: 1px solid red;
             }
+
+            .print-hr {
+                display: block;
+                border: none;
+                border-top: 2px solid black;
+                height: 0;
+                width: 100%;
+                margin: 10px 0;
+            }
+
         }
     </style>
 </head>
 
 <body>
     <div class="container mt-2">
-        <div class="row">
-            <div class="col-3 border-keliling d-flex align-items-center justify-content-center">
-                <img src="{{ asset('assets/images/snapedit_1699181666429-removebg-preview.png') }}" alt="Logo"
-                    class="h-100 w-100 mt-2">
-            </div>
-            <div class="col-5 border-keliling">
-                <span class="text-dark font-weight-bold text-uppercase">PT. COALINDO ADHI PERKASA</span>
-                <div class="bort"></div>
-                <span class="text-dark font-weight-bold text-uppercase">PERMOHONAN CUTI</span>
-            </div>
-            <div class="col-4 border-keliling">
-            </div>
-        </div>
+        <table class="table">
+            <tbody>
+                <tr class="border-keliling d-grid">
+                    <td class="align-items-start grid-cols-2">
+                        <div class="border-keliling" style="display: flex; align-items: center;">
+                            <img src="{{ asset('assets/images/snapedit_1699181666429-removebg-preview.png') }}"
+                                alt="Logo" class="h-25 w-25 mt-2">
+                            <div class="verikal-center"></div>
+                            <div class="mx-2">
+                                <span class="text-uppercase d-block text-center">PT. COALINDO ADHI PERKASA</span>
+                                <div class="print-hr" style="margin: 10px 0;"></div>
+                                <span class="text-uppercase d-block text-center">Permohonan Cuti</span>
+                            </div>
+                            <div class="verikal-center"></div>
+                        </div>
+                        <div style="padding: 0 7px; display: flex; align-items: center;" class="border-keliling">
+                            <span class="text-uppercase mx-1 px-4 font-bold"
+                                style="margin-right: 40px;">Departement</span>
+                            <div class="verikal-center-mini"></div>
+                            <span class="text-uppercase mx-2 text-center" style="margin-left: 10px;">Information
+                                Technology</span>
+                            <div class="verikal-center-mini"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

@@ -60,6 +60,7 @@
                                     <th>Penyerahan Tanggung Jawab</th>
                                     <th>Tanggal Surat</th>
                                     <th>Nomor Surat</th>
+                                    <th>Jumlah Cuti</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -70,7 +71,8 @@
                                         <td>{{ $s->pic_name }}</td>
                                         <td>{{ $s->pt_name }}</td>
                                         <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
-                                        <td>{{ $s->sc_no_surat ?? 'Nomor surat belum tersedia' }}</td>
+                                        <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
+                                        <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
                                             <a href="{{ route('surat_cuti.show',$s->sc_id) }}" class="btn btn-sm btn-secondary" target="__blank"><i class="fa fa-print"></i></a>
                                             @if ($update == 1)
