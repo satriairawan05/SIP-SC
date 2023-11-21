@@ -19,14 +19,13 @@
                 <div class="card-body">
                     <div class="list-group">
                         @foreach ($departemen as $d)
+                        @php
+                            $scCount = \App\Models\SuratCuti::where('departemen_id', $d->departemen_id)->whereNotNull('sc_no_surat')->count();
+                        @endphp
                             <a href="?departemen_id={!! $d->departemen_id !!}"
                                 class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">{{ $d->departemen_name }} <span
                                     class=" badge rounded-pill @if ($scCount == 0) bg-secondary @else bg-primary @endif">
-                                    @if($scCount == 0)
-                                        No Data
-                                    @else
-                                    {{ $scCount }}
-                                    @endif
+                                    {{ $scCount == 0 ? 'Empty Data' : $scCount }}
                                 </span>
                             </a>
                         @endforeach

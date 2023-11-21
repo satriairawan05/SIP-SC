@@ -17,7 +17,10 @@
     <meta name="keywords" content="Sistem Informasi Pengajuan Surat Cuti" />
     <meta name="author" content="Deuwi Satriya Irawan" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/images/site.webmanifest') }}">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->

@@ -56,6 +56,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Pic</th>
+                                    <th>Penyerahan Tanggung Jawab</th>
                                     <th>Tanggal Surat</th>
                                     <th>Nomor Surat</th>
                                     <th>Action</th>
@@ -65,10 +67,12 @@
                                 @foreach ($cuti as $s)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $s->pic_name }}</td>
+                                        <td>{{ $s->pt_name }}</td>
                                         <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
                                         <td>{{ $s->sc_no_surat ?? 'Nomor surat belum tersedia' }}</td>
                                         <td>
-                                            <a href="{{ route('surat_cuti.show',$s->sc_id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></a>
+                                            <a href="{{ route('surat_cuti.show',$s->sc_id) }}" class="btn btn-sm btn-secondary" target="__blank"><i class="fa fa-print"></i></a>
                                             @if ($update == 1)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>

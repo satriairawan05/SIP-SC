@@ -65,7 +65,7 @@ class SuratCutiController extends Controller
                 } else {
                     return view('backend.surat_cuti.index2', [
                         'name' => $this->name,
-                        'cuti' => SuratCuti::where('departemen_id', request()->input('departemen_id'))->get(),
+                        'cuti' => SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get(),
                         'departemen' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->first(),
                         'pages' => $this->get_access($this->name, auth()->user()->group_id),
                     ]);
@@ -120,7 +120,8 @@ class SuratCutiController extends Controller
                     'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
                     'sc_no_hp' => $request->input('sc_no_hp'),
                     'sc_tgl_surat' => \Carbon\Carbon::now(),
-                    'sc_approved_step' => 1
+                    'sc_jumlah_cuti' => strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start')),
+                    'sc_approved_step' => 1,
                 ]);
 
                 return redirect()->to(route('surat_cuti.index'))->with('success', 'Added Succesfully!');
@@ -137,7 +138,18 @@ class SuratCutiController extends Controller
      */
     public function show(SuratCuti $suratCuti)
     {
-        //
+        $this->get_access_page();
+        if ($this->read == 1) {
+            try {
+                return view('backend.surat_cuti.document', [
+                    'name' => $this->name,
+                ]);
+            } catch (\Illuminate\Database\QueryException $e) {
+                return redirect()->back()->with('failed', $e->getMessage());
+            }
+        } else {
+            return redirect()->back()->with('failed', 'You not Have Authority!');
+        }
     }
 
     /**
