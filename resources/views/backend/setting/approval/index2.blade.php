@@ -35,7 +35,7 @@
                                     @method('put')
                                     <tr>
                                         <td>
-                                            <select name="user_id" class="form-control form-control-sm user" id="user_id">
+                                            <select name="user_id" class="form-control form-control-sm user" id="user_id2">
                                                 @foreach ($users as $u)
                                                     @if (old('user_id', $app->user_id) == $u->id)
                                                         <option value="{{ $u->id }}" name="user_id" selected>
@@ -49,7 +49,7 @@
                                         </td>
                                         <td>
                                             <select name="departemen_id" class="form-control form-control-sm departemen"
-                                                id="departemen_id">
+                                                id="departemen_id2">
                                                 @foreach ($departemens as $d)
                                                     @if (old('departemen_id', $app->departemen_id) == $d->departemen_id)
                                                         <option value="{{ $d->departemen_id }}" name="departemen_id"
@@ -176,6 +176,8 @@
         $(document).ready(function() {
             $('#user_id').select2();
             $('#departemen_id').select2();
+            $('#user_id2').select2();
+            $('#departemen_id2').select2();
         });
     </script>
 @endsection

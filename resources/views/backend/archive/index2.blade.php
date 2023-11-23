@@ -20,26 +20,31 @@
             <div class="card">
                 <div class="card-body">
                     <table class="table-bordered table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Tanggal Surat</th>
-                            <th>Nomor Surat</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($surat as $s)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
-                            <td>{{ $s->sc_no_surat }}</td>
-                            <td>
-                                <a href="{{ route('surat_cuti.show',$s->sc_id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Pic</th>
+                                <th>Penyerahan Tanggung Jawab</th>
+                                <th>Tanggal Surat</th>
+                                <th>Nomor Surat</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($surat as $s)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $s->pic_name }}</td>
+                                    <td>{{ $s->pt_name }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
+                                    <td>{{ $s->sc_no_surat }}</td>
+                                    <td>
+                                        <a href="{{ route('surat_cuti.show', $s->sc_id) }}"
+                                            class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

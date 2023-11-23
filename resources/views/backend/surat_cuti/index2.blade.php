@@ -75,6 +75,9 @@
                                         <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
                                             <a href="{{ route('surat_cuti.show',$s->sc_id) }}" class="btn btn-sm btn-secondary" target="__blank"><i class="fa fa-print"></i></a>
+                                            @if($approval == 1)
+                                            <a href="" class="btn btn-sm btn-primary"><i class="fa fa-tasks"></i></a>
+                                            @endif
                                             @if ($update == 1)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>

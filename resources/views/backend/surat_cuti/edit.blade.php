@@ -126,6 +126,23 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="sc_no_surat">Nomor Surat <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text"
+                                        class="form-control form-control-sm @error('sc_no_surat')
+                                    is-invalid
+                                @enderror" placeholder="Masukan Alamat Cuti"
+                                        id="sc_no_surat" value="{{ old('sc_no_surat',$surat->sc_no_surat) }}"
+                                        name="sc_no_surat" required>
+                                    @error('sc_no_surat')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-6">
                                     <label for="sc_alamat_cuti">Alamat Cuti <span class="text-danger">*</span>
                                     </label>

@@ -14,6 +14,16 @@
 
 @section('app')
     <div class="row">
+        <!-- page welcome -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="h4 text-bold text-center">Selamat Datang, {{ auth()->user()->name }}.</h1>
+                    <h3 class="h6 text-bold text-center">Data Actual {{ \Carbon\Carbon::now()->isoFormat('MMMM YYYY') }}</h3>
+                </div>
+            </div>
+        </div>
+        <!-- page welcome -->
         <!-- task, page, download counter  start -->
         <div class="col-xl-3 col-md-6">
             <div class="card">
@@ -76,14 +86,5 @@
             </div>
         </div>
         <!-- task, page, download counter  End -->
-        <!-- page welcome -->
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="h4 text-bold text-center">Selamat Datang, {{ auth()->user()->name }}.</h1>
-                </div>
-            </div>
-        </div>
-        <!-- page welcome -->
     </div>
 @endsection

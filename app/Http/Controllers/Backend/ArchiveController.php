@@ -40,7 +40,6 @@ class ArchiveController extends Controller
         if ($this->read == 1) {
             try {
                 if (!$request->input('departemen_id')) {
-
                     return view('backend.archive.index', [
                         'name' => $this->name,
                         'departemen' => \App\Models\Departemen::all(),
@@ -50,7 +49,7 @@ class ArchiveController extends Controller
                     return view('backend.archive.index2', [
                         'name' => $this->name,
                         'departemen' => \App\Models\Departemen::where('departemen_id', $request->input('departemen_id'))->first(),
-                        'surat' => \App\Models\SuratCuti::where('departemen_id', $request->input('departemen_id'))->whereNotNull('sc_no_surat')->get(),
+                        'surat' => \App\Models\SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->whereNotNull('sc_no_surat')->get(),
                         'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 }

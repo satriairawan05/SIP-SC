@@ -92,7 +92,14 @@ class ApprovalController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                //
+                Approval::create([
+                    'user_id' => $request->input('user_id'),
+                    'departemen_id' => $request->input('departemen_id'),
+                    'app_ordinal' => $request->input('app_ordinal'),
+                    'created_by' => auth()->user()->name
+                ]);
+
+                return redirect()->back()->with('success', 'Data Saved!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -125,7 +132,14 @@ class ApprovalController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                //
+                Approval::where('app_id', $approval->app_id)->update([
+                    'user_id' => $request->input('user_id'),
+                    'departemen_id' => $request->input('departemen_id'),
+                    'app_ordinal' => $request->input('app_ordinal'),
+                    'updated_by' => auth()->user()->name
+                ]);
+
+                return redirect()->back()->with('success', 'Data Updated!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -142,7 +156,10 @@ class ApprovalController extends Controller
         $this->get_access_page();
         if ($this->delete == 1) {
             try {
-                //
+                $data = $approval->find(request()->segment(2));
+                Approval::destroy($data->app_id);
+
+                return redirect()->back()->with('success', 'Data Deleted!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
