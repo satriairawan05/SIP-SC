@@ -7,7 +7,7 @@
     $delete = 0;
 
     foreach ($pages as $r) {
-        if($r->page_name == 'Cuti'){
+        if($r->page_name == $name){
             if ($r->action == 'Create') {
                 $create = $r->access;
             }

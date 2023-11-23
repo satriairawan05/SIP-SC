@@ -74,7 +74,6 @@
                 <div class="main-menu-content">
                     <ul>
                         <li class="more-details">
-                            <a href="#"><i class="ti-user"></i>View Profile</a>
                             <a href="#"><i class="ti-settings"></i>Settings</a>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
@@ -179,5 +178,6 @@
                 @endif
             </ul>
         </div>
+        <div class="pcoded-navigation-label" data-i18n="nav.category.version"></div>
     </nav>
 </div>

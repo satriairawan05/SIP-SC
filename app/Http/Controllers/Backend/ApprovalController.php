@@ -63,8 +63,9 @@ class ApprovalController extends Controller
                         'name' => $this->name,
                         'departemen' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->first(),
                         'approval' => Approval::where('departemen_id', request()->input('departemen_id'))->get(),
-                        'departemens' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->get(),
-                        'users' => \App\Models\User::where('departemen_id', request()->input('departemen_id'))->get(),
+                        'departemens' => \App\Models\Departemen::select('departemen_id','departemen_name')->where('departemen_id', request()->input('departemen_id'))->get(),
+                        'users' => \App\Models\User::select('users.id','users.name')->where('departemen_id', request()->input('departemen_id'))->get(),
+                        'cutis' => \App\Models\SuratCuti::select('surat_cutis.sc_id as sc_id','pics.name as pic_name')->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->whereNull('sc_disposisi')->get(),
                         'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 }

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('sc_approved_step')->nullable();
             $table->string('sc_alamat_cuti')->nullable();
             $table->string('sc_no_hp')->nullable();
+            $table->string('sc_disposisi')->nullable();
             $table->string('sc_remark')->nullable();
             $table->string('sc_print_count')->nullable();
             $table->timestamps();
