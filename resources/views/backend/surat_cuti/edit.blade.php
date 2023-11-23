@@ -132,7 +132,7 @@
                                     <input type="text"
                                         class="form-control form-control-sm @error('sc_no_surat')
                                     is-invalid
-                                @enderror" placeholder="Masukan Alamat Cuti"
+                                @enderror" placeholder="Masukan Nomor Surat Cuti"
                                         id="sc_no_surat" value="{{ old('sc_no_surat',$surat->sc_no_surat) }}"
                                         name="sc_no_surat" required>
                                     @error('sc_no_surat')

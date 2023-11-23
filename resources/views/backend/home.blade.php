@@ -18,8 +18,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="h4 text-bold text-center">Selamat Datang, {{ auth()->user()->name }}.</h1>
-                    <h3 class="h6 text-bold text-center">Data Actual {{ \Carbon\Carbon::now()->isoFormat('MMMM YYYY') }}</h3>
+                    <h3 class="h4 text-bold text-center">Data Actual {{ \Carbon\Carbon::now()->isoFormat('MMMM YYYY') }}</h3>
+                    <h1 class="h6 text-bold text-center">Selamat Datang, {{ auth()->user()->name }}.</h1>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h4 class="text-c-red">{{ $waitSC }}</h4>
-                            <h6 class="text-muted m-b-0">Surat Cuti Menunggu Persetujuan</h6>
+                            <h6 class="text-muted m-b-0">Surat Cuti (Waiting List)</h6>
                         </div>
                         <div class="col-4 text-right">
                             <i class="fa fa-file-text f-28"></i>
@@ -61,7 +61,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h4 class="text-c-green">{{ $accSC }}</h4>
-                            <h6 class="text-muted m-b-0">Surat Cuti yang Disetujui</h6>
+                            <h6 class="text-muted m-b-0">Surat Cuti (Accepted)</h6>
                         </div>
                         <div class="col-4 text-right">
                             <i class="fa fa-file-pdf-o f-28"></i>

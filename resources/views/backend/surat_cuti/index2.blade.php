@@ -74,10 +74,85 @@
                                         <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
                                         <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
-                                            <a href="{{ route('surat_cuti.show',$s->sc_id) }}" class="btn btn-sm btn-secondary" target="__blank"><i class="fa fa-print"></i></a>
-                                            @if($approval == 1)
-                                            <a href="" class="btn btn-sm btn-primary"><i class="fa fa-tasks"></i></a>
+                                            @if ($approval == 1)
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                    data-target=".bd-example-modal-lg"><i
+                                                        class="fa fa-bookmark-o"></i></button>
+
+                                                <div class="modal fade bd-example-modal-lg" id="modal"
+                                                    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Surat Cuti
+                                                                    {{ $s->pic_name }}
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{ route('surat_cuti.approval', $s->sc_id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('put')
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-2">
+                                                                            <label for="sc_disposisi">Disposisi <span
+                                                                                    class="text-danger">*</span></label>
+                                                                        </div>
+                                                                        @php
+                                                                            $disposisis = [['name' => 'Accepted'], ['name' => 'Rejected']];
+                                                                        @endphp
+                                                                        <div class="col-10">
+                                                                            <select class="form-select form-select-sm"
+                                                                                id="sc_disposisi" name="sc_disposisi">
+                                                                                @foreach ($disposisis as $disposisi)
+                                                                                    @if (old('sc_disposisi', $s->sc_disposisi) == $disposisi['name'])
+                                                                                        <option name="sc_disposisi"
+                                                                                            value="{{ $disposisi['name'] }}"
+                                                                                            selected>
+                                                                                            {!! $disposisi['name'] !!}</option>
+                                                                                    @else
+                                                                                        <option name="sc_disposisi"
+                                                                                            value="{{ $disposisi['name'] }}">
+                                                                                            {!! $disposisi['name'] !!}
+                                                                                        </option>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-2">
+                                                                            <label for="sc_remark">Remark <span
+                                                                                    class="text-danger">*</span></label>
+                                                                        </div>
+                                                                        <div class="col-10">
+                                                                            <input type="text" name="sc_remark"
+                                                                                id="sc_remark"
+                                                                                class="form-control form-control-sm"
+                                                                                value="{{ old('sc_disposisi') }}"
+                                                                                placeholder="Ex: Okeee">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save
+                                                                        changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endif
+                                            <a href="{{ route('surat_cuti.show', $s->sc_id) }}"
+                                                class="btn btn-sm btn-secondary" target="__blank"><i
+                                                    class="fa fa-print"></i></a>
                                             @if ($update == 1)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
@@ -101,4 +176,15 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#sc_disposisi').select2({
+                dropdownParent: $('#modal')
+            });
+        });
+    </script>
 @endsection

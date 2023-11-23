@@ -51,9 +51,7 @@ Route::middleware('auth')->group(function () {
 
     // Surat Cuti
     Route::resource('surat_cuti', \App\Http\Controllers\Backend\SuratCutiController::class);
-    Route::get('surat_cuti/document/data', function(){
-        return view('backend.surat_cuti.document');
-    });
+    Route::put('surat_cuti/{surat_cuti}/approval',[\App\Http\Controllers\Backend\SuratCutiController::class, 'approval'])->name('surat_cuti.approval');
 
     // User
     Route::resource('user', \App\Http\Controllers\Backend\UserController::class);

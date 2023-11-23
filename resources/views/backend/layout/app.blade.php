@@ -101,11 +101,6 @@
                                     </a>
                                 </li>
                                 <li class="waves-effect waves-light">
-                                    <a href="#">
-                                        <i class="ti-user"></i> Profile
-                                    </a>
-                                </li>
-                                <li class="waves-effect waves-light">
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn btn-light btn-sm border-0 bg-transparent">

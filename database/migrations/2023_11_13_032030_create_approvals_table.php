@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('app_id');
             $table->foreignId('user_id')->nullable();
             $table->foreignId('departemen_id')->nullable();
+            $table->foreignId('sc_id')->nullable();
             $table->string('app_status')->nullable();
             $table->date('app_date')->nullable();
             $table->string('app_ordinal')->nullable();

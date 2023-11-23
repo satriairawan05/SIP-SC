@@ -66,7 +66,7 @@ class SuratCutiController extends Controller
                     return view('backend.surat_cuti.index2', [
                         'name' => $this->name,
                         'cuti' => SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get(),
-                        'departemen' => \App\Models\Departemen::where('departemen_id', request()->input('departemen_id'))->first(),
+                        'departemen' => \App\Models\Departemen::select('departemen_name')->where('departemen_id', request()->input('departemen_id'))->first(),
                         'pages' => $this->get_access($this->name, auth()->user()->group_id),
                     ]);
                 }
@@ -214,7 +214,19 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->approval == 1) {
             try {
-                //
+                $pic = \App\Models\User::where('id', $suratCuti->pic_id)->select('name')->first();
+                SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                    'sc_disposisi' => $request->input('sc_disposisi'),
+                    'sc_remark' => $request->input('sc_remark'),
+                    'sc_approved_step' => $suratCuti->sc_approved_step + 1
+                ]);
+
+                \App\Models\Approval::where('user_id', auth()->user()->id)->update([
+                    'app_status' => $request->input('sc_disposisi'),
+                    'app_date' => \Carbon\Carbon::now()
+                ]);
+
+                return redirect()->back()->with('success', 'Surat Cuti '. $pic->name .' telah berhasil di approved');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
