@@ -59,6 +59,8 @@
                                     <th>Pic</th>
                                     <th>Penyerahan Tanggung Jawab</th>
                                     <th>Tanggal Surat</th>
+                                    <th>Tanggal Awal</th>
+                                    <th>Tanggal Akhir</th>
                                     <th>Nomor Surat</th>
                                     <th>Jumlah Cuti</th>
                                     <th>Action</th>
@@ -71,8 +73,10 @@
                                         <td>{{ $s->pic_name }}</td>
                                         <td>{{ $s->pt_name }}</td>
                                         <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</td>
                                         <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
-                                        <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
+                                        <td>{{ $s->sc_jumlah_cuti / 86400 ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
                                             @if ($approval == 1)
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
