@@ -120,7 +120,7 @@ class SuratCutiController extends Controller
                     'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
                     'sc_no_hp' => $request->input('sc_no_hp'),
                     'sc_tgl_surat' => \Carbon\Carbon::now(),
-                    'sc_jumlah_cuti' => strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start')),
+                    'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400,
                     'sc_approved_step' => 1,
                 ]);
 
@@ -215,6 +215,7 @@ class SuratCutiController extends Controller
         if ($this->approval == 1) {
             try {
                 $pic = \App\Models\User::where('id', $suratCuti->pic_id)->select('name')->first();
+
                 SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
                     'sc_disposisi' => $request->input('sc_disposisi'),
                     'sc_remark' => $request->input('sc_remark'),
@@ -226,7 +227,7 @@ class SuratCutiController extends Controller
                     'app_date' => \Carbon\Carbon::now()
                 ]);
 
-                return redirect()->back()->with('success', 'Surat Cuti '. $pic->name .' telah berhasil di approved');
+                return redirect()->back()->with('success', 'Surat Cuti '. $pic->name .' telah berhasil anda approved!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

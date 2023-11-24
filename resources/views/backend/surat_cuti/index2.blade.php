@@ -76,7 +76,7 @@
                                         <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</td>
                                         <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
-                                        <td>{{ $s->sc_jumlah_cuti / 86400 ?? 'Data belum tersedia' }} Hari</td>
+                                        <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
                                             @if ($approval == 1)
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
