@@ -78,7 +78,7 @@
                                         <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
                                         <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
-                                            @if ($approval == 1)
+                                            @if ($approval == 1 && \App\Models\Approval::where('app_sk', $s->sc_id)->where('user_id', auth()->user()->id)->where('app_ordinal', $s->sc_approved_step)->first())
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                                     data-target=".bd-example-modal-lg"><i
                                                         class="fa fa-bookmark-o"></i></button>
@@ -157,11 +157,11 @@
                                             <a href="{{ route('surat_cuti.show', $s->sc_id) }}"
                                                 class="btn btn-sm btn-secondary" target="__blank"><i
                                                     class="fa fa-print"></i></a>
-                                            @if ($update == 1)
+                                            @if ($update == 1 && $s->pic_id == auth()->user()->id)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                             @endif
-                                            @if ($delete == 1)
+                                            @if ($delete == 1 && $s->pic_id == auth()->user()->id)
                                                 <form action="{{ route('surat_cuti.destroy', $s->sc_id) }}" method="post"
                                                     class="d-inline">
                                                     @csrf
