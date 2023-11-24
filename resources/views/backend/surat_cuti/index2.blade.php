@@ -73,8 +73,10 @@
                                         <td>{{ $s->pic_name }}</td>
                                         <td>{{ $s->pt_name }}</td>
                                         <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}
+                                        </td>
+                                        <td>{{ \Carbon\Carbon::parse($s->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}
+                                        </td>
                                         <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
                                         <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
@@ -83,9 +85,8 @@
                                                     data-target=".bd-example-modal-lg"><i
                                                         class="fa fa-bookmark-o"></i></button>
 
-                                                <div class="modal fade bd-example-modal-lg" id="modal"
-                                                    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                                                    aria-hidden="true">
+                                                <div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1"
+                                                    role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -108,21 +109,21 @@
                                                                                     class="text-danger">*</span></label>
                                                                         </div>
                                                                         @php
-                                                                            $disposisis = [['name' => 'Accepted'], ['name' => 'Rejected']];
+                                                                            $disposisi = [['name' => 'Accepted'], ['name' => 'Rejected']];
                                                                         @endphp
                                                                         <div class="col-10">
                                                                             <select class="form-select form-select-sm"
                                                                                 id="sc_disposisi" name="sc_disposisi">
-                                                                                @foreach ($disposisis as $disposisi)
-                                                                                    @if (old('sc_disposisi', $s->sc_disposisi) == $disposisi['name'])
+                                                                                @foreach ($disposisi as $d)
+                                                                                    @if (old('sc_disposisi', $s->sc_disposisi) == $d['name'])
                                                                                         <option name="sc_disposisi"
-                                                                                            value="{{ $disposisi['name'] }}"
+                                                                                            value="{{ $d['name'] }}"
                                                                                             selected>
-                                                                                            {!! $disposisi['name'] !!}</option>
+                                                                                            {!! $d['name'] !!}</option>
                                                                                     @else
                                                                                         <option name="sc_disposisi"
-                                                                                            value="{{ $disposisi['name'] }}">
-                                                                                            {!! $disposisi['name'] !!}
+                                                                                            value="{{ $d['name'] }}">
+                                                                                            {!! $d['name'] !!}
                                                                                         </option>
                                                                                     @endif
                                                                                 @endforeach
