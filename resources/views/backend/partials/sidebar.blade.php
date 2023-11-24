@@ -94,8 +94,8 @@
                     </a>
                 </li>
             </ul>
+            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Registration</div>
             @if ($scCreate == 1)
-                <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Registration</div>
                 <ul class="pcoded-item pcoded-left-item">
                     <li class="{{ Request::is('surat_cuti/create') ? 'active' : '' }}">
                         <a href="{{ route('surat_cuti.create') }}" class="waves-effect waves-dark">
