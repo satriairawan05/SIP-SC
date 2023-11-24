@@ -40,7 +40,7 @@
             </li>
             <li class="breadcrumb-item"><a href="{{ route('surat_cuti.index') }}">{{ $name }}</a>
             </li>
-            <li class="breadcrumb-item text-uppercase">DEPARTEMEN {!! $departemen->departemen_name !!}
+            <li class="breadcrumb-item text-uppercase">Departemen {!! $departemen->departemen_name !!}
             </li>
         </ul>
     </div>
@@ -115,7 +115,7 @@
                                                                             <select class="form-select form-select-sm"
                                                                                 id="sc_disposisi" name="sc_disposisi">
                                                                                 @foreach ($disposisi as $d)
-                                                                                    @if (old('sc_disposisi', $s->sc_disposisi) == $d['name'])
+                                                                                    @if (old('sc_disposisi') == $d['name'])
                                                                                         <option name="sc_disposisi"
                                                                                             value="{{ $d['name'] }}"
                                                                                             selected>

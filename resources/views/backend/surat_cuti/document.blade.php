@@ -46,6 +46,14 @@
             border: 2px solid black;
         }
 
+        .border-keliling-cov {
+            border: 3px solid black;
+        }
+
+        .border-keliling-bold {
+            border: 4px solid black;
+        }
+
         .bort {
             border-top: 2px solid black;
             width: 100%;
@@ -58,7 +66,7 @@
         }
 
         .verikal-center-mini {
-            border-left: 2px solid black;
+            border-left: 3px solid black;
             height: 25px;
             width: 2px;
         }
@@ -77,22 +85,21 @@
             margin: 0 10px;
         }
 
+        .print-hr {
+            display: block;
+            border: none;
+            border-top: 2px solid black;
+            height: 0;
+            width: 100%;
+            margin: 10px 0;
+        }
+
         @media print {
             @page {
                 size: A4 portrait;
                 margin: 0;
                 border: 1px solid red;
             }
-
-            .print-hr {
-                display: block;
-                border: none;
-                border-top: 2px solid black;
-                height: 0;
-                width: 100%;
-                margin: 10px 0;
-            }
-
         }
     </style>
 </head>
@@ -103,24 +110,32 @@
             <tbody>
                 <tr class="border-keliling d-grid">
                     <td class="align-items-start grid-cols-2">
-                        <div class="border-keliling" style="display: flex; align-items: center;">
+                        <div class="border-keliling-cov" style="display: flex; align-items: center;">
                             <img src="{{ asset('assets/images/snapedit_1699181666429-removebg-preview.png') }}"
                                 alt="Logo" class="h-25 w-25 mt-2">
-                            <div class="verikal-center"></div>
-                            <div class="mx-2">
-                                <span class="text-uppercase d-block text-center">PT. COALINDO ADHI PERKASA</span>
-                                <div class="print-hr" style="margin: 10px 0;"></div>
-                                <span class="text-uppercase d-block text-center">Permohonan Cuti</span>
+                            <div class="mx-0">
+                                <span
+                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-1 pt-4 text-center">PT.
+                                    COALINDO ADHI PERKASA</span>
+                                <span
+                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-1 pb-4 text-center">Permohonan
+                                    Cuti</span>
                             </div>
-                            <div class="verikal-center"></div>
+                            <div class="mx-0">
+                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">No Dok.</p>
+                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">Tanggal Efektif</p>
+                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">Status Revisi</p>
+                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">Tanggal Revisi</p>
+                            </div>
                         </div>
-                        <div style="padding: 0 7px; display: flex; align-items: center;" class="border-keliling">
+                        <div style="padding: 0 7px; display: flex; align-items: center;" class="border-keliling-cov">
                             <span class="text-uppercase mx-1 px-4 font-bold"
                                 style="margin-right: 40px;">Departement</span>
                             <div class="verikal-center-mini"></div>
                             <span class="text-uppercase mx-2 text-center" style="margin-left: 10px;">Information
                                 Technology</span>
                             <div class="verikal-center-mini"></div>
+                            <span class="text-uppercase mx-2 text-center" style="margin-left: 10px;">Halaman</span>
                         </div>
                     </td>
                 </tr>
