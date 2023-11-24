@@ -215,6 +215,7 @@ class SuratCutiController extends Controller
         if ($this->approval == 1) {
             try {
                 $pic = \App\Models\User::where('id', $suratCuti->pic_id)->select('name')->first();
+                $stepData = null;
 
                 $latestApproval = \App\Models\Approval::where('sc_id', $suratCuti->sc_id)->latest('app_ordinal')->first();
                 if($request->input('sc_dipsosisi') == 'Accepted'){
@@ -229,23 +230,20 @@ class SuratCutiController extends Controller
                         $stepData = $suratCuti->sc_approved_step + 1;
                     }
 
-                    SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
-                        'sc_disposisi' => $request->input('sc_disposisi'),
-                        'sc_remark' => $request->input('sc_remark'),
-                        'sc_approved_step' => $stepData
-                    ]);
                 } else {
                     \App\Models\Approval::where('sc_id', $suratCuti->sc_id)->where('user_id', auth()->user()->id)->update([
                         'app_status' => $request->input('sc_disposisi'),
                         'app_date' => \Carbon\Carbon::now()
                     ]);
 
-                    SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
-                        'sc_disposisi' => $request->input('sc_disposisi'),
-                        'sc_remark' => $request->input('sc_remark'),
-                        'sc_approved_step' => 1
-                    ]);
+                    $stepData = 1;
                 }
+
+                SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                    'sc_disposisi' => $request->input('sc_disposisi'),
+                    'sc_remark' => $request->input('sc_remark'),
+                    'sc_approved_step' => $stepData
+                ]);
 
                 return redirect()->back()->with('success', 'Surat Cuti '. $pic->name .' telah anda '. $suratCuti->sc_disposisi .'!');
             } catch (\Illuminate\Database\QueryException $e) {
