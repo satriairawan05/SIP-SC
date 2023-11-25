@@ -67,7 +67,7 @@
 
         .verikal-center-mini {
             border-left: 3px solid black;
-            height: 25px;
+            height: 48px;
             width: 2px;
         }
 
@@ -94,6 +94,30 @@
             margin: 10px 0;
         }
 
+        /* Default styling untuk checkbox */
+        input[type="checkbox"] {
+            /* Hapus styling default browser */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            /* Set ukuran checkbox */
+            width: 16px;
+            height: 16px;
+            /* Tambahkan tampilan kotak */
+            border: 1px solid #000;
+            /* Set latar belakang awal */
+            background-color: #fff;
+            /* Tambahkan efek hover */
+            cursor: pointer;
+        }
+
+        /* Checkbox yang dicentang */
+        input[type="checkbox"]:checked {
+            /* Ubah warna latar belakang menjadi hitam saat dicentang */
+            background-color: #000;
+            border: none;
+        }
+
         @media print {
             @page {
                 size: A4 portrait;
@@ -108,34 +132,76 @@
     <div class="container mt-2">
         <table class="table">
             <tbody>
-                <tr class="border-keliling d-grid">
-                    <td class="align-items-start grid-cols-2">
+                <tr class="border-keliling-bold d-grid">
+                    <td class="align-items-start col-12 grid-cols-2">
                         <div class="border-keliling-cov" style="display: flex; align-items: center;">
                             <img src="{{ asset('assets/images/snapedit_1699181666429-removebg-preview.png') }}"
-                                alt="Logo" class="h-25 w-25 mt-2">
-                            <div class="mx-0">
+                                alt="Logo" class="h-25 w-25 col-3 mt-2">
+                            <div class="col-3 mx-0">
                                 <span
-                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-1 pt-4 text-center">PT.
+                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-2 pt-4 text-center">PT.
                                     COALINDO ADHI PERKASA</span>
                                 <span
-                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-1 pb-4 text-center">Permohonan
+                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-2 pb-4 text-center">Permohonan
                                     Cuti</span>
                             </div>
-                            <div class="mx-0">
-                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">No Dok.</p>
-                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">Tanggal Efektif</p>
-                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">Status Revisi</p>
-                                <p class="h6 text-dark border-keliling m-0 px-2 py-1">Tanggal Revisi</p>
+                            <div class="d-flex flex-column col-3 mx-0">
+                                <span class="text-dark border-keliling px-2 py-2">No Dok.</span>
+                                <span class="text-dark border-keliling px-2 py-2">Tanggal Efektif</span>
+                                <span class="text-dark border-keliling px-2 py-2">Status Revisi</span>
+                                <span class="text-dark border-keliling px-2 py-2">Tanggal Revisi</span>
+                            </div>
+                            <div class="d-flex flex-column col-3 mx-0">
+                                <span class="text-dark border-keliling px-1 py-2">09/10.04/HCMS</span>
+                                <span
+                                    class="text-dark border-keliling px-1 py-2">{{ \Carbon\Carbon::now()->isoFormat('DD MMMM YYYY') }}</span>
+                                <span class="text-dark border-keliling px-1 py-2">01</span>
+                                <span
+                                    class="text-dark border-keliling px-1 py-2">{{ \Carbon\Carbon::now()->subDay()->isoFormat('DD MMMM YYYY') }}</span>
                             </div>
                         </div>
-                        <div style="padding: 0 7px; display: flex; align-items: center;" class="border-keliling-cov">
-                            <span class="text-uppercase mx-1 px-4 font-bold"
-                                style="margin-right: 40px;">Departement</span>
+                        <div class="border-keliling-cov d-flex align-items-center col-12">
+                            <span class="text-uppercase col-3 text-center font-bold">Departement</span>
                             <div class="verikal-center-mini"></div>
-                            <span class="text-uppercase mx-2 text-center" style="margin-left: 10px;">Information
+                            <span class="text-uppercase col-3 px-2 text-center">Information
                                 Technology</span>
                             <div class="verikal-center-mini"></div>
-                            <span class="text-uppercase mx-2 text-center" style="margin-left: 10px;">Halaman</span>
+                            <span class="text-uppercase col-3 px-2 text-center">Halaman</span>
+                            <div class="verikal-center-mini"></div>
+                            <span class="text-uppercase col-3 px-2 text-center">1</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="border-keliling-bold d-grid mt-2">
+                    <td class="align-items-start grid-cols-2">
+                        <div class="border-keliling-cov">
+                            <div class="border-keliling-cov d-flex align-items-center col-12">
+                                <div class="col-3 d-flex justify-content-center">
+                                    <span class="text-uppercase h4 fs-4 text-center font-bold">Data Karyawan</span>
+                                </div>
+                                <div class="verikal-center-mini" style="height: 66px; !important"></div>
+                            </div>
+                            <div class="border-keliling-cov d-flex align-items-center col-12">
+                                <div class="col-3 d-flex justify-content-center">
+                                    <span class="text-uppercase h5 fs-5 text-center font-bold">Data Hak Cuti
+                                        Karyawan</span>
+                                </div>
+                                <div class="verikal-center-mini" style="height: 66px; !important"></div>
+                            </div>
+                            <div class="border-keliling-cov d-flex align-items-center col-12">
+                                <div class="col-3 d-flex justify-content-center">
+                                    <span class="text-uppercase h5 fs-5 text-center font-bold">Jenis Cuti</span>
+                                </div>
+                                <div class="verikal-center-mini" style="height: 66px; !important"></div>
+                                @foreach ($cuti as $c)
+                                    <div class="col-3 d-flex justify-content-center">
+                                        <input class="form-check-input" type="checkbox" value="{{ $c->cuti_id == $surat->cuti_id ? $surat->cuti_id : $c->cuti_id }}" id="jenis_cuti" {{ $c->cuti_id == $surat->cuti_id ? 'checked' : '' }}>
+                                        <label class="form-check-label ms-1" for="jenis_cuti">
+                                            {{ $c->cuti_jenis }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </td>
                 </tr>

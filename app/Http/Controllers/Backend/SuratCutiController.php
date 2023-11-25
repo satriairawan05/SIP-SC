@@ -141,8 +141,12 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->read == 1) {
             try {
+                $dataSurat = $suratCuti->find(request()->segment(2));
                 return view('backend.surat_cuti.document', [
                     'name' => $this->name,
+                    'surat' => $dataSurat,
+                    'dataPic' => SuratCuti::select('pics.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pics','surat_cutis.pic_id','=','pics.id')->first(),
+                    'cuti' => \App\Models\Cuti::all(),
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());

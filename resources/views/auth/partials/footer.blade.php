@@ -42,12 +42,12 @@
         });
     </script>
 @endif
-@if (session('failed'))
+@if (session('loginError'))
     <script type="text/javascript">
         let timerInterval;
         Swal.fire({
             title: "Fail!",
-            text: "{{ session('failed') }}",
+            text: "{{ session('loginError') }}",
             timer: 500000,
             icon: 'error',
             timerProgressBar: true,
