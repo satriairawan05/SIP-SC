@@ -142,10 +142,14 @@ class SuratCutiController extends Controller
         if ($this->read == 1) {
             try {
                 $dataSurat = $suratCuti->find(request()->segment(2));
+                $dataPic = SuratCuti::select('pics.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pics','surat_cutis.pic_id','=','pics.id')->first();
+                $departemenPic = \App\Models\Departemen::leftJoin('users','departemens.departemen_id','=','departemens.departemen_id')->where('departemens.departemen_id',$dataPic->departemen_id)->first();
+
                 return view('backend.surat_cuti.document', [
                     'name' => $this->name,
                     'surat' => $dataSurat,
-                    'dataPic' => SuratCuti::select('pics.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pics','surat_cutis.pic_id','=','pics.id')->first(),
+                    'dataPic' => $dataPic,
+                    'departemenPic' => $departemenPic,
                     'cuti' => \App\Models\Cuti::all(),
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {

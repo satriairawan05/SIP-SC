@@ -163,8 +163,7 @@
                         <div class="border-keliling-cov d-flex align-items-center col-12">
                             <span class="text-uppercase col-3 text-center font-bold">Departement</span>
                             <div class="verikal-center-mini"></div>
-                            <span class="text-uppercase col-3 px-2 text-center">Information
-                                Technology</span>
+                            <span class="text-uppercase col-3 px-2 text-center">{{ $departemenPic->departemen_name }}</span>
                             <div class="verikal-center-mini"></div>
                             <span class="text-uppercase col-3 px-2 text-center">Halaman</span>
                             <div class="verikal-center-mini"></div>
@@ -175,18 +174,52 @@
                 <tr class="border-keliling-bold d-grid mt-2">
                     <td class="align-items-start grid-cols-2">
                         <div class="border-keliling-cov">
-                            <div class="border-keliling-cov d-flex align-items-center col-12">
+                            <div class="d-flex align-items-center col-12">
                                 <div class="col-3 d-flex justify-content-center">
                                     <span class="text-uppercase h4 fs-4 text-center font-bold">Data Karyawan</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 110px; !important"></div>
-                                <div class="col-5 ms-3">
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Nama / Nik</p>
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Departemen & Jabatan</p>
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Tanggal Masuk Kerja / DOH</p>
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Lokasi Kerja</p>
+                                <div class="verikal-center-mini" style="height: 160px; !important"></div>
+                                <div class="col-3 ms-2">
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
+                                    Nama / Nik
+                                    </p>
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
+                                    Departemen & Jabatan
+                                    </p>
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
+                                    Tanggal Masuk Kerja / DOH
+                                    </p>
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
+                                    Lokasi Kerja
+                                    </p>
                                 </div>
                                 <div class="col-1">
+                                    <p class="text-uppercase">
+                                    :
+                                    </p>
+                                    <p class="text-uppercase">
+                                    :
+                                    </p>
+                                    <p class="text-uppercase">
+                                    :
+                                    </p>
+                                    <p class="text-uppercase">
+                                    :
+                                    </p>
+                                </div>
+                                <div class="col-5">
+                                    <p class="text-uppercase font-weight-bold">
+                                    {{ $dataPic->name }} / {{ $dataPic->nik }}
+                                    </p>
+                                    <p class="text-uppercase">
+                                    {{ $departemenPic->departemen_name }} / {{ $dataPic->jabatan }}
+                                    </p>
+                                    <p class="text-uppercase">
+                                    {{ \Carbon\Carbon::parse($dataPic->tgl_masuk)->isoFormat('DD MMMM YYYY') }}
+                                    </p>
+                                    <p class="text-uppercase">
+                                    {{ $dataPic->lokasi_kerja }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="border-keliling-cov d-flex align-items-center col-12">
