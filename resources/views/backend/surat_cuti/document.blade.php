@@ -179,7 +179,15 @@
                                 <div class="col-3 d-flex justify-content-center">
                                     <span class="text-uppercase h4 fs-4 text-center font-bold">Data Karyawan</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 66px; !important"></div>
+                                <div class="verikal-center-mini" style="height: 110px; !important"></div>
+                                <div class="col-5 ms-3">
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Nama / Nik</p>
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Departemen & Jabatan</p>
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Tanggal Masuk Kerja / DOH</p>
+                                    <p class="text-uppercase h6 fs-6 font-weight-bold">Lokasi Kerja</p>
+                                </div>
+                                <div class="col-1">
+                                </div>
                             </div>
                             <div class="border-keliling-cov d-flex align-items-center col-12">
                                 <div class="col-3 d-flex justify-content-center">
