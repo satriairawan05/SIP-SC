@@ -163,7 +163,8 @@
                         <div class="border-keliling-cov d-flex align-items-center col-12">
                             <span class="text-uppercase col-3 text-center font-bold">Departement</span>
                             <div class="verikal-center-mini"></div>
-                            <span class="text-uppercase col-3 px-2 text-center">{{ $departemenPic->departemen_name }}</span>
+                            <span
+                                class="text-uppercase col-3 px-2 text-center">{{ $departemenPic->departemen_name }}</span>
                             <div class="verikal-center-mini"></div>
                             <span class="text-uppercase col-3 px-2 text-center">Halaman</span>
                             <div class="verikal-center-mini"></div>
@@ -181,44 +182,44 @@
                                 <div class="verikal-center-mini" style="height: 160px; !important"></div>
                                 <div class="col-3 ms-2">
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                    Nama / Nik
+                                        Nama / Nik
                                     </p>
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                    Departemen & Jabatan
+                                        Departemen & Jabatan
                                     </p>
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                    Tanggal Masuk Kerja / DOH
+                                        Tanggal Masuk Kerja / DOH
                                     </p>
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                    Lokasi Kerja
+                                        Lokasi Kerja
                                     </p>
                                 </div>
                                 <div class="col-1">
                                     <p class="text-uppercase">
-                                    :
+                                        :
                                     </p>
                                     <p class="text-uppercase">
-                                    :
+                                        :
                                     </p>
                                     <p class="text-uppercase">
-                                    :
+                                        :
                                     </p>
                                     <p class="text-uppercase">
-                                    :
+                                        :
                                     </p>
                                 </div>
                                 <div class="col-5">
                                     <p class="text-uppercase font-weight-bold">
-                                    {{ $dataPic->name }} / {{ $dataPic->nik }}
+                                        {{ $dataPic->name }} / {{ $dataPic->nik }}
                                     </p>
                                     <p class="text-uppercase">
-                                    {{ $departemenPic->departemen_name }} / {{ $dataPic->jabatan }}
+                                        {{ $departemenPic->departemen_name }} / {{ $dataPic->jabatan }}
                                     </p>
                                     <p class="text-uppercase">
-                                    {{ \Carbon\Carbon::parse($dataPic->tgl_masuk)->isoFormat('DD MMMM YYYY') }}
+                                        {{ \Carbon\Carbon::parse($dataPic->tgl_masuk)->isoFormat('DD MMMM YYYY') }}
                                     </p>
                                     <p class="text-uppercase">
-                                    {{ $dataPic->lokasi_kerja }}
+                                        {{ $dataPic->lokasi_kerja }}
                                     </p>
                                 </div>
                             </div>
@@ -236,12 +237,21 @@
                                 <div class="verikal-center-mini" style="height: 66px; !important"></div>
                                 @foreach ($cuti as $c)
                                     <div class="col-3 d-flex justify-content-center">
-                                        <input class="form-check-input" type="checkbox" value="{{ $c->cuti_id == $surat->cuti_id ? $surat->cuti_id : $c->cuti_id }}" id="jenis_cuti" {{ $c->cuti_id == $surat->cuti_id ? 'checked' : '' }}>
+                                        <input class="form-check-input" type="checkbox"
+                                            value="{{ $c->cuti_id == $surat->cuti_id ? $surat->cuti_id : $c->cuti_id }}"
+                                            id="jenis_cuti" {{ $c->cuti_id == $surat->cuti_id ? 'checked' : '' }}>
                                         <label class="form-check-label ms-1" for="jenis_cuti">
                                             {{ $c->cuti_jenis }}
                                         </label>
                                     </div>
                                 @endforeach
+                            </div>
+                            <div class="border-keliling-cov col-12">
+                                <span class="text-uppercase text-center">Periode Pengambilan Cuti : <span class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</span> s/d <span class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</span></span>&nbsp;&nbsp;{{ $surat->sc_jumlah_cuti }} Hari<br>
+                                <span class="text-uppercase text-center">Tanggal Kembali Kerja : <span class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_kembali)->isoFormat('DD MMMM YYYY') }}</span></span>
+                            </div>
+                            <div class="border-keliling-cov col-12">
+                                Selama cuti, pekerjaan
                             </div>
                         </div>
                     </td>
