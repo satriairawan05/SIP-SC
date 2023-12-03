@@ -65,8 +65,20 @@
             width: 2px;
         }
 
+        .verikal-center-bottom {
+            border-left: 2px solid black;
+            height: 115px;
+            width: 2px;
+        }
+
         .verikal-center-mini {
             border-left: 3px solid black;
+            height: 48px;
+            width: 2px;
+        }
+
+        .vertical-mini {
+            border-left: 2px solid black;
             height: 48px;
             width: 2px;
         }
@@ -120,7 +132,7 @@
 
         @media print {
             @page {
-                size: A4 portrait;
+                size: F4 portrait;
                 margin: 0;
                 border: 1px solid red;
             }
@@ -146,21 +158,21 @@
                                     Cuti</span>
                             </div>
                             <div class="d-flex flex-column col-3 mx-0">
-                                <span class="text-dark border-keliling px-2 py-2">No Dok.</span>
-                                <span class="text-dark border-keliling px-2 py-2">Tanggal Efektif</span>
-                                <span class="text-dark border-keliling px-2 py-2">Status Revisi</span>
-                                <span class="text-dark border-keliling px-2 py-2">Tanggal Revisi</span>
+                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">No Dok.</span>
+                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">Tanggal Efektif</span>
+                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">Status Revisi</span>
+                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">Tanggal Revisi</span>
                             </div>
                             <div class="d-flex flex-column col-3 mx-0">
-                                <span class="text-dark border-keliling px-1 py-2">09/10.04/HCMS</span>
+                                <span class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">09/10.04/HCMS</span>
                                 <span
-                                    class="text-dark border-keliling px-1 py-2">{{ \Carbon\Carbon::now()->isoFormat('DD MMMM YYYY') }}</span>
-                                <span class="text-dark border-keliling px-1 py-2">01</span>
+                                    class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->isoFormat('DD MMMM YYYY') }}</span>
+                                <span class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">01</span>
                                 <span
-                                    class="text-dark border-keliling px-1 py-2">{{ \Carbon\Carbon::now()->subDay()->isoFormat('DD MMMM YYYY') }}</span>
+                                    class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->subDay()->isoFormat('DD MMMM YYYY') }}</span>
                             </div>
                         </div>
-                        <div class="border-keliling-cov d-flex align-items-center col-12">
+                        <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 2px solid black !important;">
                             <span class="text-uppercase col-3 text-center font-bold">Departement</span>
                             <div class="verikal-center-mini"></div>
                             <span
@@ -223,14 +235,14 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="border-keliling-cov d-flex align-items-center col-12">
+                            <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 1px solid black !important;">
                                 <div class="col-3 d-flex justify-content-center">
                                     <span class="text-uppercase h5 fs-5 text-center font-bold">Data Hak Cuti
                                         Karyawan</span>
                                 </div>
                                 <div class="verikal-center-mini" style="height: 66px; !important"></div>
                             </div>
-                            <div class="border-keliling-cov d-flex align-items-center col-12">
+                            <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 1px solid black !important;">
                                 <div class="col-3 d-flex justify-content-center">
                                     <span class="text-uppercase h5 fs-5 text-center font-bold">Jenis Cuti</span>
                                 </div>
@@ -246,12 +258,87 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="border-keliling-cov col-12">
-                                <span class="text-uppercase text-center">Periode Pengambilan Cuti : <span class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</span> s/d <span class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</span></span>&nbsp;&nbsp;{{ $surat->sc_jumlah_cuti }} Hari<br>
-                                <span class="text-uppercase text-center">Tanggal Kembali Kerja : <span class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_kembali)->isoFormat('DD MMMM YYYY') }}</span></span>
+                            <div class="border-keliling-cov col-12 p-2" style="border: 1px solid black !important;">
+                                <span class="text-uppercase text-center">Periode Pengambilan Cuti : <span
+                                        class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</span>
+                                    s/d <span
+                                        class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</span></span>&nbsp;&nbsp;{{ $surat->sc_jumlah_cuti }}
+                                Hari<br>
+                                <span class="text-uppercase text-center">Tanggal Kembali Kerja : <span
+                                        class="text-decoration-underline">{{ \Carbon\Carbon::parse($surat->sc_tgl_kembali)->isoFormat('DD MMMM YYYY') }}</span></span>
                             </div>
-                            <div class="border-keliling-cov col-12">
-                                Selama cuti, pekerjaan
+                            <div class="border-keliling-cov p-2" style="border: 1px solid black !important;">
+                                <h3 class="fs-6">Selama cuti, pekerjaan dan tanggung jawab diserahkan kepada :</h3>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h3 class="fs-6 text-uppercase">Nama / Nik &nbsp;&nbsp;: {{ $dataPJ->name }} /
+                                            {{ $dataPJ->nik }}</h3>
+                                        <h3 class="fs-6 text-uppercase">Jabatan
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $dataPJ->jabatan }}
+                                        </h3>
+                                        <h3 class="fs-6 text-uppercase">Departemen :
+                                            {{ $departemenPJ->departemen_name }}</h3>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <p class="mb-0 mt-5 font-bold">-----------------------</p>
+                                        <span class="text-uppercase mt-0">Tanda Tangan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-keliling-cov" style="border-top: 0px !important">
+                            <div class="row">
+                                <div class="col-3 border-keliling" style="border-left: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
+                                    <span class="fs-6 ms-2 text-center">Dibuat Tanggal :</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataPic->name }}</span>
+                                </div>
+                                <div class="col-3 border-keliling" style="border: 1px solid black !important;">
+                                    <span class="fs-6 ms-2 text-center">Disetujui oleh,</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <span class="fs-6 ms-2 text-center">ABCDE</span>
+                                </div>
+                                <div class="col-3 border-keliling" style="border: 1px solid black !important;">
+                                    <span class="fs-6 ms-2 text-center">Diperiksa oleh,</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <span class="fs-6 ms-2 text-center">ABCDE</span>
+                                </div>
+                                <div class="col-3 border-keliling" style="border-right: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
+                                    <span class="fs-6 ms-2 text-center">Diketahui oleh,</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <span class="fs-6 ms-2 text-center">ABCDE</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-keliling-cov" style="border: 2px solid black !important;">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span class="fs-6 ms-2 text-center">{{ $dataPic->jabatan }}</span>
+                                </div>
+                                <div class="vertical-mini"></div>
+                                <div class="col-3">
+                                    <span class="fs-6 ms-2 text-center">FGHIJK</span>
+                                </div>
+                                <div class="vertical-mini"></div>
+                                <div class="col-3">
+                                    <span class="fs-6 ms-2 text-center">FGHIJK</span>
+                                </div>
+                                <div class="vertical-mini"></div>
+                                <div class="col-3">
+                                    <span class="fs-6 ms-2 text-center">FGHIJK</span>
+                                </div>
                             </div>
                         </div>
                     </td>

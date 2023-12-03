@@ -144,12 +144,17 @@ class SuratCutiController extends Controller
                 $dataSurat = $suratCuti->find(request()->segment(2));
                 $dataPic = SuratCuti::select('pics.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pics','surat_cutis.pic_id','=','pics.id')->first();
                 $departemenPic = \App\Models\Departemen::leftJoin('users','departemens.departemen_id','=','departemens.departemen_id')->where('departemens.departemen_id',$dataPic->departemen_id)->first();
-
+                $dataPJ = SuratCuti::select('pjs.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pjs','surat_cutis.pt_id','=','pjs.id')->first();
+                $departemenPJ = \App\Models\Departemen::leftJoin('users','departemens.departemen_id','=','departemens.departemen_id')->where('departemens.departemen_id',$dataPJ->departemen_id)->first();
+                $dataApproval = \App\Models\Approval::select('users.*')->leftJoin('users','approvals.user_id','=','users.id')->get();
                 return view('backend.surat_cuti.document', [
                     'name' => $this->name,
                     'surat' => $dataSurat,
                     'dataPic' => $dataPic,
                     'departemenPic' => $departemenPic,
+                    'dataPJ' => $dataPJ,
+                    'departemenPJ' => $departemenPJ,
+                    'dataApp' => $dataApproval,
                     'cuti' => \App\Models\Cuti::all(),
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
