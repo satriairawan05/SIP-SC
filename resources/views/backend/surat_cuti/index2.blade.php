@@ -139,7 +139,7 @@
                                                                             <input type="text" name="sc_remark"
                                                                                 id="sc_remark"
                                                                                 class="form-control form-control-sm"
-                                                                                value="{{ old('sc_disposisi') }}"
+                                                                                value="{{ old('sc_remark') }}"
                                                                                 placeholder="Ex: Okeee">
                                                                         </div>
                                                                     </div>

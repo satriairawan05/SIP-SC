@@ -25,6 +25,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
 
     <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/sweetalert2/sweetaler2.min.js') }}"></script>
     @if (session('success'))
         <script type="text/javascript">
