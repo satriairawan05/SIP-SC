@@ -59,12 +59,12 @@
         <nav class="navbar header-navbar pcoded-header">
             <div class="navbar-wrapper">
                 <div class="navbar-logo">
-                    <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                    <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#">
                         <i class="ti-menu"></i>
                     </a>
-                    <a href="#" class="mt-sm-2 text-center">
+                    <a href="{{ route('dashboard') }}" class="mt-sm-2 text-center">
                         <!-- <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" /> -->
-                        <b>SIP - SC</b>
+                        <b>Pengajuan Surat Cuti</b>
                     </a>
                     <a class="mobile-options waves-effect waves-light">
                         <i class="ti-more"></i>

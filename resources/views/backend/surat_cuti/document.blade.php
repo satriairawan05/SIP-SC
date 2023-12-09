@@ -148,31 +148,40 @@
                     <td class="align-items-start col-12 grid-cols-2">
                         <div class="border-keliling-cov" style="display: flex; align-items: center;">
                             <img src="{{ asset('assets/images/snapedit_1699181666429-removebg-preview.png') }}"
-                                alt="Logo" class="h-25 w-25 col-3 mt-2">
+                                alt="Logo" class="h-25 w-25 col-3 mt-1">
                             <div class="col-3 mx-0">
                                 <span
-                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-2 pt-4 text-center">PT.
+                                    class="text-uppercase d-flex fs-6 justify-content-center align-items-center border-keliling-bold px-2 py-2 pt-4 text-center"
+                                    style="border: 3px solid black !important;">PT.
                                     COALINDO ADHI PERKASA</span>
                                 <span
-                                    class="text-uppercase d-flex justify-content-center align-items-center border-keliling-bold px-2 py-2 pb-4 text-center">Permohonan
+                                    class="text-uppercase d-flex fs-6 justify-content-center align-items-center border-keliling-bold px-2 py-2 pb-4 text-center"
+                                    style="border: 3px solid black !important;">Permohonan
                                     Cuti</span>
                             </div>
                             <div class="d-flex flex-column col-3 mx-0">
-                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">No Dok.</span>
-                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">Tanggal Efektif</span>
-                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">Status Revisi</span>
-                                <span class="text-dark border-keliling px-2 py-2" style="border: 2px solid black !important;">Tanggal Revisi</span>
+                                <span class="text-dark border-keliling fs-6 px-2 py-2"
+                                    style="border: 2px solid black !important;">No Dok.</span>
+                                <span class="text-dark border-keliling fs-6 px-2 py-2"
+                                    style="border: 2px solid black !important;">Tanggal Efektif</span>
+                                <span class="text-dark border-keliling fs-6 px-2 py-2"
+                                    style="border: 2px solid black !important;">Status Revisi</span>
+                                <span class="text-dark border-keliling fs-6 px-2 py-2"
+                                    style="border: 2px solid black !important;">Tanggal Revisi</span>
                             </div>
                             <div class="d-flex flex-column col-3 mx-0">
-                                <span class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">09/10.04/HCMS</span>
-                                <span
-                                    class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->isoFormat('DD MMMM YYYY') }}</span>
-                                <span class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">01</span>
-                                <span
-                                    class="text-dark border-keliling px-1 py-2" style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->subDay()->isoFormat('DD MMMM YYYY') }}</span>
+                                <span class="text-dark border-keliling fs-6 px-1 py-2"
+                                    style="border: 2px solid black !important;">09/10.04/HCMS</span>
+                                <span class="text-dark border-keliling fs-6 px-1 py-2"
+                                    style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->isoFormat('DD MMMM YYYY') }}</span>
+                                <span class="text-dark border-keliling fs-6 px-1 py-2"
+                                    style="border: 2px solid black !important;">01</span>
+                                <span class="text-dark border-keliling fs-6 px-1 py-2"
+                                    style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->subDay()->isoFormat('DD MMMM YYYY') }}</span>
                             </div>
                         </div>
-                        <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 2px solid black !important;">
+                        <div class="border-keliling-cov d-flex align-items-center col-12"
+                            style="border: 2px solid black !important;">
                             <span class="text-uppercase col-3 text-center font-bold">Departement</span>
                             <div class="verikal-center-mini"></div>
                             <span
@@ -183,65 +192,74 @@
                             <span class="text-uppercase col-3 px-2 text-center">1</span>
                         </div>
                     </td>
-                </tr>
-                <tr class="border-keliling-bold d-grid mt-2">
                     <td class="align-items-start grid-cols-2">
                         <div class="border-keliling-cov">
-                            <div class="d-flex align-items-center col-12">
+                            <div class="d-flex align-items-center">
                                 <div class="col-3 d-flex justify-content-center">
-                                    <span class="text-uppercase h4 fs-4 text-center font-bold">Data Karyawan</span>
+                                    <span class="text-uppercase h6 fs-6 text-center font-bold">Data Karyawan</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 160px; !important"></div>
+                                <div class="verikal-center-mini" style="height: 120px; !important"></div>
                                 <div class="col-3 ms-1">
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Nama / Nik :
-                                    </p>
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Departemen & Jabatan &nbsp;:
-                                    </p>
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Tanggal Masuk Kerja / DOH :
-                                    </p>
-                                    <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Lokasi Kerja :
-                                    </p>
+                                    <h4 class="text-uppercase h6 fs-6 font-weight-bold">
+                                        Nama / Nik &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                                    </h4>
+                                    <h4 class="text-uppercase h6 fs-6 font-weight-bold">
+                                        Dept & Position &nbsp;&nbsp;:
+                                    </h4>
+                                    <h4 class="text-uppercase h6 fs-6 font-weight-bold">
+                                        Date Of Hiring &nbsp;&nbsp;&nbsp;&nbsp;:
+                                    </h4>
+                                    <h4 class="text-uppercase h6 fs-6 font-weight-bold">
+                                        Lokasi Kerja &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                                    </h4>
                                 </div>
                                 <div class="col-6">
-                                    <p class="text-uppercase font-weight-bold">
+                                    <h4 class="text-uppercase fs-6 font-weight-bold">
                                         {{ $dataPic->name }} / {{ $dataPic->nik }}
-                                    </p>
-                                    <p class="text-uppercase">
+                                    </h4>
+                                    <h4 class="text-uppercase fs-6">
                                         {{ $departemenPic->departemen_name }} / {{ $dataPic->jabatan }}
-                                    </p>
-                                    <p class="text-uppercase">
+                                    </h4>
+                                    <h4 class="text-uppercase fs-6">
                                         {{ \Carbon\Carbon::parse($dataPic->tgl_masuk)->isoFormat('DD MMMM YYYY') }}
-                                    </p>
-                                    <p class="text-uppercase">
+                                    </h4>
+                                    <h4 class="text-uppercase fs-6">
                                         {{ $dataPic->lokasi_kerja }}
-                                    </p>
+                                    </h4>
                                 </div>
                             </div>
-                            <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 1px solid black !important;">
+                            <div class="border-keliling-cov d-flex align-items-center col-12"
+                                style="border: 2px solid black !important;">
                                 <div class="col-3 d-flex justify-content-center">
                                     <span class="text-uppercase h6 fs-6 text-center font-bold">Data Hak Cuti
                                         Karyawan</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 165px; !important"></div>
-                                <div class="col-9">
-                                    <span class="ms-2 mt-0 fs-6">Hak Cuti Lapangan : <u>14 Hari</u></span><br>
-                                    <span class="ms-2 mt-0 fs-6">Hak Cuti Tahunan : <u>8 Hari</u></span><br>
-                                    <span class="ms-2 mt-0 fs-6">Jumlah : <u>23 Hari</u></span><br>
-                                    <span class="ms-2 mt-0">--------------------</span><br>
-                                    <span class="ms-2 mt-0 fs-6">Cuti Lapangan Yang Diambil : <u>10 Hari</u></span><br>
-                                    <span class="ms-2 mt-0 fs-6">Cuti Tahunan Yang Diambil : <u>0 Hari</u></span><br>
-                                    <span class="ms-2 mt-0 fs-6">Jumlah : <u>10 Hari</u></span>
-                                    <span class="ms-2 mt-0"></span><br>
-                                    <span class="ms-2 mt-0 fs-6">*) Diisi Periode Sebelumnya oleh Masing-masing Departemen :</span>
+                                <div class="verikal-center-mini" style="height: 210px; !important"></div>
+                                <div class="col-9 text-end">
+                                    <span style="margin:0;" class="fs-6 h6 me-2">Hak Cuti Lapangan :
+                                        <u>14 Hari</u></span><br>
+                                    <span style="margin:0;" class="fs-6 h6 me-2">Hak Cuti Tahunan :
+                                        <u>8 Hari</u></span><br>
+                                    <span style="margin:0;" class="fs-6 h6 me-2">Jumlah : <u>23
+                                            Hari</u></span><br>
+                                    <span style="margin:0;"
+                                        class="my-0 me-2">--------------------</span><br>
+                                    <span style="margin:0;" class="fs-6 h6 me-2">Cuti Lapangan Yang
+                                        Diambil : <u>10 Hari</u></span><br>
+                                    <span style="margin:0;" class="fs-6 h6 me-2">Cuti Tahunan Yang
+                                        Diambil : <u>0 Hari</u></span><br>
+                                    <span style="margin:0;" class="fs-6 h6 me-1">Jumlah : <u>10
+                                            Hari</u></span>
+                                    <span style="margin:0;" class="me-2"></span><br>
+                                    <span style="margin:0;" class="fs-6 h6 me-2">*) Diisi Periode
+                                        Sebelumnya oleh Masing-masing Departemen</span><br>
+                                    <span class="fs-6 h6 me-2"">: <u>{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</u> s/d <u>{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</u></span>
                                 </div>
                             </div>
-                            <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 1px solid black !important;">
+                            <div class="border-keliling-cov d-flex align-items-center col-12"
+                                style="border: 1px solid black !important;">
                                 <div class="col-3 d-flex justify-content-center">
-                                    <span class="text-uppercase h5 fs-5 text-center font-bold">Jenis Cuti</span>
+                                    <span class="text-uppercase h6 fs-6 text-center font-bold">Jenis Cuti</span>
                                 </div>
                                 <div class="verikal-center-mini" style="height: 66px; !important"></div>
                                 @foreach ($cuti as $c)
@@ -268,34 +286,34 @@
                                 <h3 class="fs-6">Selama cuti, pekerjaan dan tanggung jawab diserahkan kepada :</h3>
                                 <div class="row">
                                     <div class="col-8">
-                                        <h3 class="fs-6 text-uppercase">Nama / Nik &nbsp;&nbsp;: {{ $dataPJ->name }} /
-                                            {{ $dataPJ->nik }}</h3>
-                                        <h3 class="fs-6 text-uppercase">Jabatan
+                                        <p class="fs-6 h6 text-uppercase">Nama / Nik &nbsp;&nbsp;: {{ $dataPJ->name }}
+                                            /
+                                            {{ $dataPJ->nik }}</p>
+                                        <p class="fs-6 h6 text-uppercase">Jabatan
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $dataPJ->jabatan }}
-                                        </h3>
-                                        <h3 class="fs-6 text-uppercase">Departemen :
-                                            {{ $departemenPJ->departemen_name }}</h3>
+                                        </p>
+                                        <p class="fs-6 h6 text-uppercase">Departemen :
+                                            {{ $departemenPJ->departemen_name }}</p>
                                     </div>
-                                    <div class="col-4 text-end">
-                                        <p class="mb-0 mt-5 font-bold">-----------------------</p>
-                                        <span class="text-uppercase mt-0">Tanda Tangan</span>
+                                    <div class="col-4 mt-0 text-end">
+                                        <p class="mb-0 mt-4 font-bold">-----------------------</p>
+                                        <span class="text-uppercase fs-6 h6 mt-0">Tanda Tangan</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="border-keliling-cov" style="border-top: 0px !important">
                             <div class="row">
-                                <div class="col-3 border-keliling" style="border-left: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
+                                <div class="col-3 border-keliling"
+                                    style="border-left: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
                                     <span class="fs-6 ms-2 text-center">Dibuat Tanggal :</span>
                                     <br>
                                     <br>
                                     <br>
-                                    <br>
-                                    <span class="fs-6 ms-2 text-center">{{ $dataPic->name }}</span>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataPic->name }}</span><br>
                                 </div>
                                 <div class="col-3 border-keliling" style="border: 1px solid black !important;">
                                     <span class="fs-6 ms-2 text-center">Disetujui oleh,</span>
-                                    <br>
                                     <br>
                                     <br>
                                     <br>
@@ -306,12 +324,11 @@
                                     <br>
                                     <br>
                                     <br>
-                                    <br>
                                     <span class="fs-6 ms-2 text-center">ABCDE</span>
                                 </div>
-                                <div class="col-3 border-keliling" style="border-right: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
+                                <div class="col-3 border-keliling"
+                                    style="border-right: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
                                     <span class="fs-6 ms-2 text-center">Diketahui oleh,</span>
-                                    <br>
                                     <br>
                                     <br>
                                     <br>
@@ -322,9 +339,12 @@
                         <div class="border-keliling-cov" style="border: 2px solid black !important;">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5 class="ms-2 fs-4 font-weight-bold">Note (Wajib Diisi)</h5>
-                                    <h5 class="ms-2 fs-6">Alamat Selama Cuti : {{ $surat->sc_alamat_cuti }}</h5>
-                                    <h5 class="ms-2 fs-6">No Telpon / HP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $surat->sc_no_hp }}</h5>
+                                    <h5 class="fs-4 font-weight-bold ms-2">Note (Wajib Diisi)</h5>
+                                    <h5 class="fs-6 ms-2">Alamat Selama Cuti : <u>{{ $surat->sc_alamat_cuti }}</u>
+                                    </h5>
+                                    <h5 class="fs-6 ms-2">No Telpon / HP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                                        <u>{{ $surat->sc_no_hp }}</u>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
