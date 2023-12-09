@@ -192,35 +192,21 @@
                                     <span class="text-uppercase h4 fs-4 text-center font-bold">Data Karyawan</span>
                                 </div>
                                 <div class="verikal-center-mini" style="height: 160px; !important"></div>
-                                <div class="col-3 ms-2">
+                                <div class="col-3 ms-1">
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Nama / Nik
+                                        Nama / Nik :
                                     </p>
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Departemen & Jabatan
+                                        Departemen & Jabatan &nbsp;:
                                     </p>
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Tanggal Masuk Kerja / DOH
+                                        Tanggal Masuk Kerja / DOH :
                                     </p>
                                     <p class="text-uppercase h6 fs-6 font-weight-bold">
-                                        Lokasi Kerja
+                                        Lokasi Kerja :
                                     </p>
                                 </div>
-                                <div class="col-1">
-                                    <p class="text-uppercase">
-                                        :
-                                    </p>
-                                    <p class="text-uppercase">
-                                        :
-                                    </p>
-                                    <p class="text-uppercase">
-                                        :
-                                    </p>
-                                    <p class="text-uppercase">
-                                        :
-                                    </p>
-                                </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <p class="text-uppercase font-weight-bold">
                                         {{ $dataPic->name }} / {{ $dataPic->nik }}
                                     </p>
@@ -237,10 +223,21 @@
                             </div>
                             <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 1px solid black !important;">
                                 <div class="col-3 d-flex justify-content-center">
-                                    <span class="text-uppercase h5 fs-5 text-center font-bold">Data Hak Cuti
+                                    <span class="text-uppercase h6 fs-6 text-center font-bold">Data Hak Cuti
                                         Karyawan</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 66px; !important"></div>
+                                <div class="verikal-center-mini" style="height: 165px; !important"></div>
+                                <div class="col-9">
+                                    <span class="ms-2 mt-0 fs-6">Hak Cuti Lapangan : <u>14 Hari</u></span><br>
+                                    <span class="ms-2 mt-0 fs-6">Hak Cuti Tahunan : <u>8 Hari</u></span><br>
+                                    <span class="ms-2 mt-0 fs-6">Jumlah : <u>23 Hari</u></span><br>
+                                    <span class="ms-2 mt-0">--------------------</span><br>
+                                    <span class="ms-2 mt-0 fs-6">Cuti Lapangan Yang Diambil : <u>10 Hari</u></span><br>
+                                    <span class="ms-2 mt-0 fs-6">Cuti Tahunan Yang Diambil : <u>0 Hari</u></span><br>
+                                    <span class="ms-2 mt-0 fs-6">Jumlah : <u>10 Hari</u></span>
+                                    <span class="ms-2 mt-0"></span><br>
+                                    <span class="ms-2 mt-0 fs-6">*) Diisi Periode Sebelumnya oleh Masing-masing Departemen :</span>
+                                </div>
                             </div>
                             <div class="border-keliling-cov d-flex align-items-center col-12" style="border: 1px solid black !important;">
                                 <div class="col-3 d-flex justify-content-center">
@@ -324,20 +321,10 @@
                         </div>
                         <div class="border-keliling-cov" style="border: 2px solid black !important;">
                             <div class="row">
-                                <div class="col-3">
-                                    <span class="fs-6 ms-2 text-center">{{ $dataPic->jabatan }}</span>
-                                </div>
-                                <div class="vertical-mini"></div>
-                                <div class="col-3">
-                                    <span class="fs-6 ms-2 text-center">FGHIJK</span>
-                                </div>
-                                <div class="vertical-mini"></div>
-                                <div class="col-3">
-                                    <span class="fs-6 ms-2 text-center">FGHIJK</span>
-                                </div>
-                                <div class="vertical-mini"></div>
-                                <div class="col-3">
-                                    <span class="fs-6 ms-2 text-center">FGHIJK</span>
+                                <div class="col-12">
+                                    <h5 class="ms-2 fs-4 font-weight-bold">Note (Wajib Diisi)</h5>
+                                    <h5 class="ms-2 fs-6">Alamat Selama Cuti : {{ $surat->sc_alamat_cuti }}</h5>
+                                    <h5 class="ms-2 fs-6">No Telpon / HP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $surat->sc_no_hp }}</h5>
                                 </div>
                             </div>
                         </div>
