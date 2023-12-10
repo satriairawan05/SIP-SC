@@ -171,13 +171,13 @@
                             </div>
                             <div class="d-flex flex-column col-3 mx-0">
                                 <span class="text-dark border-keliling fs-6 px-1 py-2"
-                                    style="border: 2px solid black !important;">09/10.04/HCMS</span>
+                                    style="border: 2px solid black !important;">{{ $surat->sc_no_surat_old == $surat->sc_no_surat ? $surat->sc_no_surat_old : $surat->sc_no_surat }}</span>
                                 <span class="text-dark border-keliling fs-6 px-1 py-2"
-                                    style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->isoFormat('DD MMMM YYYY') }}</span>
+                                    style="border: 2px solid black !important;">{{ \Carbon\Carbon::parse($surat->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</span>
                                 <span class="text-dark border-keliling fs-6 px-1 py-2"
-                                    style="border: 2px solid black !important;">01</span>
+                                    style="border: 2px solid black !important;">{{ $surat->sc_no_surat_old == $surat->sc_no_surat ? '00' : '01' }}</span>
                                 <span class="text-dark border-keliling fs-6 px-1 py-2"
-                                    style="border: 2px solid black !important;">{{ \Carbon\Carbon::now()->subDay()->isoFormat('DD MMMM YYYY') }}</span>
+                                    style="border: 2px solid black !important;">{{ $surat->sc_tgl_surat_rev != null ? \Carbon\Carbon::parse($surat->sc_tgl_surat_rev)->isoFormat('DD MMMM YYYY') : \Carbon\Carbon::parse($surat->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</span>
                             </div>
                         </div>
                         <div class="border-keliling-cov d-flex align-items-center col-12"
@@ -340,8 +340,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5 class="fs-4 font-weight-bold ms-2">Note (Wajib Diisi)</h5>
-                                    <h5 class="fs-6 ms-2">Alamat Selama Cuti : <u>{{ $surat->sc_alamat_cuti }}</u>
-                                    </h5>
+                                    <h6 class="fs-6 ms-2">Alamat Selama Cuti : <u>{{ $surat->sc_alamat_cuti }}</u>
+                                    </h6>
                                     <h5 class="fs-6 ms-2">No Telpon / HP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                                         <u>{{ $surat->sc_no_hp }}</u>
                                     </h5>

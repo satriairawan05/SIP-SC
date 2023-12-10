@@ -118,6 +118,8 @@ class SuratCutiController extends Controller
                     'sc_tgl_ambil_end' => $request->input('sc_tgl_ambil_end'),
                     'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
                     'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
+                    'sc_no_surat' => $request->input('sc_no_surat'),
+                    'sc_no_surat_old' => $request->input('sc_no_surat'),
                     'sc_no_hp' => $request->input('sc_no_hp'),
                     'sc_tgl_surat' => \Carbon\Carbon::now(),
                     'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400,
@@ -207,6 +209,7 @@ class SuratCutiController extends Controller
                     'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
                     'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
                     'sc_no_hp' => $request->input('sc_no_hp'),
+                    'sc_no_surat' => $request->input('sc_no_surat'),
                     'sc_tgl_surat_rev' => \Carbon\Carbon::now()
                 ]);
 
