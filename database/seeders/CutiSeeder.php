@@ -14,7 +14,7 @@ class CutiSeeder extends Seeder
     {
         \App\Models\Cuti::create([
             'cuti_jenis' => 'Cuti Lapangan',
-            'cuti_jumlah' => '12'
+            'cuti_jumlah' => '14'
         ]);
 
         \App\Models\Cuti::create([
@@ -24,7 +24,7 @@ class CutiSeeder extends Seeder
 
         \App\Models\Cuti::create([
             'cuti_jenis' => 'Cuti Hamil/Melahirkan',
-            'cuti_jumlah' => '12'
+            'cuti_jumlah' => '45'
         ]);
     }
 }

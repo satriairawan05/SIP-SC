@@ -286,9 +286,7 @@
                                 <h3 class="fs-6">Selama cuti, pekerjaan dan tanggung jawab diserahkan kepada :</h3>
                                 <div class="row">
                                     <div class="col-8">
-                                        <p class="fs-6 h6 text-uppercase">Nama / Nik &nbsp;&nbsp;: {{ $dataPJ->name }}
-                                            /
-                                            {{ $dataPJ->nik }}</p>
+                                        <p class="fs-6 h6 text-uppercase">Nama / Nik &nbsp;&nbsp;: {{ $dataPJ->name }}/{{ $dataPJ->nik }}</p>
                                         <p class="fs-6 h6 text-uppercase">Jabatan
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $dataPJ->jabatan }}
                                         </p>

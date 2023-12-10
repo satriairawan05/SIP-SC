@@ -56,10 +56,10 @@
                                     <select class="cuti form-control form-control-sm" name="cuti_id">
                                         @foreach ($cuti as $d)
                                             @if (old('cuti_id') == $d->cuti_id)
-                                                <option value="{{ $d->cuti_id }}" selected>{{ $d->cuti_jenis }}
+                                                <option value="{{ $d->cuti_id }}" selected>{{ $d->cuti_jenis }} - {{ $d->cuti_jumlah }} Hari
                                                 </option>
                                             @else
-                                                <option value="{{ $d->cuti_id }}">{{ $d->cuti_jenis }}</option>
+                                                <option value="{{ $d->cuti_id }}">{{ $d->cuti_jenis }} - {{ $d->cuti_jumlah }} Hari</option>
                                             @endif
                                         @endforeach
                                     </select>

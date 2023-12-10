@@ -97,6 +97,7 @@ class ApprovalController extends Controller
                     'user_id' => $request->input('user_id'),
                     'departemen_id' => $request->input('departemen_id'),
                     'app_ordinal' => $request->input('app_ordinal'),
+                    'sc_id' => $request->input('sc_id'),
                     'created_by' => auth()->user()->name
                 ]);
 
@@ -137,6 +138,7 @@ class ApprovalController extends Controller
                     'user_id' => $request->input('user_id'),
                     'departemen_id' => $request->input('departemen_id'),
                     'app_ordinal' => $request->input('app_ordinal'),
+                    'sc_id' => $request->input('sc_id'),
                     'updated_by' => auth()->user()->name
                 ]);
 
