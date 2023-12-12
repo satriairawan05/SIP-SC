@@ -22,7 +22,7 @@
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-            font-size: 10px;
+            font-size: 14px;
         }
 
         .tebal {
@@ -142,7 +142,7 @@
 </head>
 
 <body>
-    <div class="container mt-2">
+    <div class="container my-3">
         <table class="table">
             <tbody>
                 <tr class="border-keliling-bold d-grid">
@@ -152,12 +152,12 @@
                                 alt="Logo" class="h-25 w-25 col-3 mt-1">
                             <div class="col-3 mx-0">
                                 <span
-                                    class="text-uppercase d-flex fs-6 justify-content-center align-items-center border-keliling-bold px-2 py-2 pt-4 text-center"
-                                    style="border: 3px solid black !important;">PT.
+                                    class="text-uppercase d-flex fs-6 justify-content-center align-items-center border-keliling-bold px-4 py-2 pt-4 text-center"
+                                    style="border: 3px solid black !important; font-size: 15px !important;">PT.
                                     COALINDO ADHI PERKASA</span>
                                 <span
-                                    class="text-uppercase d-flex fs-6 justify-content-center align-items-center border-keliling-bold px-2 py-2 pb-4 text-center"
-                                    style="border: 3px solid black !important;">Permohonan
+                                    class="text-uppercase d-flex fs-6 justify-content-center align-items-center border-keliling-bold px-3 py-2 pb-4 text-center"
+                                    style="border: 3px solid black !important; font-size: 15px !important;">Permohonan
                                     Cuti</span>
                             </div>
                             <div class="d-flex flex-column col-3 mx-0">
@@ -199,7 +199,7 @@
                                 <div class="col-3 d-flex justify-content-center">
                                     <span class="text-uppercase h6 fs-6 text-center font-bold">Data Karyawan</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 120px; !important"></div>
+                                <div class="verikal-center-mini" style="height: 95px; !important"></div>
                                 <div class="col-3 ms-1">
                                     <h4 class="text-uppercase h6 fs-6 font-weight-bold">
                                         Nama / Nik &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
@@ -235,7 +235,7 @@
                                     <span class="text-uppercase h6 fs-6 text-center font-bold">Data Hak Cuti
                                         Karyawan</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 210px; !important"></div>
+                                <div class="verikal-center-mini" style="height: 190px; !important"></div>
                                 <div class="col-9 text-end">
                                     @if ($surat->cuti_id != 3)
                                         <span style="margin:0;"
@@ -284,7 +284,7 @@
                                 <div class="col-3 d-flex justify-content-center">
                                     <span class="text-uppercase h6 fs-6 text-center font-bold">Jenis Cuti</span>
                                 </div>
-                                <div class="verikal-center-mini" style="height: 66px; !important"></div>
+                                <div class="verikal-center-mini" style="height: 50px; !important"></div>
                                 @foreach ($cuti as $c)
                                     <div class="col-3 d-flex justify-content-center">
                                         <input class="form-check-input" type="checkbox"
@@ -328,25 +328,33 @@
                             <div class="row">
                                 <div class="col-3 border-keliling"
                                     style="border-left: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
-                                    <span class="fs-6 ms-2 text-center">Dibuat Tanggal :</span>
+                                    <span class="fs-6 ms-2 text-center">Dibuat Tanggal : </span><br><span class="ms-2">{{ \Carbon\Carbon::parse($surat->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</span>
+                                    <br>
                                     <br>
                                     <br>
                                     <br>
                                     <span class="fs-6 ms-2 text-center">{{ $dataPic->name }}</span><br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataPic->jabatan }}</span>
                                 </div>
                                 <div class="col-3 border-keliling" style="border: 1px solid black !important;">
                                     <span class="fs-6 ms-2 text-center">Disetujui oleh,</span>
                                     <br>
                                     <br>
                                     <br>
-                                    <span class="fs-6 ms-2 text-center">ABCDE</span>
+                                    <br>
+                                    <br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataApp[0]->name }}</span><br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataApp[0]->jabatan }}</span>
                                 </div>
                                 <div class="col-3 border-keliling" style="border: 1px solid black !important;">
                                     <span class="fs-6 ms-2 text-center">Diperiksa oleh,</span>
                                     <br>
                                     <br>
                                     <br>
-                                    <span class="fs-6 ms-2 text-center">ABCDE</span>
+                                    <br>
+                                    <br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataApp[1]->name }}</span><br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataApp[1]->jabatan }}</span>
                                 </div>
                                 <div class="col-3 border-keliling"
                                     style="border-right: 0px !important; border-top: 0px !important; border-bottom: 0px !important;">
@@ -354,7 +362,10 @@
                                     <br>
                                     <br>
                                     <br>
-                                    <span class="fs-6 ms-2 text-center">ABCDE</span>
+                                    <br>
+                                    <br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataApp[2]->name }}</span><br>
+                                    <span class="fs-6 ms-2 text-center">{{ $dataApp[2]->jabatan }}</span>
                                 </div>
                             </div>
                         </div>
@@ -367,6 +378,19 @@
                                     <h5 class="fs-6 ms-2">No Telpon / HP &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                                         <u>{{ $surat->sc_no_hp }}</u>
                                     </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-keliling-cov" style="border: 2px solid black !important;">
+                            <div class="row">
+                                <div class="col-12 mx-1">
+                                    <div class="border-keliling my-1">
+                                        <span style="text-align:justify" class="ms-2 me-2">Permohonan Cuti diajukan secara tertulis
+                                            kepada HCMS Dept. setelah diajukan oleh atasan langsung</span><br>
+                                        <span style="text-align:justify" class="ms-2 me-2">(minimal setingkat Dept. Head) selambat-lambatnya 5 hari kerja sebelum cuti diambil.</span><br>
+                                        <span style="text-align:justify" class="ms-2 me-2">Ket. untuk non-staf cukup sampai dengan di
+                                            periksa HCMS Dept.</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
