@@ -22,6 +22,7 @@
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
+            font-size: 10px;
         }
 
         .tebal {
@@ -236,24 +237,46 @@
                                 </div>
                                 <div class="verikal-center-mini" style="height: 210px; !important"></div>
                                 <div class="col-9 text-end">
-                                    <span style="margin:0;" class="fs-6 h6 me-2">Hak Cuti Lapangan :
-                                        <u>14 Hari</u></span><br>
+                                    @if ($surat->cuti_id != 3)
+                                        <span style="margin:0;"
+                                            class="fs-6 h6 me-2">{{ $surat->cuti_id == 1 ? 'Hak Cuti Lapangan :' : 'Hak Hamil/Melahirkan :' }}
+                                            <u>{{ $surat->cuti_id == 1 ? $cuti[0]->cuti_jumlah : $cuti[2]->cuti_jumlah }}
+                                                Hari</u></span><br>
+                                    @endif
                                     <span style="margin:0;" class="fs-6 h6 me-2">Hak Cuti Tahunan :
-                                        <u>8 Hari</u></span><br>
-                                    <span style="margin:0;" class="fs-6 h6 me-2">Jumlah : <u>23
+                                        <u>{{ $cuti[1]->cuti_jumlah }} Hari</u></span><br>
+                                    @php
+                                        $data = '';
+                                        if ($surat->cuti_id == 1) {
+                                            $data = $cuti[0]->cuti_jumlah;
+                                        }
+
+                                        if ($surat->cuti_id == 2) {
+                                            $data = $cuti[2]->cuti_jumlah;
+                                        }
+                                    @endphp
+                                    <span style="margin:0;" class="fs-6 h6 me-2">Jumlah :
+                                        <u>{{ $data + $cuti[1]->cuti_jumlah }}
                                             Hari</u></span><br>
-                                    <span style="margin:0;"
-                                        class="my-0 me-2">--------------------</span><br>
-                                    <span style="margin:0;" class="fs-6 h6 me-2">Cuti Lapangan Yang
-                                        Diambil : <u>10 Hari</u></span><br>
+                                    <span style="margin:0;" class="my-0 me-2">--------------------</span><br>
+                                    @if ($surat->cuti_id != 3)
+                                        <span style="margin:0;"
+                                            class="fs-6 h6 me-2">{{ $surat->cuti_id == 1 ? 'Cuti Lapangan Yang Diambil :' : 'Cuti Hamil/Melahirkan Yang Diambil:' }}
+                                            <u>{{ $surat->sc_jumlah_cuti }} Hari</u></span><br>
+                                    @endif
                                     <span style="margin:0;" class="fs-6 h6 me-2">Cuti Tahunan Yang
-                                        Diambil : <u>0 Hari</u></span><br>
-                                    <span style="margin:0;" class="fs-6 h6 me-1">Jumlah : <u>10
+                                        Diambil : <u>{{ $surat->cuti_id == 3 ? $surat->sc_jumlah_cuti : '0' }}
+                                            Hari</u></span><br>
+                                    <span style="margin:0;" class="fs-6 h6 me-1">Jumlah :
+                                        <u>{{ $surat->sc_jumlah_cuti }}
                                             Hari</u></span>
                                     <span style="margin:0;" class="me-2"></span><br>
                                     <span style="margin:0;" class="fs-6 h6 me-2">*) Diisi Periode
                                         Sebelumnya oleh Masing-masing Departemen</span><br>
-                                    <span class="fs-6 h6 me-2"">: <u>{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</u> s/d <u>{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</u></span>
+                                    <span class="fs-6 h6 me-2">:
+                                        <u>{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_start)->isoFormat('DD MMMM YYYY') }}</u>
+                                        s/d
+                                        <u>{{ \Carbon\Carbon::parse($surat->sc_tgl_ambil_end)->isoFormat('DD MMMM YYYY') }}</u></span>
                                 </div>
                             </div>
                             <div class="border-keliling-cov d-flex align-items-center col-12"
@@ -286,7 +309,8 @@
                                 <h3 class="fs-6">Selama cuti, pekerjaan dan tanggung jawab diserahkan kepada :</h3>
                                 <div class="row">
                                     <div class="col-8">
-                                        <p class="fs-6 h6 text-uppercase">Nama / Nik &nbsp;&nbsp;: {{ $dataPJ->name }}/{{ $dataPJ->nik }}</p>
+                                        <p class="fs-6 h6 text-uppercase">Nama / Nik &nbsp;&nbsp;:
+                                            {{ $dataPJ->name }}/{{ $dataPJ->nik }}</p>
                                         <p class="fs-6 h6 text-uppercase">Jabatan
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $dataPJ->jabatan }}
                                         </p>
