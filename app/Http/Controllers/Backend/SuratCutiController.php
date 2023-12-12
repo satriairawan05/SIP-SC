@@ -11,7 +11,7 @@ class SuratCutiController extends Controller
     /**
      * Constructor for Controller.
      */
-    public function __construct(private $name = 'Surat Cuti', public $create = 0, public $read = 0, public $approval = 0, public $update = 0, public $delete = 0)
+    public function __construct(private $name = 'Surat Cuti', public $create = 0, public $read = 0, public $approval = 0, public $update = 0, public $delete = 0, public $close = 0)
     {
         //
     }
@@ -43,6 +43,10 @@ class SuratCutiController extends Controller
 
                 if ($r->action == 'Delete') {
                     $this->delete = $r->access;
+                }
+
+                if ($r->action == 'Closed') {
+                    $this->close = $r->access;
                 }
             }
         }
@@ -149,6 +153,11 @@ class SuratCutiController extends Controller
                 $dataPJ = SuratCuti::select('pjs.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pjs','surat_cutis.pt_id','=','pjs.id')->first();
                 $departemenPJ = \App\Models\Departemen::leftJoin('users','departemens.departemen_id','=','departemens.departemen_id')->where('departemens.departemen_id',$dataPJ->departemen_id)->first();
                 $dataApproval = \App\Models\Approval::select('users.*')->leftJoin('users','approvals.user_id','=','users.id')->get();
+
+                SuratCuti::where('sc_id',$dataSurat->sc_id)->update([
+                    'sc_print_count' => \Illuminate\Support\Facades\DB::raw('sc_print_count + 1')
+                ]);
+
                 return view('backend.surat_cuti.document', [
                     'name' => $this->name,
                     'surat' => $dataSurat,
@@ -240,6 +249,16 @@ class SuratCutiController extends Controller
                         'app_date' => \Carbon\Carbon::now()
                     ]);
 
+                    if($this->close == 1){
+                        SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                            'sc_status' => $request->input('sc_status') == "on" ? 'Close' : 'Continue',
+                        ]);
+                    }
+
+                    SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                        'sc_status' => 'Continue',
+                    ]);
+
                     if($latestApproval->app_ordinal == $suratCuti->sc_approved_step){
                         $stepData = $suratCuti->sc_approved_step;
                     } else {
@@ -250,6 +269,10 @@ class SuratCutiController extends Controller
                     \App\Models\Approval::where('sc_id', $suratCuti->sc_id)->where('user_id', auth()->user()->id)->update([
                         'app_status' => $request->input('sc_disposisi'),
                         'app_date' => \Carbon\Carbon::now()
+                    ]);
+
+                    SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                        'sc_status' => $request->input('sc_disposisi'),
                     ]);
 
                     $stepData = 1;

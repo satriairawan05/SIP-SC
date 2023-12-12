@@ -38,6 +38,11 @@ class PageSeeder extends Seeder
             'action' => 'Approval',
         ]);
 
+        \App\Models\Page::create([
+            'page_name' => 'Surat Cuti',
+            'action' => 'Closed',
+        ]);
+
         // Archive
         \App\Models\Page::create([
             'page_name' => 'Archive',

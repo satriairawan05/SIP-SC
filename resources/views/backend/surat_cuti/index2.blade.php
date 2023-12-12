@@ -6,6 +6,7 @@
     $approval = 0;
     $update = 0;
     $delete = 0;
+    $closing = 0;
 
     foreach ($pages as $r) {
         if ($r->page_name == 'Surat Cuti') {
@@ -26,6 +27,10 @@
             }
 
             if ($r->action == 'Delete') {
+                $delete = $r->access;
+            }
+
+            if ($r->action == 'Closed') {
                 $delete = $r->access;
             }
         }
@@ -80,7 +85,9 @@
                                         <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
                                         <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
-                                            @if ($approval == 1 && \App\Models\Approval::where('sc_id', $s->sc_id)->where('user_id', auth()->user()->id)->where('app_ordinal', (int) $s->sc_approved_step)->first())
+                                            @if (
+                                                $approval == 1 &&
+                                                    \App\Models\Approval::where('sc_id', $s->sc_id)->where('user_id', auth()->user()->id)->where('app_ordinal', (int) $s->sc_approved_step)->first())
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                                     data-target=".bd-example-modal-lg"><i
                                                         class="fa fa-bookmark-o"></i></button>
@@ -143,6 +150,20 @@
                                                                                 placeholder="Ex: Okeee">
                                                                         </div>
                                                                     </div>
+                                                                    @if ($closing == 1)
+                                                                        <div class="row mt-3">
+                                                                            <div class="col-2">
+                                                                                <label for="sc_status">Closing <span
+                                                                                        class="text-danger">*</span></label>
+                                                                            </div>
+                                                                            <div class="col-10">
+                                                                                <input class="form-check-input"
+                                                                                    type="checkbox"
+                                                                                    value="{{ old('sc_status') }}"
+                                                                                    id="sc_status">
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
@@ -155,9 +176,11 @@
                                                     </div>
                                                 </div>
                                             @endif
+                                            @if($s->sc_status != null)
                                             <a href="{{ route('surat_cuti.show', $s->sc_id) }}"
                                                 class="btn btn-sm btn-secondary" target="__blank"><i
                                                     class="fa fa-print"></i></a>
+                                            @endif
                                             @if ($update == 1 && $s->pic_id == auth()->user()->id)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>

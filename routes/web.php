@@ -27,8 +27,8 @@ Route::middleware('auth')->group(function () {
         'name' => 'Dashboard',
         'users' => \App\Models\User::count(),
         'suratCuti' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->count(),
-        'waitSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNull('sc_no_surat')->count(),
-        'accSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNotNull('sc_no_surat')->count()
+        'waitSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNull('sc_status')->count(),
+        'accSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNotNull('sc_status')->count()
     ]))->name('dashboard');
 
     // Logout
