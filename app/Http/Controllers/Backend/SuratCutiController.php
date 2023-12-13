@@ -113,6 +113,12 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
+                $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
+
+                if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
+                    return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
+                }
+
                 SuratCuti::create([
                     'pic_id' => $request->input('pic_id'),
                     'pt_id' => $request->input('pt_id'),
@@ -208,6 +214,12 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->update == 1 && $suratCuti->pic_id == auth()->user()->id) {
             try {
+                $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
+
+                if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
+                    return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
+                }
+
                 SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
                     'pic_id' => $request->input('pic_id'),
                     'pt_id' => $request->input('pt_id'),
