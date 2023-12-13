@@ -177,9 +177,9 @@
                                                 </div>
                                             @endif
                                             @if($s->sc_status != null)
-                                            <a href="{{ route('surat_cuti.show', $s->sc_id) }}"
-                                                class="btn btn-sm btn-secondary" target="__blank"><i
-                                                    class="fa fa-print"></i></a>
+                                            <button type="button" onclick="return printDoc({{ $s->sc_id }})"
+                                                class="btn btn-sm btn-secondary"><i
+                                                    class="fa fa-print"></i></button>
                                             @endif
                                             @if ($update == 1 && $s->pic_id == auth()->user()->id)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
@@ -214,5 +214,45 @@
                 dropdownParent: $('#modal')
             });
         });
+
+        const printDoc = (id) => {
+            var contents = "";
+            var url = "{{ route('surat_cuti.show', ':id') }}";
+            url = url.replace(':id', id);
+            $.get(url, function(data, status) {
+                contents = data;
+                var frame1 = $('<iframe />');
+                frame1[0].name = "frame1";
+                frame1.css({
+                    "position": "absolute",
+                    "top": "-1000000px"
+                });
+                $("body").append(frame1);
+                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument
+                    .document ?
+                    frame1[0].contentDocument.document : frame1[0].contentDocument;
+                frameDoc.document.open();
+                frameDoc.document.write(`
+            <!DOCTYPE html>
+            <html lang="en">
+
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                    <title>{{ env('APP_NAME') }}</title>
+                    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
+                    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}">
+                    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}">
+                    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.ico') }}">
+                </head>
+
+                <body id='bodycontent'>`);
+                frameDoc.document.write(contents);
+                frameDoc.document.write(`
+                </body>
+            </html>`);
+                frameDoc.document.close();
+                set
     </script>
 @endsection
