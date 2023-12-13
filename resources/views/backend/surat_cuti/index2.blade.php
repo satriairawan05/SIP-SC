@@ -253,6 +253,5 @@
                 </body>
             </html>`);
                 frameDoc.document.close();
-                set
     </script>
 @endsection
