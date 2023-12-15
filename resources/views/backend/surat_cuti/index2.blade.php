@@ -176,10 +176,9 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            @if($s->sc_status != null)
-                                            <button type="button" onclick="return printDoc({{ $s->sc_id }})"
-                                                class="btn btn-sm btn-secondary"><i
-                                                    class="fa fa-print"></i></button>
+                                            @if ($s->sc_status != null)
+                                                <button type="button" onclick="return printDoc({{ $s->sc_id }})"
+                                                    class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></button>
                                             @endif
                                             @if ($update == 1 && $s->pic_id == auth()->user()->id)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
@@ -216,23 +215,23 @@
         });
 
         const printDoc = (id) => {
-            var contents = "";
-            var url = "{{ route('surat_cuti.show', ':id') }}";
-            url = url.replace(':id', id);
-            $.get(url, function(data, status) {
-                contents = data;
-                var frame1 = $('<iframe />');
-                frame1[0].name = "frame1";
-                frame1.css({
-                    "position": "absolute",
-                    "top": "-1000000px"
-                });
-                $("body").append(frame1);
-                var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument
-                    .document ?
-                    frame1[0].contentDocument.document : frame1[0].contentDocument;
-                frameDoc.document.open();
-                frameDoc.document.write(`
+                var contents = "";
+                var url = "{{ route('surat_cuti.show', ':id') }}";
+                url = url.replace(':id', id);
+                $.get(url, function(data, status) {
+                            contents = data;
+                            var frame1 = $('<iframe />');
+                            frame1[0].name = "frame1";
+                            frame1.css({
+                                "position": "absolute",
+                                "top": "-1000000px"
+                            });
+                            $("body").append(frame1);
+                            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument
+                                .document ?
+                                frame1[0].contentDocument.document : frame1[0].contentDocument;
+                            frameDoc.document.open();
+                            frameDoc.document.write(`
             <!DOCTYPE html>
             <html lang="en">
 
@@ -248,10 +247,15 @@
                 </head>
 
                 <body id='bodycontent'>`);
-                frameDoc.document.write(contents);
-                frameDoc.document.write(`
+                            frameDoc.document.write(contents);
+                            frameDoc.document.write(`
                 </body>
             </html>`);
-                frameDoc.document.close();
+                            frameDoc.document.close();
+                            setTimeout(function() {
+                                window.frames["frame1"].focus();
+                                window.frames["frame1"].print();
+                                frame1.remove();
+                            }, 1000);
     </script>
 @endsection

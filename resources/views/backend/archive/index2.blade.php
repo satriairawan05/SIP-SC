@@ -90,5 +90,10 @@
                         </body>
                     </html>`);
                             frameDoc.document.close();
+                            setTimeout(function() {
+                                window.frames["frame1"].focus();
+                                window.frames["frame1"].print();
+                                frame1.remove();
+                            }, 1000);
     </script>
 @endsection
