@@ -110,7 +110,7 @@
             </div>
             <ul class="pcoded-item pcoded-left-item">
                 @if ($scRead)
-                    <li class="{{ Request::is('surat_cuti*') ? 'active' : '' }}">
+                    <li class="{{ Request::is('surat_cuti*') && !Request::is('surat_cuti/create') ? 'active' : '' }}">
                         <a href="{{ route('surat_cuti.index') }}" class="waves-effect waves-dark">
                             <span class="pcoded-micon"><i class="ti-envelope"></i><b>SC</b></span>
                             <span class="pcoded-mtext" data-i18n="nav.form.surat_cuti">Surat Cuti</span>
