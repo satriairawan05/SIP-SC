@@ -59,7 +59,9 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>NIK</th>
                                     <th>Jabatan</th>
+                                    <th>Role</th>
                                     <th>Departemen</th>
                                     <th>Lokasi Kerja</th>
                                     <th>Tanggal Masuk</th>
@@ -76,6 +78,8 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->jabatan }}</td>
+                                        <td>{{ $user->nik ?? 'User ini belum memiliki NIK' }}</td>
+                                        <td>{{ $user->group_name ?? 'User ini belum memiliki Role' }}</td>
                                         <td>{{ $user->departemen_name ?? 'User ini belum memiliki Departemen' }}</td>
                                         <td>{{ $user->lokasi_kerja ?? '' }}</td>
                                         <td>{{ \Carbon\Carbon::parse($user->tgl_masuk)->isoFormat('D MMMM YYYY') ?? '' }}</td>

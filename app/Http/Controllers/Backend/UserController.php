@@ -54,9 +54,9 @@ class UserController extends Controller
         if ($this->read == 1) {
             try {
                 if (auth()->user()->group_id == 1) {
-                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->get();
+                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->leftJoin('groups','users.group_id','groups.group_id')->get();
                 } else {
-                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->where('users.id', auth()->user()->id)->get();
+                    $user = User::leftJoin('departemens', 'users.departemen_id', '=', 'departemens.departemen_id')->leftJoin('groups','users.group_id','groups.group_id')->where('users.id', auth()->user()->id)->get();
                 }
 
                 return view('backend.setting.account.index', [
@@ -82,7 +82,8 @@ class UserController extends Controller
             try {
                 return view('backend.setting.account.create', [
                     'name' => $this->name,
-                    'departemen' => \App\Models\Departemen::all()
+                    'departemen' => \App\Models\Departemen::all(),
+                    'group' => \App\Models\Group::all()
                 ]);
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
@@ -112,6 +113,10 @@ class UserController extends Controller
                         'email' => $request->input('email'),
                         'password' => bcrypt($request->input('password')),
                         'jabatan' => $request->input('jabatan'),
+                        'nik' => $request->input('nik'),
+                        'lokasi_kerja' => $request->input('lokasi_kerja'),
+                        'tanggal_masuk' => $request->input('tanggal_masuk'),
+                        'group_id' => $request->input('group_id'),
                         'departemen_id' => $request->input('departemen_id'),
                     ]);
 
@@ -148,7 +153,8 @@ class UserController extends Controller
                     return view('backend.setting.account.edit', [
                         'name' => $this->name,
                         'user' => $user,
-                        'departemen' => \App\Models\Departemen::all()
+                        'departemen' => \App\Models\Departemen::all(),
+                        'group' => \App\Models\Group::all()
                     ]);
                 } else {
                     return redirect()->back()->with('failed', 'You not Have Authority!');
@@ -181,6 +187,10 @@ class UserController extends Controller
                         'email' => $request->input('email'),
                         'password' => bcrypt($request->input('password')),
                         'jabatan' => $request->input('jabatan'),
+                        'nik' => $request->input('nik'),
+                        'lokasi_kerja' => $request->input('lokasi_kerja'),
+                        'tanggal_masuk' => $request->input('tanggal_masuk'),
+                        'group_id' => $request->input('group_id'),
                         'departemen_id' => $request->input('departemen_id'),
                     ]);
 

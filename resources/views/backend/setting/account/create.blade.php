@@ -106,17 +106,18 @@
                                     @enderror
                                 </div>
                                 <div class="col-6">
-                                    <label for="departemen_id">Departemen <span class="text-danger">*</span></label>
-                                    <select class="select2 form-control form-control-sm" name="departemen_id">
-                                        @foreach ($departemen as $d)
-                                            @if (old('departemen_id') == $d->departemen_id)
-                                                <option value="{{ $d->departemen_id }}" selected>{{ $d->departemen_name }}
-                                                </option>
-                                            @else
-                                                <option value="{{ $d->departemen_id }}">{{ $d->departemen_name }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                                    <label for="nik">NIK <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                        class="form-control form-control-sm @error('nik')
+                                    is-invalid
+                                @enderror"
+                                        id="nik" placeholder="Masukan NIK" value="{{ old('nik') }}"
+                                        name="nik" required>
+                                    @error('nik')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -127,8 +128,8 @@
                                         class="form-control form-control-sm @error('lokasi_kerja')
                                     is-invalid
                                 @enderror"
-                                        id="lokasi_kerja" placeholder="Masukan Lokasi Kerja" value="{{ old('lokasi_kerja') }}"
-                                        name="lokasi_kerja" required>
+                                        id="lokasi_kerja" placeholder="Masukan Lokasi Kerja"
+                                        value="{{ old('lokasi_kerja') }}" name="lokasi_kerja" required>
                                     @error('lokasi_kerja')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -142,8 +143,8 @@
                                         class="form-control form-control-sm @error('tgl_masuk')
                                     is-invalid
                                 @enderror"
-                                        id="tgl_masuk" placeholder="Masukan Tanggal Masuk Kerja" value="{{ old('tgl_masuk',date('Y-M-d')) }}"
-                                        name="tgl_masuk" required>
+                                        id="tgl_masuk" placeholder="Masukan Tanggal Masuk Kerja"
+                                        value="{{ old('tgl_masuk', date('Y-M-d')) }}" name="tgl_masuk" required>
                                     @error('tgl_masuk')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -151,9 +152,39 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label for="departemen_id">Departemen <span class="text-danger">*</span></label>
+                                    <select class="select2 form-control form-control-sm" name="departemen_id">
+                                        @foreach ($departemen as $d)
+                                            @if (old('departemen_id') == $d->departemen_id)
+                                                <option value="{{ $d->departemen_id }}" selected>
+                                                    {{ $d->departemen_name }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $d->departemen_id }}">{{ $d->departemen_name }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="group_id">Role <span class="text-danger">*</span></label>
+                                    <select class="select2 form-control form-control-sm" name="group_id">
+                                        @foreach ($group as $d)
+                                            @if (old('group_id') == $d->group_id)
+                                                <option value="{{ $d->group_id }}" selected>{{ $d->group_name }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $d->group_id }}">{{ $d->group_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center">
-                                    <a href="{{ route('departemen.index') }}" class="btn btn-sm btn-info mx-2"><i
+                                    <a href="{{ route('user.index') }}" class="btn btn-sm btn-info mx-2"><i
                                             class="fa fa-reply-all"></i></a>
                                     <button type="submit" class="btn btn-sm btn-success">Submit</button>
                                 </div>
