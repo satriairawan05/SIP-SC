@@ -92,12 +92,21 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                Departemen::creeate([
-                    'departemen_name' => $request->input('departemen_name'),
-                    'departemen_alias' => $request->input('departemen_alias'),
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'departemen_name' => ['required'],
+                    'departemen_alias' => ['required'],
                 ]);
 
-                return redirect()->to(route('departemen.index'))->with('success','Added successfully!');
+                if(!$validated->fails()){
+                    Departemen::creeate([
+                        'departemen_name' => $request->input('departemen_name'),
+                        'departemen_alias' => $request->input('departemen_alias'),
+                    ]);
+
+                    return redirect()->to(route('departemen.index'))->with('success','Data Saved!');
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -142,13 +151,23 @@ class DepartemenController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                $data = $departemen->find(request()->segment(2));
-                Departemen::where('departemen_id', $data->departemen_id)->update([
-                    'departemen_name' => $request->input('departemen_name'),
-                    'departemen_alias' => $request->input('departemen_alias'),
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'departemen_name' => ['required'],
+                    'departemen_alias' => ['required'],
                 ]);
 
-                return redirect()->to(route('departemen.index'))->with('success','Updated successfully!');
+                if(!$validated->fails()){
+                    $data = $departemen->find(request()->segment(2));
+                    Departemen::where('departemen_id', $data->departemen_id)->update([
+                        'departemen_name' => $request->input('departemen_name'),
+                        'departemen_alias' => $request->input('departemen_alias'),
+                    ]);
+
+                    return redirect()->to(route('departemen.index'))->with('success','Data Updated!');
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
+
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -168,7 +187,7 @@ class DepartemenController extends Controller
                 $data = $departemen->find(request()->segment(2));
                 Departemen::destroy($data->departemen_id);
 
-                return redirect()->back()->with('success','Deleted successfully!');
+                return redirect()->back()->with('success','Data Deleted!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

@@ -93,15 +93,26 @@ class ApprovalController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                Approval::create([
-                    'user_id' => $request->input('user_id'),
-                    'departemen_id' => $request->input('departemen_id'),
-                    'app_ordinal' => $request->input('app_ordinal'),
-                    'sc_id' => $request->input('sc_id'),
-                    'created_by' => auth()->user()->name
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'app_ordinal' => ['required'],
+                    'user_id' => ['required'],
+                    'departemen_id' => ['required'],
+                    'sc_id' => ['required'],
                 ]);
 
-                return redirect()->back()->with('success', 'Data Saved!');
+                if(!$validated->fails()){
+                    Approval::create([
+                        'user_id' => $request->input('user_id'),
+                        'departemen_id' => $request->input('departemen_id'),
+                        'app_ordinal' => $request->input('app_ordinal'),
+                        'sc_id' => $request->input('sc_id'),
+                        'created_by' => auth()->user()->name
+                    ]);
+
+                    return redirect()->back()->with('success', 'Data Saved!');
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -134,15 +145,26 @@ class ApprovalController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                Approval::where('app_id', $approval->app_id)->update([
-                    'user_id' => $request->input('user_id'),
-                    'departemen_id' => $request->input('departemen_id'),
-                    'app_ordinal' => $request->input('app_ordinal'),
-                    'sc_id' => $request->input('sc_id'),
-                    'updated_by' => auth()->user()->name
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'app_ordinal' => ['required'],
+                    'user_id' => ['required'],
+                    'departemen_id' => ['required'],
+                    'sc_id' => ['required'],
                 ]);
 
-                return redirect()->back()->with('success', 'Data Updated!');
+                if(!$validated->fails()){
+                    Approval::where('app_id', $approval->app_id)->update([
+                        'user_id' => $request->input('user_id'),
+                        'departemen_id' => $request->input('departemen_id'),
+                        'app_ordinal' => $request->input('app_ordinal'),
+                        'sc_id' => $request->input('sc_id'),
+                        'updated_by' => auth()->user()->name
+                    ]);
+
+                    return redirect()->back()->with('success', 'Data Updated!');
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

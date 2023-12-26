@@ -113,30 +113,45 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
-
-                if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
-                    return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
-                }
-
-                SuratCuti::create([
-                    'pic_id' => $request->input('pic_id'),
-                    'pt_id' => $request->input('pt_id'),
-                    'cuti_id' => $request->input('cuti_id'),
-                    'departemen_id' => $request->input('departemen_id'),
-                    'sc_tgl_ambil_start' => $request->input('sc_tgl_ambil_start'),
-                    'sc_tgl_ambil_end' => $request->input('sc_tgl_ambil_end'),
-                    'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
-                    'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
-                    'sc_no_surat' => $request->input('sc_no_surat'),
-                    'sc_no_surat_old' => $request->input('sc_no_surat'),
-                    'sc_no_hp' => $request->input('sc_no_hp'),
-                    'sc_tgl_surat' => \Carbon\Carbon::now(),
-                    'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400,
-                    'sc_approved_step' => 1,
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'sc_tgl_ambil_start' => ['required'],
+                    'sc_tgl_ambil_end' => ['required'],
+                    'sc_tgl_kembali' => ['required'],
+                    'sc_alamat_cuti' => ['required'],
+                    'sc_no_surat' => ['required'],
+                    'sc_no_surat_old' => ['required'],
+                    'sc_no_hp' => ['required'],
                 ]);
 
-                return redirect()->to(route('surat_cuti.index'))->with('success', 'Added Succesfully!');
+                if(!$validated->fails()){
+                    $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
+
+                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
+                        return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
+                    }
+
+                    SuratCuti::create([
+                        'pic_id' => $request->input('pic_id'),
+                        'pt_id' => $request->input('pt_id'),
+                        'cuti_id' => $request->input('cuti_id'),
+                        'departemen_id' => $request->input('departemen_id'),
+                        'sc_tgl_ambil_start' => $request->input('sc_tgl_ambil_start'),
+                        'sc_tgl_ambil_end' => $request->input('sc_tgl_ambil_end'),
+                        'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
+                        'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
+                        'sc_no_surat' => $request->input('sc_no_surat'),
+                        'sc_no_surat_old' => $request->input('sc_no_surat'),
+                        'sc_no_hp' => $request->input('sc_no_hp'),
+                        'sc_tgl_surat' => \Carbon\Carbon::now(),
+                        'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400,
+                        'sc_approved_step' => 1,
+                    ]);
+
+                    return redirect()->to(route('surat_cuti.index'))->with('success', 'Added Succesfully!');
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
+
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -214,25 +229,39 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->update == 1 && $suratCuti->pic_id == auth()->user()->id) {
             try {
-                $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
-
-                if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
-                    return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
-                }
-
-                SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
-                    'pic_id' => $request->input('pic_id'),
-                    'pt_id' => $request->input('pt_id'),
-                    'cuti_id' => $request->input('cuti_id'),
-                    'departemen_id' => $request->input('departemen_id'),
-                    'sc_tgl_ambil_start' => $request->input('sc_tgl_ambil_start'),
-                    'sc_tgl_ambil_end' => $request->input('sc_tgl_ambil_end'),
-                    'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
-                    'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
-                    'sc_no_hp' => $request->input('sc_no_hp'),
-                    'sc_no_surat' => $request->input('sc_no_surat'),
-                    'sc_tgl_surat_rev' => \Carbon\Carbon::now()
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'sc_tgl_ambil_start' => ['required'],
+                    'sc_tgl_ambil_end' => ['required'],
+                    'sc_tgl_kembali' => ['required'],
+                    'sc_alamat_cuti' => ['required'],
+                    'sc_no_surat' => ['required'],
+                    'sc_no_surat_old' => ['required'],
+                    'sc_no_hp' => ['required'],
                 ]);
+
+                if(!$validated->fails()){
+                    $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
+
+                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
+                        return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
+                    }
+
+                    SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                        'pic_id' => $request->input('pic_id'),
+                        'pt_id' => $request->input('pt_id'),
+                        'cuti_id' => $request->input('cuti_id'),
+                        'departemen_id' => $request->input('departemen_id'),
+                        'sc_tgl_ambil_start' => $request->input('sc_tgl_ambil_start'),
+                        'sc_tgl_ambil_end' => $request->input('sc_tgl_ambil_end'),
+                        'sc_tgl_kembali' => $request->input('sc_tgl_kembali'),
+                        'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
+                        'sc_no_hp' => $request->input('sc_no_hp'),
+                        'sc_no_surat' => $request->input('sc_no_surat'),
+                        'sc_tgl_surat_rev' => \Carbon\Carbon::now()
+                    ]);
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
 
                 return redirect()->to(route('surat_cuti.index'))->with('success', 'Updated Succesfully!');
             } catch (\Illuminate\Database\QueryException $e) {

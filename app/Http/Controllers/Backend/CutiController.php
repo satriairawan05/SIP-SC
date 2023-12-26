@@ -92,12 +92,22 @@ class CutiController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                Cuti::create([
-                    'cuti_jenis' => $request->input('cuti_jenis'),
-                    'cuti_jumlah' => $request->input('cuti_jumlah'),
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'cuti_jenis' => ['required'],
+                    'cuti_jumlah' => ['required'],
                 ]);
 
-                return redirect()->to(route('cuti.index'))->with('success','Added successfully!');
+                if(!$validated->fails()){
+                    Cuti::create([
+                        'cuti_jenis' => $request->input('cuti_jenis'),
+                        'cuti_jumlah' => $request->input('cuti_jumlah'),
+                    ]);
+
+                    return redirect()->to(route('cuti.index'))->with('success','Added successfully!');
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
+
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -143,12 +153,22 @@ class CutiController extends Controller
         $this->get_access_page();
         if ($this->update == 1) {
             try {
-                Cuti::where('cuti_id',$cuti->cuti_id)->update([
-                    'cuti_jenis' => $request->input('cuti_jenis'),
-                    'cuti_jumlah' => $request->input('cuti_jumlah'),
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                    'cuti_jenis' => ['required'],
+                    'cuti_jumlah' => ['required'],
                 ]);
 
-                return redirect()->to(route('cuti.index'))->with('success','Updated successfully!');
+                if(!$validated->fails()){
+                    Cuti::where('cuti_id',$cuti->cuti_id)->update([
+                        'cuti_jenis' => $request->input('cuti_jenis'),
+                        'cuti_jumlah' => $request->input('cuti_jumlah'),
+                    ]);
+
+                    return redirect()->to(route('cuti.index'))->with('success','Updated successfully!');
+                } else {
+                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                }
+
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
