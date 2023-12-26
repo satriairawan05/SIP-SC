@@ -126,7 +126,9 @@ class SuratCutiController extends Controller
                 if(!$validated->fails()){
                     $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
 
-                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
+                    $oneDay = 86400;
+
+                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay) > $cuti->cuti_jumlah){
                         return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
                     }
 
@@ -143,7 +145,7 @@ class SuratCutiController extends Controller
                         'sc_no_surat_old' => $request->input('sc_no_surat'),
                         'sc_no_hp' => $request->input('sc_no_hp'),
                         'sc_tgl_surat' => \Carbon\Carbon::now(),
-                        'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400,
+                        'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay,
                         'sc_approved_step' => 1,
                     ]);
 
@@ -242,7 +244,9 @@ class SuratCutiController extends Controller
                 if(!$validated->fails()){
                     $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
 
-                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / 86400) > $cuti->cuti_jumlah){
+                    $oneDay = 86400;
+
+                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay) > $cuti->cuti_jumlah){
                         return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
                     }
 
@@ -257,7 +261,8 @@ class SuratCutiController extends Controller
                         'sc_alamat_cuti' => $request->input('sc_alamat_cuti'),
                         'sc_no_hp' => $request->input('sc_no_hp'),
                         'sc_no_surat' => $request->input('sc_no_surat'),
-                        'sc_tgl_surat_rev' => \Carbon\Carbon::now()
+                        'sc_tgl_surat_rev' => \Carbon\Carbon::now(),
+                        'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay,
                     ]);
                 } else {
                     return redirect()->bak()->with('failed', $validated->getMessageBag());
