@@ -176,8 +176,9 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <button type="button" onclick="return printDoc({{ $s->sc_id }})"
-                                                class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></button>
+                                            <a href="{{ route('surat_cuti.show',$s->sc_id) }}"class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></a>
+                                            {{-- <button type="button" onclick="return printDoc({{ $s->sc_id }})"
+                                                class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></button> --}}
                                             @if ($update == 1 && $s->pic_id == auth()->user()->id)
                                                 <a href="{{ route('surat_cuti.edit', $s->sc_id) }}"
                                                     class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
