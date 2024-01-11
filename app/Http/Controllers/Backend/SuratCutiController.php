@@ -265,7 +265,7 @@ class SuratCutiController extends Controller
                         'sc_jumlah_cuti' => (strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay,
                     ]);
                 } else {
-                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                    return redirect()->back()->with('failed', $validated->getMessageBag());
                 }
 
                 return redirect()->to(route('surat_cuti.index'))->with('success', 'Updated Succesfully!');
