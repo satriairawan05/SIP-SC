@@ -119,7 +119,7 @@ class SuratCutiController extends Controller
                     'sc_tgl_kembali' => ['required'],
                     'sc_alamat_cuti' => ['required'],
                     'sc_no_surat' => ['required'],
-                    'sc_no_surat_old' => ['required'],
+                    // 'sc_no_surat_old' => ['required'],
                     'sc_no_hp' => ['required'],
                 ]);
 
@@ -237,7 +237,7 @@ class SuratCutiController extends Controller
                     'sc_tgl_kembali' => ['required'],
                     'sc_alamat_cuti' => ['required'],
                     'sc_no_surat' => ['required'],
-                    'sc_no_surat_old' => ['required'],
+                    // 'sc_no_surat_old' => ['required'],
                     'sc_no_hp' => ['required'],
                 ]);
 
