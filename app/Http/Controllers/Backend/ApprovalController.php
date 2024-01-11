@@ -94,7 +94,7 @@ class ApprovalController extends Controller
         if ($this->create == 1) {
             try {
                 $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
-                    'app_ordinal' => ['required'],
+                    // 'app_ordinal' => ['required'],
                     'user_id' => ['required'],
                     'departemen_id' => ['required'],
                     'sc_id' => ['required'],
@@ -146,7 +146,7 @@ class ApprovalController extends Controller
         if ($this->update == 1) {
             try {
                 $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
-                    'app_ordinal' => ['required'],
+                    // 'app_ordinal' => ['required'],
                     'user_id' => ['required'],
                     'departemen_id' => ['required'],
                     'sc_id' => ['required'],
