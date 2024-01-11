@@ -165,7 +165,7 @@ class DepartemenController extends Controller
 
                     return redirect()->to(route('departemen.index'))->with('success','Data Updated!');
                 } else {
-                    return redirect()->bak()->with('failed', $validated->getMessageBag());
+                    return redirect()->back()->with('failed', $validated->getMessageBag());
                 }
 
             } catch (\Illuminate\Database\QueryException $e) {
