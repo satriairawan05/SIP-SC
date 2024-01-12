@@ -332,7 +332,7 @@
                                     <span class="fs-6 ms-2 text-center">{{ $dataPic->name }}</span><br>
                                     <span class="fs-6 ms-2 text-center">{{ $dataPic->jabatan }}</span>
                                 </div>
-                                @if ($s->sc_status != null)
+                                @if ($surat->sc_status != null)
                                     <div class="col-3 border-keliling" style="border: 1px solid black !important;">
                                         <span class="fs-6 ms-2 text-center">Disetujui oleh,</span>
                                         <br>

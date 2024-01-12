@@ -39,7 +39,8 @@
                                     <td>{{ \Carbon\Carbon::parse($s->sc_tgl_surat)->isoFormat('DD MMMM YYYY') }}</td>
                                     <td>{{ $s->sc_no_surat }}</td>
                                     <td>
-                                        <a href="{{ route('surat_cuti.show',$s->sc_id) }}"class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></a>
+                                        <a href="{{ route('surat_cuti.show', $s->sc_id) }}"class="btn btn-sm btn-secondary"
+                                            target="__blank"><i class="fa fa-print"></i></a>
                                         {{-- <button type="button" onclick="return printDoc({{ $s->sc_id }})"
                                             class="btn btn-sm btn-secondary"><i class="fa fa-print"></i></button> --}}
                                     </td>
