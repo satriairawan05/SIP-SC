@@ -99,7 +99,7 @@
                                             <td>
                                                 <input type="number" name="app_ordinal" id="app_ordinal"
                                                     class="form-control form-control-sm" placeholder="Masukan Ordinal ex: 1"
-                                                    min="1" max="4" step="1"
+                                                    min="1" max="3" step="1"
                                                     value="{{ old('app_ordinal', $app->app_ordinal) }}">
                                             </td>
                                             <td>
