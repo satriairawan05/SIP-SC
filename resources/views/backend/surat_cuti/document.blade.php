@@ -17,7 +17,7 @@
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .tebal {
