@@ -113,7 +113,7 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->create == 1) {
             try {
-                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(), [
                     'sc_tgl_ambil_start' => ['required'],
                     'sc_tgl_ambil_end' => ['required'],
                     'sc_tgl_kembali' => ['required'],
@@ -123,12 +123,12 @@ class SuratCutiController extends Controller
                     'sc_no_hp' => ['required'],
                 ]);
 
-                if(!$validated->fails()){
+                if (!$validated->fails()) {
                     $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
 
                     $oneDay = 86400;
 
-                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay) > $cuti->cuti_jumlah){
+                    if (((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay) > $cuti->cuti_jumlah) {
                         return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
                     }
 
@@ -153,7 +153,6 @@ class SuratCutiController extends Controller
                 } else {
                     return redirect()->bak()->with('failed', $validated->getMessageBag());
                 }
-
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
@@ -171,13 +170,13 @@ class SuratCutiController extends Controller
         if ($this->read == 1) {
             try {
                 $dataSurat = $suratCuti->find(request()->segment(2));
-                $dataPic = SuratCuti::select('pics.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pics','surat_cutis.pic_id','=','pics.id')->first();
-                $departemenPic = \App\Models\Departemen::leftJoin('users','departemens.departemen_id','=','departemens.departemen_id')->where('departemens.departemen_id',$dataPic->departemen_id)->first();
-                $dataPJ = SuratCuti::select('pjs.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pjs','surat_cutis.pt_id','=','pjs.id')->first();
-                $departemenPJ = \App\Models\Departemen::leftJoin('users','departemens.departemen_id','=','departemens.departemen_id')->where('departemens.departemen_id',$dataPJ->departemen_id)->first();
-                $dataApproval = \App\Models\Approval::select('users.*')->leftJoin('users','approvals.user_id','=','users.id')->get();
+                $dataPic = SuratCuti::select('pics.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->first();
+                $departemenPic = \App\Models\Departemen::leftJoin('users', 'departemens.departemen_id', '=', 'departemens.departemen_id')->where('departemens.departemen_id', $dataPic->departemen_id)->first();
+                $dataPJ = SuratCuti::select('pjs.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pjs', 'surat_cutis.pt_id', '=', 'pjs.id')->first();
+                $departemenPJ = \App\Models\Departemen::leftJoin('users', 'departemens.departemen_id', '=', 'departemens.departemen_id')->where('departemens.departemen_id', $dataPJ->departemen_id)->first();
+                $dataApproval = \App\Models\Approval::select('users.*')->leftJoin('users', 'approvals.user_id', '=', 'users.id')->get();
 
-                SuratCuti::where('sc_id',$dataSurat->sc_id)->update([
+                SuratCuti::where('sc_id', $dataSurat->sc_id)->update([
                     'sc_print_count' => \Illuminate\Support\Facades\DB::raw('sc_print_count + 1')
                 ]);
 
@@ -231,7 +230,7 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->update == 1 && $suratCuti->pic_id == auth()->user()->id) {
             try {
-                $validated = \Illuminate\Support\Facades\Validator::make($request->all(),[
+                $validated = \Illuminate\Support\Facades\Validator::make($request->all(), [
                     'sc_tgl_ambil_start' => ['required'],
                     'sc_tgl_ambil_end' => ['required'],
                     'sc_tgl_kembali' => ['required'],
@@ -241,12 +240,12 @@ class SuratCutiController extends Controller
                     'sc_no_hp' => ['required'],
                 ]);
 
-                if(!$validated->fails()){
+                if (!$validated->fails()) {
                     $cuti = \App\Models\Cuti::where('cuti_id', $request->input('cuti_id'))->first();
 
                     $oneDay = 86400;
 
-                    if(((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay) > $cuti->cuti_jumlah){
+                    if (((strtotime($request->input('sc_tgl_ambil_end')) - strtotime($request->input('sc_tgl_ambil_start'))) / $oneDay) > $cuti->cuti_jumlah) {
                         return redirect()->back()->with('failed', 'Jumlah Cuti yang anda masukan melebihi ketentuan cuti yang ada');
                     }
 
@@ -285,52 +284,49 @@ class SuratCutiController extends Controller
         $this->get_access_page();
         if ($this->approval == 1) {
             try {
-                $pic = \App\Models\User::where('id', $suratCuti->pic_id)->select('name')->first();
+                $dataSC = $suratCuti->find(request()->segment(2));
+                $pic = \App\Models\User::where('id', $dataSC->pic_id)->select('name')->first();
                 $stepData = null;
 
-                $latestApproval = \App\Models\Approval::where('sc_id', $suratCuti->sc_id)->latest('app_ordinal')->first();
-                if($request->input('sc_dipsosisi') == 'Accepted'){
-                    \App\Models\Approval::where('sc_id', $suratCuti->sc_id)->where('user_id', auth()->user()->id)->update([
+                if ($request->input('sc_dipsosisi') == 'Accepted') {
+                    \App\Models\Approval::where('sc_id', $dataSC->sc_id)->where('user_id', auth()->user()->id)->update([
                         'app_status' => $request->input('sc_disposisi'),
                         'app_date' => \Carbon\Carbon::now()
                     ]);
 
-                    if($this->close == 1){
-                        SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                    if ($this->close == 1) {
+                        SuratCuti::where('sc_id', $dataSC->sc_id)->update([
                             'sc_status' => $request->input('sc_status') == "on" ? 'Close' : 'Continue',
                         ]);
                     }
 
-                    SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
-                        'sc_status' => 'Continue',
+                    $latestApproval = \App\Models\Approval::where('sc_id', $dataSC->sc_id)->latest('app_ordinal')->first();
+
+                    SuratCuti::where('sc_id', $dataSC->sc_id)->update([
+                        'sc_disposisi' => $request->input('sc_disposisi'),
+                        'sc_remark' => $request->input('sc_remark'),
+                        'sc_approved_step' => $latestApproval->app_ordinal == $dataSC->sc_approved_step ? $dataSC->sc_approved_step : $dataSC->sc_approved_step + 1
                     ]);
-
-                    if($latestApproval->app_ordinal == $suratCuti->sc_approved_step){
-                        $stepData = $suratCuti->sc_approved_step;
-                    } else {
-                        $stepData = $suratCuti->sc_approved_step + 1;
-                    }
-
                 } else {
-                    \App\Models\Approval::where('sc_id', $suratCuti->sc_id)->where('user_id', auth()->user()->id)->update([
+                    \App\Models\Approval::where('sc_id', $dataSC->sc_id)->where('user_id', auth()->user()->id)->update([
                         'app_status' => $request->input('sc_disposisi'),
                         'app_date' => \Carbon\Carbon::now()
                     ]);
 
-                    SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
+                    SuratCuti::where('sc_id', $dataSC->sc_id)->update([
                         'sc_status' => $request->input('sc_disposisi'),
                     ]);
 
                     $stepData = 1;
+
+                    SuratCuti::where('sc_id', $dataSC->sc_id)->update([
+                        'sc_disposisi' => $request->input('sc_disposisi'),
+                        'sc_remark' => $request->input('sc_remark'),
+                        'sc_approved_step' => $stepData
+                    ]);
                 }
 
-                SuratCuti::where('sc_id', $suratCuti->sc_id)->update([
-                    'sc_disposisi' => $request->input('sc_disposisi'),
-                    'sc_remark' => $request->input('sc_remark'),
-                    'sc_approved_step' => $stepData
-                ]);
-
-                return redirect()->back()->with('success', 'Surat Cuti '. $pic->name .' telah anda '. $suratCuti->sc_disposisi .'!');
+                return redirect()->back()->with('success', 'Surat Cuti ' . $pic->name . ' telah anda ' . $dataSC->sc_disposisi . '!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }

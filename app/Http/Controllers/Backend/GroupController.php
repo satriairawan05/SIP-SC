@@ -162,14 +162,15 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        if (auth()->user()->group_id == 1) {
+        $role = $group->find(request()->segment(2));
+        if ($role->group_id != 1) {
             try {
-                Group::where('group_id', $group->group_id)->delete();
+                Group::where('group_id', $role->group_id)->delete();
 
                 $pages = \App\Models\Page::all();
                 foreach ($pages as $page) {
                     $groupPage = \App\Models\GroupPage::where([
-                        'group_id' => $group->group_id,
+                        'group_id' => $role->group_id,
                         'page_id' => $page->page_id,
                     ])->first();
                     if ($groupPage) {
