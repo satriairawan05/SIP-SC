@@ -85,9 +85,10 @@
                                         <td>{{ $s->sc_no_surat ?? 'Data surat belum tersedia' }}</td>
                                         <td>{{ $s->sc_jumlah_cuti ?? 'Data belum tersedia' }} Hari</td>
                                         <td>
-                                            @if (
-                                                $approval == 1 &&
-                                                    \App\Models\Approval::where('sc_id', $s->sc_id)->where('user_id', auth()->user()->id)->where('app_ordinal', (int) $s->sc_approved_step)->first())
+                                            @php
+                                                $app = \App\Models\Approval::where('departemen_id', $s->departemen_id)->where('user_id',auth()->user()->id)->first();
+                                            @endphp
+                                            @if ($approval == 1 && $app->app_ordinal == $s->sc_approved_step)
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                                     data-target=".bd-example-modal-lg"><i
                                                         class="fa fa-bookmark-o"></i></button>
