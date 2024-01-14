@@ -291,7 +291,7 @@ class SuratCutiController extends Controller
                 if ($request->input('sc_dipsosisi') == 'Accepted') {
                     \App\Models\Approval::where('sc_id', $dataSC->sc_id)->where('user_id', auth()->user()->id)->update([
                         'app_status' => $request->input('sc_disposisi'),
-                        'app_date' => \Carbon\Carbon::now()
+                        'app_date' => \Carbon\Carbon::now(),
                     ]);
 
                     if ($this->close == 1) {
@@ -302,10 +302,12 @@ class SuratCutiController extends Controller
 
                     $latestApproval = \App\Models\Approval::where('sc_id', $dataSC->sc_id)->latest('app_ordinal')->first();
 
+                    $stepData = $latestApproval->app_ordinal == $dataSC->sc_approved_step ? $dataSC->sc_approved_step : $dataSC->sc_approved_step + 1;
+
                     SuratCuti::where('sc_id', $dataSC->sc_id)->update([
-                        'sc_disposisi' => $request->input('sc_disposisi'),
+                        'sc_status' => $request->input('sc_disposisi'),
                         'sc_remark' => $request->input('sc_remark'),
-                        'sc_approved_step' => $latestApproval->app_ordinal == $dataSC->sc_approved_step ? $dataSC->sc_approved_step : $dataSC->sc_approved_step + 1
+                        'sc_approved_step' => $stepData
                     ]);
                 } else {
                     \App\Models\Approval::where('sc_id', $dataSC->sc_id)->where('user_id', auth()->user()->id)->update([
@@ -313,20 +315,16 @@ class SuratCutiController extends Controller
                         'app_date' => \Carbon\Carbon::now()
                     ]);
 
-                    SuratCuti::where('sc_id', $dataSC->sc_id)->update([
-                        'sc_status' => $request->input('sc_disposisi'),
-                    ]);
-
                     $stepData = 1;
 
                     SuratCuti::where('sc_id', $dataSC->sc_id)->update([
-                        'sc_disposisi' => $request->input('sc_disposisi'),
+                        'sc_status' => $request->input('sc_disposisi'),
                         'sc_remark' => $request->input('sc_remark'),
                         'sc_approved_step' => $stepData
                     ]);
                 }
 
-                return redirect()->back()->with('success', 'Surat Cuti ' . $pic->name . ' telah anda ' . $dataSC->sc_disposisi . '!');
+                return redirect()->back()->with('success', 'Surat Cuti ' . $pic->name . ' telah anda ' . $dataSC->sc_status . '!');
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->with('failed', $e->getMessage());
             }
