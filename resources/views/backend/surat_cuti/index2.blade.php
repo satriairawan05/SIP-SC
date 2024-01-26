@@ -88,7 +88,7 @@
                                             @php
                                                 $app = \App\Models\Approval::where('departemen_id', $s->departemen_id)->where('user_id',auth()->user()->id)->first();
                                             @endphp
-                                            @if ($approval == 1 && $app && $app->app_ordinal == $s->sc_approved_step)
+                                            @if ($approval == 1 && $app && $app->app_ordinal == $s->sc_approved_step && $app->app_date == null)
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                                     data-target=".bd-example-modal-lg"><i
                                                         class="fa fa-bookmark-o"></i></button>

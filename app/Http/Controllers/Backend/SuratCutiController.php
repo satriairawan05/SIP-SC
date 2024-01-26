@@ -69,7 +69,7 @@ class SuratCutiController extends Controller
                 } else {
                     return view('backend.surat_cuti.index2', [
                         'name' => $this->name,
-                        'cuti' => SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get(),
+                        'cuti' => SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->leftJoin('approvals', 'surat_cutis.sc_id', '=', 'approvals.sc_id')->where('approvals.user_id', auth()->user()->id)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get(),
                         'departemen' => \App\Models\Departemen::select('departemen_name')->where('departemen_id', request()->input('departemen_id'))->first(),
                         'pages' => $this->get_access($this->name, auth()->user()->group_id),
                     ]);
@@ -282,27 +282,33 @@ class SuratCutiController extends Controller
     public function approval(Request $request, SuratCuti $suratCuti)
     {
         $this->get_access_page();
-        if ($this->approval == 1) {
-            try {
-                $dataSC = $suratCuti->find(request()->segment(2));
-                $pic = \App\Models\User::where('id', $dataSC->pic_id)->select('name')->first();
-                $stepData = null;
+        try {
+            $dataSC = $suratCuti->find(request()->segment(2));
+            $pic = \App\Models\User::where('id', $dataSC->pic_id)->select('name')->first();
+            $stepData = null;
+            $app = \App\Models\Approval::where('sc_id', $dataSC->sc_id)->where('user_id', auth()->user()->id)->first();
+            if ($this->approval == 1 && $app && $dataSC->sc_approved_step == $app->app_ordinal && $app->app_date == null) {
+                $userId = auth()->user()->id;
 
-                if ($request->input('sc_dipsosisi') == 'Accepted') {
-                    \App\Models\Approval::where('sc_id', $dataSC->sc_id)->where('user_id', auth()->user()->id)->update([
+                \App\Models\Approval::where('sc_id', $dataSC->sc_id)
+                    ->where('user_id', $userId)
+                    ->update([
                         'app_status' => $request->input('sc_disposisi'),
                         'app_date' => \Carbon\Carbon::now(),
                     ]);
 
+                $latestApproval = \App\Models\Approval::where('sc_id', $dataSC->sc_id)->latest('app_ordinal')->first();
+
+                if ($request->input('sc_disposisi') == 'Accepted') {
                     if ($this->close == 1) {
                         SuratCuti::where('sc_id', $dataSC->sc_id)->update([
                             'sc_status' => $request->input('sc_status') == "on" ? 'Close' : 'Continue',
                         ]);
                     }
 
-                    $latestApproval = \App\Models\Approval::where('sc_id', $dataSC->sc_id)->latest('app_ordinal')->first();
-
-                    $stepData = $latestApproval->app_ordinal == $dataSC->sc_approved_step ? $dataSC->sc_approved_step : $dataSC->sc_approved_step + 1;
+                    $stepData = $latestApproval && $latestApproval->app_ordinal != $suratCuti->sc_approved_step
+                        ? $suratCuti->sc_approved_step + 1
+                        : $suratCuti->sc_approved_step;
 
                     SuratCuti::where('sc_id', $dataSC->sc_id)->update([
                         'sc_status' => $request->input('sc_disposisi'),
@@ -310,26 +316,21 @@ class SuratCutiController extends Controller
                         'sc_approved_step' => $stepData
                     ]);
                 } else {
-                    \App\Models\Approval::where('sc_id', $dataSC->sc_id)->where('user_id', auth()->user()->id)->update([
-                        'app_status' => $request->input('sc_disposisi'),
-                        'app_date' => \Carbon\Carbon::now()
-                    ]);
-
-                    $stepData = 1;
-
                     SuratCuti::where('sc_id', $dataSC->sc_id)->update([
                         'sc_status' => $request->input('sc_disposisi'),
                         'sc_remark' => $request->input('sc_remark'),
-                        'sc_approved_step' => $stepData
+                        'sc_approved_step' => 1
                     ]);
                 }
 
+
+
                 return redirect()->back()->with('success', 'Surat Cuti ' . $pic->name . ' telah anda ' . $dataSC->sc_status . '!');
-            } catch (\Illuminate\Database\QueryException $e) {
-                return redirect()->back()->with('failed', $e->getMessage());
+            } else {
+                return redirect()->back()->with('failed', 'You not Have Authority!');
             }
-        } else {
-            return redirect()->back()->with('failed', 'You not Have Authority!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->with('failed', $e->getMessage());
         }
     }
 

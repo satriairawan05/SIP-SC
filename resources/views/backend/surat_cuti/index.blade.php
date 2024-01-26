@@ -33,7 +33,7 @@
                         <div class="list-group">
                             @foreach ($departemen as $d)
                                 @php
-                                    $scCount = \App\Models\SuratCuti::where('departemen_id', $d->departemen_id)->count();
+                                    $scCount = \App\Models\SuratCuti::leftJoin('approvals','surat_cutis.sc_id','=','approvals.sc_id')->where('approvals.user_id',auth()->user()->id)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', $d->departemen_id)->count();
                                 @endphp
                                 <a href="?departemen_id={!! $d->departemen_id !!}"
                                     class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">{{ $d->departemen_name }}
