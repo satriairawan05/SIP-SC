@@ -325,7 +325,7 @@ class SuratCutiController extends Controller
 
 
 
-                return redirect()->back()->with('success', 'Surat Cuti ' . $pic->name . ' telah anda ' . $dataSC->sc_status . '!');
+                return redirect()->back()->with('success', 'Surat Cuti ' . $pic->name . ' telah anda ' . $request->input('sc_disposisi') . '!');
             } else {
                 return redirect()->back()->with('failed', 'You not Have Authority!');
             }
