@@ -120,7 +120,7 @@
                                     is-invalid
                                 @enderror"
                                         id="lokasi_kerja" placeholder="Masukan Lokasi Kerja"
-                                        value="{{ old('lokasi_kerja', $d->lokasi_kerja) }}" name="lokasi_kerja" required>
+                                        value="{{ old('lokasi_kerja', $user->lokasi_kerja) }}" name="lokasi_kerja" required>
                                     @error('lokasi_kerja')
                                         <div class="invalid-feedback">
                                             {{ $message }}
