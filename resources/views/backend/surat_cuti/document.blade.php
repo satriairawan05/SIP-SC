@@ -332,7 +332,10 @@
                                     <span class="fs-6 ms-2 text-center">{{ $dataPic->name }}</span><br>
                                     <span class="fs-6 ms-2 text-center">{{ $dataPic->jabatan }}</span>
                                 </div>
-                                @if ($surat->sc_status != null)
+                                @php
+                                    $app = \App\Models\Approval::where('sc_id',$surat->sc_id)->latest('app_ordinal')->first();
+                                @endphp
+                                @if ($surat->sc_status != null && $app->app_ordinal == $surat->sc_approved_step)
                                     <div class="col-3 border-keliling" style="border: 1px solid black !important;">
                                         <span class="fs-6 ms-2 text-center">Disetujui oleh,</span>
                                         <br>

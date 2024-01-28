@@ -67,9 +67,15 @@ class SuratCutiController extends Controller
                         'pages' => $this->get_access($this->name, auth()->user()->group_id),
                     ]);
                 } else {
+                    $app = \App\Models\Approval::where('user_id', auth()->user()->id)->first();
+                    if ($app) {
+                $cuti = SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->leftJoin('approvals', 'surat_cutis.sc_id', '=', 'approvals.sc_id')->where('approvals.user_id', auth()->user()->id)->where('approvals.app_ordinal',$app->app_ordinal)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get();
+                    } else {
+                        $cuti = SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->leftJoin('approvals', 'surat_cutis.sc_id', '=', 'approvals.sc_id')->where('approvals.user_id', auth()->user()->id)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get();
+                    }
                     return view('backend.surat_cuti.index2', [
                         'name' => $this->name,
-                        'cuti' => SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->leftJoin('approvals', 'surat_cutis.sc_id', '=', 'approvals.sc_id')->where('approvals.user_id', auth()->user()->id)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get(),
+                        'cuti' => $cuti,
                         'departemen' => \App\Models\Departemen::select('departemen_name')->where('departemen_id', request()->input('departemen_id'))->first(),
                         'pages' => $this->get_access($this->name, auth()->user()->group_id),
                     ]);
@@ -174,7 +180,7 @@ class SuratCutiController extends Controller
                 $departemenPic = \App\Models\Departemen::leftJoin('users', 'departemens.departemen_id', '=', 'departemens.departemen_id')->where('departemens.departemen_id', $dataPic->departemen_id)->first();
                 $dataPJ = SuratCuti::select('pjs.*')->where('surat_cutis.sc_id', $dataSurat->sc_id)->leftJoin('users as pjs', 'surat_cutis.pt_id', '=', 'pjs.id')->first();
                 $departemenPJ = \App\Models\Departemen::leftJoin('users', 'departemens.departemen_id', '=', 'departemens.departemen_id')->where('departemens.departemen_id', $dataPJ->departemen_id)->first();
-                $dataApproval = \App\Models\Approval::select('users.*')->leftJoin('users', 'approvals.user_id', '=', 'users.id')->get();
+                $dataApproval = \App\Models\Approval::select('users.*')->leftJoin('departemens','approvals.departemen_id','=','departemens.departemen_id')->leftJoin('users', 'approvals.user_id', '=', 'users.id')->get();
 
                 SuratCuti::where('sc_id', $dataSurat->sc_id)->update([
                     'sc_print_count' => \Illuminate\Support\Facades\DB::raw('sc_print_count + 1')
