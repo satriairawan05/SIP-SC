@@ -115,7 +115,7 @@ class UserController extends Controller
                         'jabatan' => $request->input('jabatan'),
                         'nik' => $request->input('nik'),
                         'lokasi_kerja' => $request->input('lokasi_kerja'),
-                        'tgl_masuk' => $request->input('tanggal_masuk'),
+                        'tgl_masuk' => $request->input('tgl_masuk'),
                         'group_id' => $request->input('group_id'),
                         'departemen_id' => $request->input('departemen_id'),
                     ]);
@@ -189,7 +189,7 @@ class UserController extends Controller
                         'jabatan' => $request->input('jabatan'),
                         'nik' => $request->input('nik'),
                         'lokasi_kerja' => $request->input('lokasi_kerja'),
-                        'tgl_masuk' => $request->input('tanggal_masuk'),
+                        'tgl_masuk' => $request->input('tgl_masuk'),
                         'group_id' => $request->input('group_id'),
                         'departemen_id' => $request->input('departemen_id'),
                     ]);
