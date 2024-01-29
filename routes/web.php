@@ -23,12 +23,13 @@ Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'login'
 
 Route::middleware('auth')->group(function () {
     // Home
+    $app = \App\Models\Approval::latest('app_ordinal')->first();
     Route::get('home', fn () => view('backend.home', [
         'name' => 'Dashboard',
         'users' => \App\Models\User::count(),
         'suratCuti' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->count(),
-        'waitSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNull('sc_status')->count(),
-        'accSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNotNull('sc_status')->count()
+        'waitSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->where('departemen_id', auth()->user()->departemen_id)->whereNull('sc_remark')->count(),
+        'accSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->where('departemen_id', auth()->user()->departemen_id)->where('sc_approved_step',$app->app_ordinal)->whereNotNull('sc_remark')->count()
     ]))->name('dashboard');
 
     // Logout

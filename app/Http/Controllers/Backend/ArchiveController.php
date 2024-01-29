@@ -46,10 +46,12 @@ class ArchiveController extends Controller
                         'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 } else {
+                    $app = \App\Models\Approval::latest('app_ordinal')->first();
+                    $surat = \App\Models\SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->where('surat_cutis.sc_approved_step',$app->app_ordinal)->whereNotNull('sc_no_surat')->get();
                     return view('backend.archive.index2', [
                         'name' => $this->name,
                         'departemen' => \App\Models\Departemen::where('departemen_id', $request->input('departemen_id'))->first(),
-                        'surat' => \App\Models\SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->whereNotNull('sc_no_surat')->get(),
+                        'surat' => $surat,
                         'pages' => $this->get_access($this->name, auth()->user()->group_id)
                     ]);
                 }

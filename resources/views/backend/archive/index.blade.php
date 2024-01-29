@@ -20,8 +20,9 @@
                     <div class="list-group">
                         @if (auth()->user()->departemen_id != null)
                             @php
+                            $app = \App\Models\Approval::latest('app_ordinal')->first();
                                 $scCount = \App\Models\SuratCuti::where('departemen_id', auth()->user()->departemen_id)
-                                    ->count();
+                                ->where('sc_approved_step',$app->app_ordinal)->count();
                                 $dept = \App\Models\Departemen::where('departemen_id', auth()->user()->departemen_id)->first();
                             @endphp
                             <a href="?departemen_id={!! $dept->departemen_id !!}"

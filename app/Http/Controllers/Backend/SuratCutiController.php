@@ -69,7 +69,7 @@ class SuratCutiController extends Controller
                 } else {
                     $app = \App\Models\Approval::where('user_id', auth()->user()->id)->first();
                     if ($app) {
-                $cuti = SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->leftJoin('approvals', 'surat_cutis.sc_id', '=', 'approvals.sc_id')->where('approvals.user_id', auth()->user()->id)->where('approvals.app_ordinal',$app->app_ordinal)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get();
+                        $cuti = SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->leftJoin('approvals', 'surat_cutis.sc_id', '=', 'approvals.sc_id')->where('approvals.user_id', auth()->user()->id)->where('approvals.app_ordinal',$app->app_ordinal)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get();
                     } else {
                         $cuti = SuratCuti::select(['surat_cutis.*', 'pics.name as pic_name', 'pts.name as pt_name'])->leftJoin('users as pics', 'surat_cutis.pic_id', '=', 'pics.id')->leftJoin('users as pts', 'surat_cutis.pt_id', '=', 'pts.id')->leftJoin('approvals', 'surat_cutis.sc_id', '=', 'approvals.sc_id')->where('approvals.user_id', auth()->user()->id)->whereNull('approvals.app_date')->where('surat_cutis.departemen_id', request()->input('departemen_id'))->get();
                     }

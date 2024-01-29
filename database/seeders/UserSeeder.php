@@ -25,6 +25,6 @@ class UserSeeder extends Seeder
             'tgl_masuk' => \Carbon\Carbon::now()
         ]);
 
-        \App\Models\User::factory(49)->create();
+        // \App\Models\User::factory(49)->create();
     }
 }
