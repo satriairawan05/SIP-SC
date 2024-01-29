@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
         'name' => 'Dashboard',
         'users' => \App\Models\User::count(),
         'suratCuti' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->count(),
-        'waitSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->where('departemen_id', auth()->user()->departemen_id)->whereNull('sc_remark')->count(),
-        'accSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->where('departemen_id', auth()->user()->departemen_id)->where('sc_approved_step',$app->app_ordinal)->whereNotNull('sc_remark')->count()
+        'waitSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNull('sc_remark')->count(),
+        'accSC' => \App\Models\SuratCuti::whereMonth('created_at', '=', date('m'))->whereNotNull('sc_remark')->count()
     ]))->name('dashboard');
 
     // Logout
